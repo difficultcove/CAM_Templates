@@ -27,7 +27,7 @@ provider "vsphere" {
 #########################################################
 variable "name" {
   description = "Name of the Virtual Machine"
-  default     = "mongodb-vm"
+  default     = ""
 }
 
 variable "folder" {
@@ -235,5 +235,5 @@ EOF
 # Output
 #########################################################
 output "The IP address of the VM with Tririga installed" {
-    value = "${vsphere_virtual_machine.mongodb_vm.network_interface.0.ipv4_address}"
+    value = "${vsphere_virtual_machine.tririga_vm.network_interface.0.ipv4_address}"
 }
