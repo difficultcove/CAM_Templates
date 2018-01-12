@@ -45,6 +45,11 @@ variable "vcpu" {
   default     = 1
 }
 
+variable "rootdisksize" {
+  description = "The Size of the root disk"
+  default     = 16
+}
+
 variable "memory" {
   description = "Memory for Virtual Machine in GBs"
   default     = 1
@@ -133,6 +138,7 @@ resource "vsphere_virtual_machine" "tririga_vm" {
     datastore = "${var.storage}"
     template  = "${var.vm_template}"
     type      = "thin"
+    size      = "${var.rootdisksize}"
   }
 
   # Specify the ssh connection

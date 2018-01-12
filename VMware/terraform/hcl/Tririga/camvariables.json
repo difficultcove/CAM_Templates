@@ -134,6 +134,9 @@
         "label": "Root disk size",
         "description": "The size of the root disk in GB",
         "default": "16",
+=======
+        "default": 16,
+>>>>>>> 1.6
         "hidden": false,
         "immutable": false,
         "required": true,
