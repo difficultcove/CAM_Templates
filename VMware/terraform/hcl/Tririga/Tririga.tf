@@ -144,8 +144,14 @@ resource "vsphere_virtual_machine" "tririga_vm" {
   disk {
     datastore = "${var.storage}"
     type      = "thin"
+    template  = "${var.vm_template}"
+  }
+  disk {
+    datastore = "${var.storage}"
+    type      = "thin"
     size      = "${var.rootdisksize}"
   }
+
 
   clone {
    template_uuid = "${data.vsphere_virtual_machine.template.id}"
