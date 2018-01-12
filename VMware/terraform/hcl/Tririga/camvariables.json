@@ -82,7 +82,7 @@
         "required": true,
         "secured": false,
         "type": "string",
-		"options": [
+        "options": [
          	{
             	"value" : "1",
               	"label": "1 GB"
@@ -172,15 +172,15 @@
         "required": true,
         "secured": false,
         "type": "string",
-		"options": [
-         	{
-            	"value" : "NLAB_FRNT_0210",
-              	"label": "External - 9.180.210.x/25"
-          	},
-         	{
-            	"value" : "VLAB_MGMT_0019",
-              	"label": "Internal - 172.24.19.x/24"
-		}
+        "options": [
+          {
+            "value" : "NLAB_FRNT_0210",
+            "label": "External - 9.180.210.x/25"
+          },
+          {
+            "value" : "VLAB_MGMT_0019",
+            "label": "Internal - 172.24.19.x/24"
+          }
         ]
     },
     {
@@ -232,28 +232,28 @@
         "name": "vm_template",
         "label": "VM Template",
         "description": "Source VM or Template label for cloning",
-	"default": "vt-ubuntu-svr-1604",
+        "default": "vt-ubuntu-svr-1604",
         "hidden": false,
         "immutable": false,
         "required": true,
         "secured": false,
         "type": "string",
-    	"options": [
-     	   {
-        	"value": "vt-ubuntu-svr-1604",
-        	"label": "Ubuntu Server 16.04"
-      	   },
-           {
-        	"value": "vt-rhel73-svr",
-        	"label": "Red Hat Enterprise Linux Server 7.3"
-      	   },
-      	   {
-        	"value": "vt-w8str2sp1-64",
-         	"label": "Windows 2008 Server R2 SP1"
-      	   }
-    	]
-    {
+        "options": [
+          {
+            "value": "vt-ubuntu-svr-1604",
+            "label": "Ubuntu Server 16.04"
+          },
+          {
+            "value": "vt-rhel73-svr",
+            "label": "Red Hat Enterprise Linux Server 7.3"
+          },
+          {
+            "value": "vt-w8str2sp1-64",
+            "label": "Windows 2008 Server R2 SP1"
+          }
+        ]
     },
+    {
         "name": "ssh_user",
         "label": "SSH User",
         "description": "The user for ssh connection, which is default in template",
