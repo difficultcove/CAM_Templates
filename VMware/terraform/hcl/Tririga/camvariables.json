@@ -42,7 +42,8 @@
         "required": true,
         "secured": false,
         "type": "string",
-		"options": [
+        "default": "1",
+        "options": [
          	{
             	"value" : "1",
               	"label": "1 Core"
@@ -82,6 +83,7 @@
         "required": true,
         "secured": false,
         "type": "string",
+        "default": "1",
         "options": [
          	{
             	"value" : "1",
@@ -130,6 +132,31 @@
         ]
     },
     {
+        "name": "rootdisksize",
+        "label": "Root disk size",
+        "description": "The size of the root disk in GB",
+        "default": "16",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "options": [
+          {
+            "value": "16",
+            "label": "16 GB"
+          },
+          {
+            "value": "40",
+            "label": "40 GB"
+          },
+          {
+            "value": "100",
+            "label": "100 GB"
+          }
+        ]
+    },
+    {
         "name": "cluster",
         "label": "Cluster",
         "description": "Target vSphere Cluster to host the Virtual Machine",
@@ -144,7 +171,7 @@
         "name": "dns_suffixes",
         "label": "DNS Suffixes",
         "description": "Name resolution suffixes for the virtual network adapter",
-        "default": [],
+        "default": ["isstlab.staines.uk.ibm.com"],
         "hidden": false,
         "immutable": false,
         "required": false,
@@ -155,7 +182,7 @@
         "name": "dns_servers",
         "label": "DNS Servers",
         "description": "DNS servers for the virtual network adapter; Allow 0.0.0.0 to 255.255.255.255",
-        "default": [],
+        "default": ["9.180.210.16","9.180.210.18"],
         "hidden": false,
         "immutable": false,
         "required": false,
@@ -172,6 +199,7 @@
         "required": true,
         "secured": false,
         "type": "string",
+        "default": "NLAB_FRNT_0210",
         "options": [
           {
             "value" : "NLAB_FRNT_0210",
@@ -214,7 +242,7 @@
         "required": true,
         "secured": false,
         "type": "string",
-        "default": 25,
+        "default": "25",
         "regex": "^([8-9]|[1-2][0-9]|3[0-2])$"
     },
     {
@@ -232,7 +260,7 @@
         "name": "vm_template",
         "label": "VM Template",
         "description": "Source VM or Template label for cloning",
-        "default": "vt-ubuntu-svr-1604",
+        "default": "vt-rhel73-svr",
         "hidden": false,
         "immutable": false,
         "required": true,
