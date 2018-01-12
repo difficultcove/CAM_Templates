@@ -140,6 +140,7 @@ resource "vsphere_virtual_machine" "tririga_vm" {
     template  = "${var.vm_template}"
   }
   disk {
+    name      = "${var.name}-2"
     datastore = "${var.storage}"
     type      = "thin"
     size      = "${var.rootdisksize}"
