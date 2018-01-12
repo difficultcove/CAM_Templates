@@ -152,11 +152,6 @@ resource "vsphere_virtual_machine" "tririga_vm" {
     size      = "${var.rootdisksize}"
   }
 
-
-  clone {
-   template_uuid = "${data.vsphere_virtual_machine.template.id}"
-  }
-
   # Specify the ssh connection
   connection {
     user        = "${var.ssh_user}"
