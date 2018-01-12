@@ -42,6 +42,9 @@
         "required": true,
         "secured": false,
         "type": "string",
+<<<<<<< HEAD
+=======
+>>>>>>> 1.0
         "options": [
          	{
             	"value" : "1",
