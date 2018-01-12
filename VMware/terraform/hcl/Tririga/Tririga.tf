@@ -114,6 +114,13 @@ variable "user_public_key" {
   description = "User-provided public SSH key used to connect to the virtual machine"
   default     = "None"
 }
+data "vsphere_datacenter" "dc" {
+  name = "${var.datacenter}"
+}
+data "vsphere_virtual_machine" "template" {
+  name          = "${var.vm_template}"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
 
 ##############################################################
 # Create Virtual Machine and install Tririga
@@ -136,9 +143,12 @@ resource "vsphere_virtual_machine" "tririga_vm" {
 
   disk {
     datastore = "${var.storage}"
-    template  = "${var.vm_template}"
     type      = "thin"
     size      = "${var.rootdisksize}"
+  }
+
+  clone {
+   template_uuid = "${data.vsphere_virtual_machine.template.id}"
   }
 
   # Specify the ssh connection
