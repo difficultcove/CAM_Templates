@@ -134,9 +134,6 @@
         "label": "Root disk size",
         "description": "The size of the root disk in GB",
         "default": "16",
-=======
-        "default": 16,
->>>>>>> 1.6
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -243,7 +240,7 @@
         "required": true,
         "secured": false,
         "type": "string",
-        "default": 25,
+        "default": "25",
         "regex": "^([8-9]|[1-2][0-9]|3[0-2])$"
     },
     {
