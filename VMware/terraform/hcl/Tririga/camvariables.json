@@ -42,7 +42,7 @@
         "required": true,
         "secured": false,
         "type": "string",
-		"options": [
+        "options": [
          	{
             	"value" : "1",
               	"label": "1 Core"
@@ -144,7 +144,7 @@
         "name": "dns_suffixes",
         "label": "DNS Suffixes",
         "description": "Name resolution suffixes for the virtual network adapter",
-        "default": [],
+        "default": [{"isstlab.staines.uk.ibm.com"}],
         "hidden": false,
         "immutable": false,
         "required": false,
@@ -155,7 +155,7 @@
         "name": "dns_servers",
         "label": "DNS Servers",
         "description": "DNS servers for the virtual network adapter; Allow 0.0.0.0 to 255.255.255.255",
-        "default": [],
+        "default": [{"9.180.210.16"}],
         "hidden": false,
         "immutable": false,
         "required": false,
@@ -172,6 +172,7 @@
         "required": true,
         "secured": false,
         "type": "string",
+        "default": "NLAB_FRNT_0210",
         "options": [
           {
             "value" : "NLAB_FRNT_0210",
@@ -232,7 +233,7 @@
         "name": "vm_template",
         "label": "VM Template",
         "description": "Source VM or Template label for cloning",
-        "default": "vt-ubuntu-svr-1604",
+        "default": "vt-w8str2sp1-64",
         "hidden": false,
         "immutable": false,
         "required": true,
