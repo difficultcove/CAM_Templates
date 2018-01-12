@@ -42,10 +42,7 @@
         "required": true,
         "secured": false,
         "type": "string",
-<<<<<<< HEAD
-=======
         "default": "1",
->>>>>>> 1.0
         "options": [
          	{
             	"value" : "1",
