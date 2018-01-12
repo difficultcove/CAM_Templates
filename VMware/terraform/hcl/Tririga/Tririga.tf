@@ -114,13 +114,6 @@ variable "user_public_key" {
   description = "User-provided public SSH key used to connect to the virtual machine"
   default     = "None"
 }
-data "vsphere_datacenter" "dc" {
-  name = "${var.datacenter}"
-}
-data "vsphere_virtual_machine" "template" {
-  name          = "${var.vm_template}"
-  datacenter_id = "${data.vsphere_datacenter.dc.id}"
-}
 
 ##############################################################
 # Create Virtual Machine and install Tririga
