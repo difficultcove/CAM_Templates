@@ -111,9 +111,9 @@ variable "user_public_key" {
 }
 
 ##############################################################
-# Create Virtual Machine and install MongoDB
+# Create Virtual Machine and install Tririga
 ##############################################################
-resource "vsphere_virtual_machine" "mongodb_vm" {
+resource "vsphere_virtual_machine" "tririga_vm" {
   name         = "${var.name}"
   folder       = "${var.folder}"
   datacenter   = "${var.datacenter}"
@@ -179,7 +179,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-LOGFILE="/var/log/install_mongodb.log"
+LOGFILE="/var/log/install_tririga.log"
 
 retryInstall () {
   n=0
@@ -196,27 +196,27 @@ retryInstall () {
    done
 }
 
-#install mongodb
+#install Tririga
 
-echo "---start installing mongodb---" | tee -a $LOGFILE 2>&1
-mongo_repo=/etc/yum.repos.d/mongodb-org-3.4.repo
-cat <<EOT | tee -a $mongo_repo                                                    >> $LOGFILE 2>&1 || { echo "---Failed to create mongo repo---" | tee -a $LOGFILE; exit 1; }
-[mongodb-org-3.4]
-name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/redhat/\$releasever/mongodb-org/3.4/x86_64/
-gpgcheck=1
-enabled=1
-gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc
-EOT
-retryInstall "yum install -y mongodb-org"                                         >> $LOGFILE 2>&1 || { echo "---Failed to install mongodb-org---" | tee -a $LOGFILE; exit 1; }
-sed -i -e 's/  bindIp/#  bindIp/g' /etc/mongod.conf                               >> $LOGFILE 2>&1 || { echo "---Failed to configure mongod---" | tee -a $LOGFILE; exit 1; }
-service mongod start                                                              >> $LOGFILE 2>&1 || { echo "---Failed to start mongodb---" | tee -a $LOGFILE; exit 1; }
-echo "---finish installing mongodb---" | tee -a $LOGFILE 2>&1
+echo "---start installing Tririga---" | tee -a $LOGFILE 2>&1
+#mongo_repo=/etc/yum.repos.d/mongodb-org-3.4.repo
+#cat <<EOT | tee -a $mongo_repo                                                    >> $LOGFILE 2>&1 || { echo "---Failed to create mongo repo---" | tee -a $LOGFILE; exit 1; }
+#[mongodb-org-3.4]
+#name=MongoDB Repository
+#baseurl=https://repo.mongodb.org/yum/redhat/\$releasever/mongodb-org/3.4/x86_64/
+#gpgcheck=1
+#enabled=1
+#gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc
+#EOT
+#retryInstall "yum install -y mongodb-org"                                         >> $LOGFILE 2>&1 || { echo "---Failed to install mongodb-org---" | tee -a $LOGFILE; exit 1; }
+#sed -i -e 's/  bindIp/#  bindIp/g' /etc/mongod.conf                               >> $LOGFILE 2>&1 || { echo "---Failed to configure mongod---" | tee -a $LOGFILE; exit 1; }
+#service mongod start                                                              >> $LOGFILE 2>&1 || { echo "---Failed to start mongodb---" | tee -a $LOGFILE; exit 1; }
+#echo "---finish installing mongodb---" | tee -a $LOGFILE 2>&1
 
-if hash iptables 2>/dev/null; then
+#if hash iptables 2>/dev/null; then
 	#update firewall
-	iptables -I INPUT 1 -p tcp -m tcp --dport 27017 -m conntrack --ctstate NEW -j ACCEPT     >> $LOGFILE 2>&1 || { echo "---Failed to update firewall---" | tee -a $LOGFILE; exit 1; }   
-fi	
+#	iptables -I INPUT 1 -p tcp -m tcp --dport 27017 -m conntrack --ctstate NEW -j ACCEPT     >> $LOGFILE 2>&1 || { echo "---Failed to update firewall---" | tee -a $LOGFILE; exit 1; }
+#fi
 
 EOF
     destination = "/tmp/installation.sh"
@@ -234,6 +234,6 @@ EOF
 #########################################################
 # Output
 #########################################################
-output "The IP address of the VM with MongoDB installed" {
+output "The IP address of the VM with Tririga installed" {
     value = "${vsphere_virtual_machine.mongodb_vm.network_interface.0.ipv4_address}"
 }
