@@ -133,6 +133,7 @@ resource "vsphere_virtual_machine" "tririga_vm" {
     datastore = "${var.storage}"
     template  = "${var.vm_template}"
     type      = "thin"
+    size      = "${var.rootdisksize}"
   }
 
   # Specify the ssh connection

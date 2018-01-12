@@ -130,6 +130,31 @@
         ]
     },
     {
+        "name": "root disk size",
+        "label": "Root disk size",
+        "description": "The size of the root disk in GB",
+        "default": 16,
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "integer",
+        "options": [
+          {
+            "value": 16,
+            "label": "16 GB"
+          },
+          {
+            "value": 40,
+            "label": "40 GB"
+          },
+          {
+            "value": 100,
+            "label": "100 GB"
+          }
+        ]
+    },
+    {
         "name": "cluster",
         "label": "Cluster",
         "description": "Target vSphere Cluster to host the Virtual Machine",
