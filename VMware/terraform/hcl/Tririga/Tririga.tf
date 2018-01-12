@@ -45,6 +45,11 @@ variable "vcpu" {
   default     = 1
 }
 
+variable "rootdisksize" {
+  description = "The Size of the root disk"
+  default     = 16
+}
+
 variable "memory" {
   description = "Memory for Virtual Machine in GBs"
   default     = 1

@@ -130,7 +130,7 @@
         ]
     },
     {
-        "name": "root disk size",
+        "name": "rootdisksize",
         "label": "Root disk size",
         "description": "The size of the root disk in GB",
         "default": 16,
