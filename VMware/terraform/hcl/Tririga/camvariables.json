@@ -3,7 +3,7 @@
         "name": "name",
         "label": "Hostname",
         "description": "Name of the Virtual Machine; Allow 1 to 80 alphanumeric characters with special characters in [.- _]",
-        "default": "tririga-vm",
+        "default": "tririga-vm-1",
         "hidden": false,
         "immutable": false,
         "required": true,

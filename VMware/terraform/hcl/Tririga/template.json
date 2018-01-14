@@ -1,7 +1,7 @@
 {
    "name": "Tririga on a Single VM in CLSLab",
    "description": "Tririga - An IBM product",
-   "version": "1.0.0.0",
+   "version": "2.0.5",
    "type": "custom",
    "manifest": {
      "template_type": "Terraform",
