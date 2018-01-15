@@ -313,5 +313,39 @@
         "secured": false,
         "type": "string",
         "regex": "^None$|^ssh-rsa AAAA[0-9A-Za-z+/]+[=]{0,3}( [^@]+@[^@]+| [^@]+){0,1}$"
+    },
+    {
+        "name": "smb_share",
+        "label": "Windows or SMB File Share",
+        "description": "SMB or Windows file share and path e.g. //server/path",
+        "default": "//9.180.210.18/Repository",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "smb_user",
+        "label": "File Share user",
+        "description": "SMB or Windows file share user",
+        "default": "Administrator",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "smb_pwd",
+        "label": "File Share users password - base64 encoded",
+        "description": "SMB or Windows file share users password encoded in base64",
+        "default": "VDFvYWRtMW4=",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
     }
+
 ]

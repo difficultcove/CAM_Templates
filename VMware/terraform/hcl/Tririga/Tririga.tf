@@ -115,6 +115,20 @@ variable "user_public_key" {
   default     = "None"
 }
 
+variable "smb_share" {
+  description = "Windows or SMB file server share"
+  default     = "None"
+}
+
+variable "smb_user" {
+  description = "User with access to SMB Share"
+  default     = "None"
+}
+
+variable "smb_pwd" {
+  description = "Base 64 encoded SMB user password"
+  default     = "None"
+}
 ##############################################################
 # Create Virtual Machine and install Tririga
 ##############################################################
@@ -186,6 +200,10 @@ EOF
     content = <<EOF
 #!/bin/bash
 
+set $smbshare=$1
+set $smbuser=$2
+set $smbpwd=$(echo $3 | base64)
+
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -207,9 +225,17 @@ retryInstall () {
    done
 }
 
+#mount File share
+mkdir /software
+echo $smbpwd | mount -t cifs -o user=$smbuser $smbshare /software
+
 #install Tririga
 
 echo "---start installing Tririga---" | tee -a $LOGFILE 2>&1
+
+
+
+
 #mongo_repo=/etc/yum.repos.d/mongodb-org-3.4.repo
 #cat <<EOT | tee -a $mongo_repo                                                    >> $LOGFILE 2>&1 || { echo "---Failed to create mongo repo---" | tee -a $LOGFILE; exit 1; }
 #[mongodb-org-3.4]
@@ -237,7 +263,7 @@ EOF
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/addkey.sh; bash /tmp/addkey.sh \"${var.user_public_key}\"",
-      "chmod +x /tmp/installation.sh; bash /tmp/installation.sh"
+      "chmod +x /tmp/installation.sh; bash /tmp/installation.sh ${var.smb_share} ${var.smb_user} ${var.smb_pwd}"
     ]
   }
 }
