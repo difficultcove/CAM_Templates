@@ -133,8 +133,8 @@
     },
     {
         "name": "rootdisksize",
-        "label": "Root disk size",
-        "description": "The size of the root disk in GB",
+        "label": "Additional disk size",
+        "description": "The extra disk size to extend root disk by",
         "default": "16",
         "hidden": false,
         "immutable": false,

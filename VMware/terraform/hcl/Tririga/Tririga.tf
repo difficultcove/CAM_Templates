@@ -234,6 +234,13 @@ mkdir /software
 mount -t cifs -o user=$smbuser,password=$smbpwd $smbshare /software
 mount >> $LOGFILE
 
+#extend root disks
+echo "Extending root disk" >> $LOGFILE
+echo -e "o\nn\np\n1\n\n\nw\n" | fdisk /dev/sdb | tee -a $LOGFILE 2>&1
+vgextend rhel /dev/sdb1 | tee -a $LOGFILE 2>&1
+lvresize -r -l+100%FREE /dev/rhel/root | tee -a $LOGFILE 2>&1
+
+
 #install Tririga
 
 echo "---start installing Tririga---" | tee -a $LOGFILE 2>&1
