@@ -200,15 +200,17 @@ EOF
     content = <<EOF
 #!/bin/bash
 
-set $smbshare=$1
-set $smbuser=$2
-set $smbpwd=$(echo $3 | base64)
-
 set -o errexit
 set -o nounset
 set -o pipefail
 
 LOGFILE="/var/log/install_tririga.log"
+echo "Starting Install" >> $LOGFILE
+echo "Input Params" >> $LOGFILE
+set $smbshare=$1
+set $smbuser=$2
+set $smbpwd=$(echo $3 | base64)
+echo "SMB Share=$smbshare\nSMBUser=$smbuser\n$SMBPwd=$smbpwd" >> $LOGFILE
 
 retryInstall () {
   n=0
@@ -226,8 +228,10 @@ retryInstall () {
 }
 
 #mount File share
+echo "Mounting fileshare" >> $LOGFILE
 mkdir /software
 echo $smbpwd | mount -t cifs -o user=$smbuser $smbshare /software
+mount >> $LOGFILE
 
 #install Tririga
 
