@@ -340,7 +340,7 @@
         "name": "smb_pwd",
         "label": "File Share users password - base64 encoded",
         "description": "SMB or Windows file share users password encoded in base64",
-        "default": "VDFvYWRtMW4=",
+        "default": "VDFvYWRtMW4h",
         "hidden": false,
         "immutable": false,
         "required": true,

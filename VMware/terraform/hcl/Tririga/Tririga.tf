@@ -211,7 +211,7 @@ echo $@ >> $LOGFILE
 smbshare=$1
 smbuser=$2
 smbpwd=$(echo $3 | base64 -d )
-echo "SMB Share=${smbshare}\nSMBUser=${smbuser}\nSMBPwd=${smbpwd}" >> $LOGFILE
+echo "SMB Share=$smbshare SMBUser=$smbuser SMBPwd=$smbpwd" >> $LOGFILE
 
 retryInstall () {
   n=0
