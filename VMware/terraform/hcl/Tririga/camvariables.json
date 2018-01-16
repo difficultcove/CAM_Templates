@@ -268,16 +268,8 @@
         "type": "string",
         "options": [
           {
-            "value": "vt-ubuntu-svr-1604",
-            "label": "Ubuntu Server 16.04"
-          },
-          {
             "value": "vt-rhel73-svr",
             "label": "Red Hat Enterprise Linux Server 7.3"
-          },
-          {
-            "value": "vt-w8str2sp1-64",
-            "label": "Windows 2008 Server R2 SP1"
           }
         ]
     },

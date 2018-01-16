@@ -240,6 +240,15 @@ echo -e "o\nn\np\n1\n\n\nw\n" | fdisk /dev/sdb | tee -a $LOGFILE 2>&1
 vgextend rhel /dev/sdb1 | tee -a $LOGFILE 2>&1
 lvresize -r -l+100%FREE /dev/rhel/root | tee -a $LOGFILE 2>&1
 
+#setup Repository
+cat <<EOT | tee -a rhel7http >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
+[rhel73repo]
+name=RHEL73 Repository
+baseurl=http://9.180.210.120/RedHat/RHEL73/
+gpgcheck=0
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+EOT
 
 #install Tririga
 
