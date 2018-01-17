@@ -241,7 +241,8 @@ vgextend rhel /dev/sdb1 | tee -a $LOGFILE 2>&1
 lvresize -r -l+100%FREE /dev/rhel/root | tee -a $LOGFILE 2>&1
 
 #setup Repository
-cat <<EOT | tee -a rhel7http >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
+rhel7http=/etc/yum.repos.d/rhel7http.repo
+cat <<EOT | tee -a $rhel7http >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
 [rhel73repo]
 name=RHEL73 Repository
 baseurl=http://9.180.210.120/RedHat/RHEL73/
@@ -249,23 +250,13 @@ gpgcheck=0
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 EOT
+yum clean all | tee -a $LOGFILE 2>&1
 
 #install Tririga
 
 echo "---start installing Tririga---" | tee -a $LOGFILE 2>&1
 
 
-
-
-#mongo_repo=/etc/yum.repos.d/mongodb-org-3.4.repo
-#cat <<EOT | tee -a $mongo_repo                                                    >> $LOGFILE 2>&1 || { echo "---Failed to create mongo repo---" | tee -a $LOGFILE; exit 1; }
-#[mongodb-org-3.4]
-#name=MongoDB Repository
-#baseurl=https://repo.mongodb.org/yum/redhat/\$releasever/mongodb-org/3.4/x86_64/
-#gpgcheck=1
-#enabled=1
-#gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc
-#EOT
 #retryInstall "yum install -y mongodb-org"                                         >> $LOGFILE 2>&1 || { echo "---Failed to install mongodb-org---" | tee -a $LOGFILE; exit 1; }
 #sed -i -e 's/  bindIp/#  bindIp/g' /etc/mongod.conf                               >> $LOGFILE 2>&1 || { echo "---Failed to configure mongod---" | tee -a $LOGFILE; exit 1; }
 #service mongod start                                                              >> $LOGFILE 2>&1 || { echo "---Failed to start mongodb---" | tee -a $LOGFILE; exit 1; }
