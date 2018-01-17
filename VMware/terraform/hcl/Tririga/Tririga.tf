@@ -240,6 +240,7 @@ echo -e "o\nn\np\n1\n\n\nw\n" | fdisk /dev/sdb | tee -a $LOGFILE 2>&1
 vgextend rhel /dev/sdb1 | tee -a $LOGFILE 2>&1
 lvresize -r -l+100%FREE /dev/rhel/root | tee -a $LOGFILE 2>&1
 
+
 #setup Repository
 rhel7http=/etc/yum.repos.d/rhel7http.repo
 cat <<EOT | tee -a $rhel7http >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
@@ -251,6 +252,23 @@ enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 EOT
 yum clean all | tee -a $LOGFILE 2>&1
+
+#Install zip and unzip
+echo "Installing Zip and Unzip" >> $LOGFILE
+yum install -y zip unzip | tee -a $LOGFILE 2>&1
+
+#Install DB2
+echo "Installing DB2 Pre-reqs" >> $LOGFILE
+yum install -y libstdc++.so.6 | tee -a $LOGFILE 2>&1
+groupadd db2fsdm1 | tee -a $LOGFILE 2>&1
+adduser -g db2fsdm1 db2sdfe1 | tee -a $LOGFILE 2>&1
+
+mkdir /tmp/db2
+cd /tmp/db2
+tar -xvf /software/Software/Windows/IBM/Tririga/DB2_AWSE_REST_Svr_11.1_Lnx_86-64.tar.gz  | tee -a $LOGFILE 2>&1
+cat /tmp/db2/linuxamd64/samples/db2server.rsp | sed -e 's/LIC_AGREEMENT *= DECLINE/LIC_AGREEMENT = ACCEPT/' > /tmp/db2/db2custom.rsp | tee -a $LOGFILE 2>&1
+/tmp/db2/db2setup -r /tmp/db2/db2custom.rsp | tee -a $LOGFILE 2>&1
+
 
 #install Tririga
 
