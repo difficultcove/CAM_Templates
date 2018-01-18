@@ -265,9 +265,13 @@ adduser -g db2fsdm1 db2sdfe1 | tee -a $LOGFILE 2>&1
 
 mkdir /tmp/db2
 cd /tmp/db2
-tar -xvf /software/Software/Windows/IBM/Tririga/DB2_AWSE_REST_Svr_11.1_Lnx_86-64.tar.gz  | tee -a $LOGFILE 2>&1
-cat /tmp/db2/linuxamd64/samples/db2server.rsp | sed -e 's/LIC_AGREEMENT *= DECLINE/LIC_AGREEMENT = ACCEPT/' > /tmp/db2/db2custom.rsp | tee -a $LOGFILE 2>&1
-/tmp/db2/db2setup -r /tmp/db2/db2custom.rsp | tee -a $LOGFILE 2>&1
+tar -xf /software/Software/Windows/IBM/Tririga/DB2_AWSE_REST_Svr_11.1_Lnx_86-64.tar.gz  | tee -a $LOGFILE 2>&1
+cat /tmp/db2/server_awse_o/linuxamd64/samples/db2server.rsp | sed -e 's/LIC_AGREEMENT *= DECLINE/LIC_AGREEMENT = ACCEPT/' > /tmp/db2/db2custom.rsp | tee -a $LOGFILE 2>&1
+/tmp/db2/server_awse_o/db2setup -r /tmp/db2/db2custom.rsp | tee -a $LOGFILE 2>&1
+adduser tridata | tee -a $LOGFILE 2>&1
+adduser -g db2iadm1 triinst | tee -a $LOGFILE 2>&1
+adduser -g db2iadm1 db2fenc1 | tee -a $LOGFILE 2>&1
+/opt/ibm/db2/V11.1/instance/db2icrt -p 50006 -u db2fenc1 triinst | tee -a $LOGFILE 2>&1
 
 
 #install Tririga
