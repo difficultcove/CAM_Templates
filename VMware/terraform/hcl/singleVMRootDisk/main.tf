@@ -80,7 +80,7 @@ data "vsphere_datastore" "datastore" {
 
 ############### Optinal settings in provider ##########
 provider "vsphere" {
-  version              = "~> 0.4"
+  version              = "1.2.0"
   allow_unverified_ssl = "${var.allow_selfsigned_cert}"
 }
 
