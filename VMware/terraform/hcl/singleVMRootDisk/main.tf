@@ -74,8 +74,8 @@ data "vsphere_datacenter" "datacenter" {
 }
 
 data "vsphere_datastore" "datastore" {
-  name          = "datastore1"
-  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+  name          = "${var.storage}"
+  datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
 }
 
 ############### Optinal settings in provider ##########

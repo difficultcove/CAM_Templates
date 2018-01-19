@@ -13,7 +13,7 @@
         "name": "folder",
         "label": "Folder",
         "description": "Target vSphere folder for Virtual Machine",
-        "default": "",
+        "default": "CAM",
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -24,7 +24,7 @@
         "name": "datacenter",
         "label": "Datacenter",
         "description": "Target vSphere datacenter for Virtual Machine creation",
-        "default": "",
+        "default": "isstlab",
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -82,7 +82,7 @@
         "name": "cluster",
         "label": "Cluster",
         "description": "Target vSphere Cluster to host the Virtual Machine",
-        "default": "",
+        "default": "underground",
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -93,6 +93,7 @@
         "name": "network_label",
         "label": "Network label",
         "description": "vSphere Port Group or Network label for Virtual Machine's vNIC",
+        "default": "VLAB_MGMT_0019",
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -123,6 +124,7 @@
         "name": "ipv4_prefix_length",
         "label": "IPv4 prefix length",
         "description": "IPv4 Prefix length for vNIC configuration",
+        "default": "24",
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -133,7 +135,7 @@
         "name": "storage",
         "label": "Storage",
         "description": "Data store or storage cluster name for target VMs disks",
-        "default": "",
+        "default": "cluster01/ESX6-volume-01",
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -148,7 +150,22 @@
         "immutable": false,
         "required": true,
         "secured": false,
-        "type": "string"
+        "type": "string",
+        "options": [
+          {
+            "value": "vt-ubuntu-svr-1604",
+            "label": "Ubuntu Server 16.04"
+          },
+          {
+            "value": "vt-rhel73-svr",
+            "label": "Red Hat Enterprise Linux Server 7.3"
+          },
+          {
+            "value": "vt-w8str2sp1-64",
+            "label": "Windows 2008 Server R2 SP1"
+          }
+        ],
+        "default": "vt-ubuntu-svr-1604"
     },
     {
         "name": "create_vm_folder",
@@ -165,7 +182,7 @@
         "name": "allow_selfsigned_cert",
         "label": "Allow selfsigned certificate",
         "description": "Communication with vsphere server with self signed certificate",
-        "default": "false",
+        "default": "true",
         "hidden": false,
         "immutable": false,
         "required": true,
