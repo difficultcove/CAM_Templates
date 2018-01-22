@@ -10,6 +10,39 @@
         "type": "string"
     },
     {
+        "name": "vm_template",
+        "label": "VM Template",
+        "description": "Source VM or Template label for cloning",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "options": [
+          {
+            "value": "vt-ubuntu-svr-1604",
+            "label": "Ubuntu Server 16.04"
+          },
+          {
+            "value": "vt-rhel65-svr",
+            "label": "Red Hat Enterprise Linux Server 6.5"
+          },
+          {
+            "value": "vt-rhel73-svr",
+            "label": "Red Hat Enterprise Linux Server 7.3"
+          },
+          {
+            "value": "vt-w8str2sp1-64",
+            "label": "Windows 2008 Server R2 SP1"
+          },
+          {
+            "value": "vt-win2012r2-base",
+            "label": "Windows 2012 Server R2"
+          }
+        ],
+        "default": "vt-ubuntu-svr-1604"
+    },
+    {
         "name": "datacenter",
         "label": "Datacenter",
         "description": "Target vSphere datacenter for Virtual Machine creation",
@@ -235,39 +268,6 @@
         "required": true,
         "secured": false,
         "type": "string"
-    },
-    {
-        "name": "vm_template",
-        "label": "VM Template",
-        "description": "Source VM or Template label for cloning",
-        "hidden": false,
-        "immutable": false,
-        "required": true,
-        "secured": false,
-        "type": "string",
-        "options": [
-          {
-            "value": "vt-ubuntu-svr-1604",
-            "label": "Ubuntu Server 16.04"
-          },
-          {
-            "value": "vt-rhel65-svr",
-            "label": "Red Hat Enterprise Linux Server 6.5"
-          },
-          {
-            "value": "vt-rhel73-svr",
-            "label": "Red Hat Enterprise Linux Server 7.3"
-          },
-          {
-            "value": "vt-w8str2sp1-64",
-            "label": "Windows 2008 Server R2 SP1"
-          },
-          {
-            "value": "vt-win2012r2-base",
-            "label": "Windows 2012 Server R2"
-          }
-        ],
-        "default": "vt-ubuntu-svr-1604"
     },
     {
         "name": "create_vm_folder",
