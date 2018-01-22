@@ -58,7 +58,7 @@
     {
       "name": "ipv4_address",
       "description": "IPv4 address for vNIC configuration",
-      "default":"172.24.19.222",
+      "default":"",
       "type": "string",
       "required": true,
       "secured": false,
@@ -69,7 +69,7 @@
     {
       "name": "ipv4_gateway",
       "description": "IPv4 gateway for vNIC configuration",
-      "default":"172.24.19.1",
+      "default":"",
       "type": "string",
       "required": true,
       "secured": false,
@@ -97,7 +97,53 @@
       "secured": false,
       "label": "memory",
       "hidden": false,
-      "immutable": false
+      "immutable": false,
+      "options": [
+        {
+            "value" : "1",
+              "label": "1 GB"
+          },
+        {
+            "value" : "2",
+              "label": "2 GB"
+          },
+        {
+            "value" : "4",
+              "label": "4 GB"
+          },
+        {
+            "value" : "6",
+              "label": "6 GB"
+          },
+        {
+            "value" : "8",
+              "label": "8 GB"
+          },
+        {
+            "value" : "12",
+              "label": "12 GB"
+          },
+        {
+            "value" : "16",
+              "label": "16 GB"
+          },
+        {
+            "value" : "32",
+              "label": "32 GB"
+          },
+        {
+            "value" : "48",
+              "label": "48 GB"
+          },
+        {
+            "value" : "64",
+              "label": "64 GB"
+          },
+        {
+            "value" : "128",
+              "label": "128 GB"
+          }
+      ]
     },
     {
       "name": "rootdisksize",
@@ -108,18 +154,50 @@
       "secured": false,
       "label": "rootdisksize",
       "hidden": false,
-      "immutable": false
+      "immutable": false,
+      "options": [
+        {
+          "value": "16",
+          "label": "16 GB"
+        },
+        {
+          "value": "20",
+          "label": "20 GB"
+        },
+        {
+          "value": "40",
+          "label": "40 GB"
+        },
+        {
+          "value": "60",
+          "label": "60 GB"
+        },
+        {
+          "value": "100",
+          "label": "100 GB"
+        }
+      ]
     },
     {
       "name": "network_label",
       "description": "vSphere Port Group or Network label for Virtual Machine's vNIC",
-      "default": "VLAB_MGMT_0019",
       "type": "string",
       "required": true,
       "secured": false,
       "label": "network_label",
       "hidden": false,
-      "immutable": false
+      "immutable": false,
+      "default": "NLAB_FRNT_0210",
+      "options": [
+        {
+          "value" : "NLAB_FRNT_0210",
+          "label": "External - 9.180.210.x/25"
+        },
+        {
+          "value" : "VLAB_MGMT_0019",
+          "label": "Internal - 172.24.19.x/24"
+        }
+      ]
     },
     {
       "name": "storage",
@@ -129,17 +207,6 @@
       "required": true,
       "secured": false,
       "label": "storage",
-      "hidden": false,
-      "immutable": false
-    },
-    {
-      "name": "vcpu",
-      "description": "Number of Virtual CPU for the Virtual Machine",
-      "default": 1,
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "vcpu",
       "hidden": false,
       "immutable": false
     },
