@@ -114,21 +114,20 @@ resource "vsphere_folder" "folder_vm_1" {
 # Create VM with single vnic on a network label by cloning
 #
 resource "vsphere_virtual_machine" "vm_1" {
-  depends_on = ["vsphere_folder.folder_vm_1"]
-  name       = "${var.name}"
-  folder     = "${var.folder}"
-  datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
-  num_cpus       = "${var.vcpu}"
-  memory     = "${var.memory}"
-  resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
-  datastore_id = "${data.vsphere_datastore.datastore.id}"
+  depends_on        = ["vsphere_folder.folder_vm_1"]
+  name              = "${var.name}"
+  folder            = "${var.folder}"
+  num_cpus          = "${var.vcpu}"
+  memory            = "${var.memory}"
+  resource_pool_id  = "${data.vsphere_resource_pool.pool.id}"
+  datastore_id      = "${data.vsphere_datastore.datastore.id}"
 
   network_interface {
       network_id = "${data.vsphere_network.network.id}"
   }
 
   disk {
-    name      = "${var.name}.0"
+    name      = "${var.name}.0.vmdk"
     datastore_id = "${data.vsphere_datastore.datastore.id}"
     size      = "${var.rootdisksize}"
   }
