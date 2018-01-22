@@ -10,10 +10,10 @@
         "type": "string"
     },
     {
-        "name": "folder",
-        "label": "Folder",
-        "description": "Target vSphere folder for Virtual Machine",
-        "default": "CAM",
+        "name": "datacenter",
+        "label": "Datacenter",
+        "description": "Target vSphere datacenter for Virtual Machine creation",
+        "default": "isstlab",
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -21,10 +21,32 @@
         "type": "string"
     },
     {
-        "name": "datacenter",
-        "label": "Datacenter",
-        "description": "Target vSphere datacenter for Virtual Machine creation",
-        "default": "isstlab",
+        "name": "cluster",
+        "label": "Cluster",
+        "description": "Target vSphere Cluster to host the Virtual Machine",
+        "default": "underground",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "storage",
+        "label": "Storage",
+        "description": "Data store or storage cluster name for target VMs disks",
+        "default": "cluster01/ESX6-volume-01",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "folder",
+        "label": "Folder",
+        "description": "Target vSphere folder for Virtual Machine",
+        "default": "CAM",
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -40,37 +62,121 @@
         "immutable": false,
         "required": true,
         "secured": false,
-        "type": "string"
+        "type": "string",
+        "options": [
+         	{
+            	"value" : "1",
+              	"label": "1 Core"
+          	},
+         	{
+            	"value" : "2",
+              	"label": "2 Cores"
+          	},
+         	{
+            	"value" : "4",
+              	"label": "4 Cores"
+          	},
+         	{
+            	"value" : "8",
+              	"label": "8 Cores"
+          	},
+         	{
+            	"value" : "12",
+              	"label": "12 Cores"
+          	},
+         	{
+            	"value" : "16",
+              	"label": "16 Cores"
+          	},
+         	{
+            	"value" : "32",
+              	"label": "32 Cores"
+          	}
+        ]
     },
     {
         "name": "memory",
-        "label": "Memory",
         "description": "Memory for Virtual Machine in MBs",
-        "default": "1024",
-        "hidden": false,
-        "immutable": false,
+        "default": 1024,
+        "type": "string",
         "required": true,
         "secured": false,
-        "type": "string"
+        "label": "memory",
+        "hidden": false,
+        "immutable": false,
+        "options": [
+          {
+              "value" : "1",
+                "label": "1 GB"
+            },
+          {
+              "value" : "2",
+                "label": "2 GB"
+            },
+          {
+              "value" : "4",
+                "label": "4 GB"
+            },
+          {
+              "value" : "6",
+                "label": "6 GB"
+            },
+          {
+              "value" : "8",
+                "label": "8 GB"
+            },
+          {
+              "value" : "12",
+                "label": "12 GB"
+            },
+          {
+              "value" : "16",
+                "label": "16 GB"
+            },
+          {
+              "value" : "32",
+                "label": "32 GB"
+            },
+          {
+              "value" : "48",
+                "label": "48 GB"
+            },
+          {
+              "value" : "64",
+                "label": "64 GB"
+            },
+          {
+              "value" : "128",
+                "label": "128 GB"
+            }
+        ]
     },
     {
         "name": "rootdisksize",
-        "label": "root disk size",
-        "description": "The size of the root disk",
-        "default": "16",
-        "hidden": false,
-        "immutable": false,
+        "description": "Root disk size in GBs",
+        "default": "40",
+        "type": "string",
         "required": true,
         "secured": false,
-        "type": "string",
+        "label": "rootdisksize",
+        "hidden": false,
+        "immutable": false,
         "options": [
           {
             "value": "16",
             "label": "16 GB"
           },
           {
+            "value": "20",
+            "label": "20 GB"
+          },
+          {
             "value": "40",
             "label": "40 GB"
+          },
+          {
+            "value": "60",
+            "label": "60 GB"
           },
           {
             "value": "100",
@@ -79,26 +185,25 @@
         ]
     },
     {
-        "name": "cluster",
-        "label": "Cluster",
-        "description": "Target vSphere Cluster to host the Virtual Machine",
-        "default": "underground",
-        "hidden": false,
-        "immutable": false,
-        "required": true,
-        "secured": false,
-        "type": "string"
-    },
-    {
         "name": "network_label",
         "label": "Network label",
         "description": "vSphere Port Group or Network label for Virtual Machine's vNIC",
-        "default": "VLAB_MGMT_0019",
         "hidden": false,
         "immutable": false,
         "required": true,
         "secured": false,
-        "type": "string"
+        "type": "string",
+        "default": "NLAB_FRNT_0210",
+        "options": [
+          {
+            "value" : "NLAB_FRNT_0210",
+            "label": "External - 9.180.210.x/25"
+          },
+          {
+            "value" : "VLAB_MGMT_0019",
+            "label": "Internal - 172.24.19.x/24"
+          }
+        ]
     },
     {
         "name": "ipv4_address",
@@ -132,17 +237,6 @@
         "type": "string"
     },
     {
-        "name": "storage",
-        "label": "Storage",
-        "description": "Data store or storage cluster name for target VMs disks",
-        "default": "cluster01/ESX6-volume-01",
-        "hidden": false,
-        "immutable": false,
-        "required": true,
-        "secured": false,
-        "type": "string"
-    },
-    {
         "name": "vm_template",
         "label": "VM Template",
         "description": "Source VM or Template label for cloning",
@@ -157,12 +251,20 @@
             "label": "Ubuntu Server 16.04"
           },
           {
+            "value": "vt-rhel65-svr",
+            "label": "Red Hat Enterprise Linux Server 6.5"
+          },
+          {
             "value": "vt-rhel73-svr",
             "label": "Red Hat Enterprise Linux Server 7.3"
           },
           {
             "value": "vt-w8str2sp1-64",
             "label": "Windows 2008 Server R2 SP1"
+          },
+          {
+            "value": "vt-win2012r2-base",
+            "label": "Windows 2012 Server R2"
           }
         ],
         "default": "vt-ubuntu-svr-1604"

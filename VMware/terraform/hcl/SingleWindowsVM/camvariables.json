@@ -89,6 +89,47 @@
       "immutable": false
     },
     {
+        "name": "vcpu",
+        "label": "vCPU",
+        "description": "Number of Virtual CPU for the Virtual Machine",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "default": "1",
+        "options": [
+         	{
+            	"value" : "1",
+              	"label": "1 Core"
+          	},
+         	{
+            	"value" : "2",
+              	"label": "2 Cores"
+          	},
+         	{
+            	"value" : "4",
+              	"label": "4 Cores"
+          	},
+         	{
+            	"value" : "8",
+              	"label": "8 Cores"
+          	},
+         	{
+            	"value" : "12",
+              	"label": "12 Cores"
+          	},
+         	{
+            	"value" : "16",
+              	"label": "16 Cores"
+          	},
+         	{
+            	"value" : "32",
+              	"label": "32 Cores"
+          	}
+        ]
+    },
+    {
       "name": "memory",
       "description": "Memory for Virtual Machine in MBs",
       "default": 1024,
