@@ -117,7 +117,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   depends_on = ["vsphere_folder.folder_vm_1"]
   name       = "${var.name}"
   folder     = "${var.folder}"
-  datacenter_id = "${var.vsphere_datacenter.datacenter.id}"
+  datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
   num_cpus       = "${var.vcpu}"
   memory     = "${var.memory}"
   resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
@@ -129,7 +129,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 
   disk {
     name      = "${var.name}.0"
-    datastore_id = "${var.vsphere_datastore.datastore.id}"
+    datastore_id = "${data.vsphere_datastore.datastore.id}"
     size      = "${var.rootdisksize}"
   }
 
