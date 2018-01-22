@@ -149,9 +149,9 @@
       "default": "",
       "type": "string",
       "required": true,
-      "secured": false,
+      "secured": true,
       "label": "admin_password",
-      "hidden": true,
+      "hidden": false,
       "immutable": false
     },
     {
@@ -182,9 +182,9 @@
       "default": "",
       "type": "string",
       "required": true,
-      "secured": false,
+      "secured": true,
       "label": "domainjoin_password",
-      "hidden": true,
+      "hidden": false,
       "immutable": false
     },
     {
