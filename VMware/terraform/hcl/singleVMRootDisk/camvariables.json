@@ -139,47 +139,47 @@
         "immutable": false,
         "options": [
           {
-              "value" : "1",
+              "value" : "1024",
                 "label": "1 GB"
             },
           {
-              "value" : "2",
+              "value" : "2048",
                 "label": "2 GB"
             },
           {
-              "value" : "4",
+              "value" : "4096",
                 "label": "4 GB"
             },
           {
-              "value" : "6",
+              "value" : "6144",
                 "label": "6 GB"
             },
           {
-              "value" : "8",
+              "value" : "8192",
                 "label": "8 GB"
             },
           {
-              "value" : "12",
+              "value" : "12288",
                 "label": "12 GB"
             },
           {
-              "value" : "16",
+              "value" : "16384",
                 "label": "16 GB"
             },
           {
-              "value" : "32",
+              "value" : "32768",
                 "label": "32 GB"
             },
           {
-              "value" : "48",
+              "value" : "49152",
                 "label": "48 GB"
             },
           {
-              "value" : "64",
+              "value" : "65536",
                 "label": "64 GB"
             },
           {
-              "value" : "128",
+              "value" : "131072",
                 "label": "128 GB"
             }
         ]
