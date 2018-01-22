@@ -128,7 +128,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   }
 
   disk {
-    name      = "${var.name}.0.vmdk"
+    name      = "${var.name}.vmdk"
     datastore_id = "${data.vsphere_datastore.datastore.id}"
     size      = "${var.rootdisksize}"
   }

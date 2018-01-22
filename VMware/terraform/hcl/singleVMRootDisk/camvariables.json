@@ -130,7 +130,7 @@
     {
         "name": "memory",
         "description": "Memory for Virtual Machine in MBs",
-        "default": 1024,
+        "default": "1024",
         "type": "string",
         "required": true,
         "secured": false,
