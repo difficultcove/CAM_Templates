@@ -42,8 +42,8 @@ variable "network_label" {
   description = "vSphere Port Group or Network label for Virtual Machine's vNIC"
 }
 
-variable "ipv4_address" {
-  description = "IPv4 address for vNIC configuration"
+variable "ipv4_addresses" {
+  description = "a List of IPv4 addresses for vNIC configuration"
 }
 
 variable "ipv4_gateway" {
@@ -149,7 +149,7 @@ resource "vsphere_virtual_machine" "vm_1" {
       }
 
       network_interface {
-        ipv4_address = "${lookup(var.ipv4_address, count.index)}"
+        ipv4_address = "${lookup(var.ipv4_addresses, count.index)}"
         ipv4_netmask = "${var.ipv4_prefix_length}"
       }
 
