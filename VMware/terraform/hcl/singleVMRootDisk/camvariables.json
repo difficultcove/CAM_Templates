@@ -281,6 +281,27 @@
         "type": "string"
     },
     {
+        "name": "ssh_user",
+        "label": "SSH User",
+        "description": "The user for ssh connection, which is default in template",
+        "default": "root",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "ssh_user_password",
+        "label": "SSH User Password",
+        "description": "The user password for ssh connection, which is default in template",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": true,
+        "type": "string"
+    },
+    {
         "name": "allow_selfsigned_cert",
         "label": "Allow selfsigned certificate",
         "description": "Communication with vsphere server with self signed certificate",

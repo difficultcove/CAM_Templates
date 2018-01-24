@@ -59,6 +59,15 @@ variable "vm_template" {
   description = "Source VM or Template label for cloning"
 }
 
+variable "ssh_user" {
+  description = "The user for ssh connection, which is default in template"
+  default     = "root"
+}
+
+variable "ssh_user_password" {
+  description = "The user password for ssh connection, which is default in template"
+}
+
 variable "create_vm_folder" {
   description = "A vSphere folder need to be create or it is precreated"
   default     = false
@@ -150,5 +159,12 @@ resource "vsphere_virtual_machine" "vm_1" {
 
       ipv4_gateway = "${var.ipv4_gateway}"
     }
+  }
+  # Specify the ssh connection
+  connection {
+    user        = "${var.ssh_user}"
+    password    = "${var.ssh_user_password}"
+#    private_key = "${base64decode(var.camc_private_ssh_key)}"
+    host        = "${self.network_interface.0.ipv4_address}"
   }
 }
