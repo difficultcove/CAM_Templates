@@ -185,6 +185,7 @@ EOF
     destination = "/tmp/installation.sh"
     # Specify the ssh connection
     connection {
+      type        = "ssh"
       user        = "${var.ssh_user}"
       password    = "${var.ssh_user_password}"
   #    private_key = "${base64decode(var.camc_private_ssh_key)}"

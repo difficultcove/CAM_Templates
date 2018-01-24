@@ -281,6 +281,17 @@
         "type": "string"
     },
     {
+        "name": "dns_domain",
+        "label": "The DNS domain for the hostname",
+        "description": "Leave blank for no domain or use localdomain",
+        "default": "localdomain",
+        "hidden": false,
+        "immutable": false,
+        "required": false,
+        "secured": false,
+        "type": "string"
+    },
+    {
         "name": "create_vm_folder",
         "label": "Create VM folder",
         "description": "Set to 1 if a vSphere folder needs to be created and to 0 otherwise (use an existing folder)",

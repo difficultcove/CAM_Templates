@@ -65,9 +65,14 @@ variable "vm_template" {
   description = "Source VM or Template label for cloning"
 }
 
+variable "dns_domain" {
+  description = "The DNS Domain for the server"
+  default     = ""
+}
+
 variable "create_vm_folder" {
   description = "A vSphere folder need to be create or it is precreated"
-  default     = false
+  default     = 0
 }
 
 variable "allow_selfsigned_cert" {
@@ -122,7 +127,7 @@ resource "vsphere_folder" "folder_vm_1" {
 resource "vsphere_virtual_machine" "vm_1" {
   count             = "${var.number}"
   depends_on        = ["vsphere_folder.folder_vm_1"]
-  name              = "${var.name}-${count.index}"
+  name              = "${var.name}-${count.index}+1"
   folder            = "${var.folder}"
   num_cpus          = "${var.vcpu}"
   memory            = "${var.memory}"
@@ -135,7 +140,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   }
 
   disk {
-    name              = "${var.name}-${count.index}.vmdk"
+    name              = "${var.name}-${count.index}+1.vmdk"
     datastore_id      = "${data.vsphere_datastore.datastore.id}"
     size              = "${var.rootdisksize}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
@@ -147,7 +152,7 @@ resource "vsphere_virtual_machine" "vm_1" {
     customize {
       linux_options {
         host_name = "${var.name}"
-        domain    = "isstlab.org"
+        domain    = "${var.dns_domain}"
       }
 
       network_interface {
