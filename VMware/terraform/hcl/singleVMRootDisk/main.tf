@@ -160,13 +160,7 @@ resource "vsphere_virtual_machine" "vm_1" {
       ipv4_gateway = "${var.ipv4_gateway}"
     }
   }
-  # Specify the ssh connection
-  connection {
-    user        = "${var.ssh_user}"
-    password    = "${var.ssh_user_password}"
-#    private_key = "${base64decode(var.camc_private_ssh_key)}"
-    host        = "${self.network_interface.0.ipv4_address}"
-  }
+
   provisioner "file" {
     content = <<EOF
 #!/bin/bash
@@ -189,6 +183,12 @@ lvresize -r -l+100%FREE /dev/rhel/root | tee -a $LOGFILE 2>&1
 echo "---finish installing VM---" | tee -a $LOGFILE 2>&1
 EOF
     destination = "/tmp/installation.sh"
+    # Specify the ssh connection
+    connection {
+      user        = "${var.ssh_user}"
+      password    = "${var.ssh_user_password}"
+  #    private_key = "${base64decode(var.camc_private_ssh_key)}"
+    }
   }
 
   # Execute the script remotely
