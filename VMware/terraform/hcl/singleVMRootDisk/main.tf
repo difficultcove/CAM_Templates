@@ -167,4 +167,34 @@ resource "vsphere_virtual_machine" "vm_1" {
 #    private_key = "${base64decode(var.camc_private_ssh_key)}"
     host        = "${self.network_interface.0.ipv4_address}"
   }
+  provisioner "file" {
+    content = <<EOF
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+LOGFILE="/var/log/installation.log"
+
+echo "Starting Install" > $LOGFILE
+
+#extend RHEL root disks
+echo "Extending RHEL root disk" >> $LOGFILE
+echo -e "o\nn\np\n3\n\n\nw\n" | fdisk /dev/sda | tee -a $LOGFILE 2>&1
+vgextend rhel /dev/sda3 | tee -a $LOGFILE 2>&1
+lvresize -r -l+100%FREE /dev/rhel/root | tee -a $LOGFILE 2>&1
+
+
+echo "---finish installing VM---" | tee -a $LOGFILE 2>&1
+EOF
+    destination = "/tmp/installation.sh"
+  }
+
+  # Execute the script remotely
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/installation.sh; bash /tmp/installation.sh"
+    ]
+  }
 }
