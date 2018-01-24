@@ -135,7 +135,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   }
 
   disk {
-    name              = "${var.name-${count.index}.vmdk"
+    name              = "${var.name}-${count.index}.vmdk"
     datastore_id      = "${data.vsphere_datastore.datastore.id}"
     size              = "${var.rootdisksize}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
