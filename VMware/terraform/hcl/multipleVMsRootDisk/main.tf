@@ -43,7 +43,9 @@ variable "network_label" {
 }
 
 variable "ipv4_addresses" {
-  description = "a List of IPv4 addresses for vNIC configuration"
+  description = "a List of IPv4 addresses for vNIC configuration
+  type        = "list"
+  default     = []
 }
 
 variable "ipv4_gateway" {
