@@ -5,7 +5,7 @@ variable "name" {
 }
 
 variable "number" {
-  description = Number of Virtual Machines to create"
+  description = "Number of Virtual Machines to create"
 }
 
 variable "folder" {

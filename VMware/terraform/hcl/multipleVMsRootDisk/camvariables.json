@@ -13,7 +13,7 @@
         "name": "number",
         "label": "Number to Create",
         "description": "The number of identical VMs to create",
-        "default": 1,
+        "default": "1",
         "hidden": false,
         "immutable": false,
         "required": true,
