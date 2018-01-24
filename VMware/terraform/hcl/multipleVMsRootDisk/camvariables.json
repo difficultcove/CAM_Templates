@@ -1,8 +1,8 @@
 [
     {
         "name": "name",
-        "label": "Hostname",
-        "description": "Name of the Virtual Machine",
+        "label": "Hostname Prefix",
+        "description": "The first part of the name of each Virtual Machine; a number will be appended",
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -250,14 +250,14 @@
         ]
     },
     {
-        "name": "ipv4_address",
-        "label": "IPv4 Address",
-        "description": "IPv4 address for vNIC configuration",
+        "name": "ipv4_addresses",
+        "label": "IPv4 Addresses",
+        "description": "a list of IPv4 address for vNIC configuration",
         "hidden": false,
         "immutable": false,
         "required": true,
         "secured": false,
-        "type": "string"
+        "type": "list"
     },
     {
         "name": "ipv4_gateway",

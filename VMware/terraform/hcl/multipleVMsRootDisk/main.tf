@@ -120,7 +120,7 @@ resource "vsphere_folder" "folder_vm_1" {
 resource "vsphere_virtual_machine" "vm_1" {
   count             = "${var.number}"
   depends_on        = ["vsphere_folder.folder_vm_1"]
-  name              = "${var.name}"
+  name              = "${var.name}-${count.index}"
   folder            = "${var.folder}"
   num_cpus          = "${var.vcpu}"
   memory            = "${var.memory}"
@@ -149,7 +149,7 @@ resource "vsphere_virtual_machine" "vm_1" {
       }
 
       network_interface {
-        ipv4_address = "${var.ipv4_address}"
+        ipv4_address = "${lookup(var.ipv4_address, count.index)}"
         ipv4_netmask = "${var.ipv4_prefix_length}"
       }
 
