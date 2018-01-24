@@ -151,7 +151,7 @@ resource "vsphere_virtual_machine" "vm_1" {
       }
 
       network_interface {
-        ipv4_address = "${lookup(var.ipv4_addresses, count.index)}"
+        ipv4_address = "${element(var.ipv4_addresses, count.index)}"
         ipv4_netmask = "${var.ipv4_prefix_length}"
       }
 
