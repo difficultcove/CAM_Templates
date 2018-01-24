@@ -187,7 +187,7 @@ EOF
     connection {
       type        = "ssh"
       user        = "${var.ssh_user}"
-      password    = "${var.ssh_user_password}"
+      password    = "Passw0rd!"
   #    private_key = "${base64decode(var.camc_private_ssh_key)}"
     }
   }
