@@ -164,7 +164,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   connection {
     type        = "ssh"
     user        = "${var.ssh_user}"
-    password    = "Passw0rd!"
+    password    = "${var.ssh_user_password}"
 #      private_key = "${base64decode(var.camc_private_ssh_key)}"
   }
 
@@ -183,6 +183,7 @@ echo "Starting Install" > $LOGFILE
 #extend RHEL root disks
 echo "Extending RHEL root disk" >> $LOGFILE
 echo -e "o\nn\np\n3\n\n\nw\n" | fdisk /dev/sda | tee -a $LOGFILE 2>&1
+partprobe | tee -a $LOGFILE 2>&1
 vgextend rhel /dev/sda3 | tee -a $LOGFILE 2>&1
 lvresize -r -l+100%FREE /dev/rhel/root | tee -a $LOGFILE 2>&1
 
