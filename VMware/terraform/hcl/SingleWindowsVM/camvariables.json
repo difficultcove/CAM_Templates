@@ -50,8 +50,12 @@
           "value": "vt-w8str2sp1-64",
           "label": "Windows 2008 Server R2 SP1"
         }
+        {
+          "value": "vt-win2008r2sp1-base",
+          "label": "Windows 2008 Server R2 SP1 VM type 10"
+        }
       ],
-      "default": "vt-w8str2sp1-64"
+      "default": "vt-win2008r2sp1-base"
     },
     {
       "name": "ipv4_address",
