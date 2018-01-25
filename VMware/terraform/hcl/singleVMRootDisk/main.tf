@@ -182,7 +182,7 @@ echo "Starting Install" > $LOGFILE
 
 #extend RHEL root disks
 echo "Extending RHEL root disk" >> $LOGFILE
-echo -e "n\np\n3\n\n\nw\n" | fdisk /dev/sda || echo "ignore warning" >> $LOGFILE  | >> tee -a $LOGFILE 2>&1
+echo -e "n\np\n3\n\n\nw\n" | fdisk /dev/sda || echo "ignore warning" >> $LOGFILE 
 partprobe | tee -a $LOGFILE 2>&1
 vgextend rhel /dev/sda3 | tee -a $LOGFILE 2>&1
 lvresize -r -l+100%FREE /dev/rhel/root | tee -a $LOGFILE 2>&1
