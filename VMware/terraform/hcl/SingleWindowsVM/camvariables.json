@@ -2,7 +2,6 @@
   "template_input_params": [
     {
       "name": "name",
-      "default": "",
       "description": "Name of the Virtual Machine",
       "type": "string",
       "required": true,
@@ -35,7 +34,6 @@
     },
     {
       "name": "vm_template",
-      "default": "vt-ubuntu-svr-1604",
       "description": "Source VM or Template label for cloning",
       "type": "string",
       "required": true,
@@ -53,7 +51,7 @@
           "label": "Windows 2008 Server R2 SP1"
         }
       ],
-      "default": "vt-win2012r2-base"
+      "default": "vt-w8str2sp1-64"
     },
     {
       "name": "ipv4_address",
@@ -132,7 +130,7 @@
     {
       "name": "memory",
       "description": "Memory for Virtual Machine in MBs",
-      "default": 1024,
+      "default": "1024",
       "type": "string",
       "required": true,
       "secured": false,
@@ -254,7 +252,6 @@
     {
       "name": "admin_password",
       "description": "The Password for the Administrator user",
-      "default": "",
       "type": "string",
       "required": true,
       "secured": true,
@@ -287,7 +284,6 @@
     {
       "name": "domainjoin_password",
       "description": "The password for the Domain Join user",
-      "default": "",
       "type": "string",
       "required": true,
       "secured": true,

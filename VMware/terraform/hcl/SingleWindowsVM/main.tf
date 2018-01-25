@@ -22,17 +22,14 @@ variable "vm_template" {
 
 variable "vcpu" {
 	description = "Number of Virtual CPU for the Virtual Machine"
-	default = 1
 }
 
 variable "memory" {
 	description = "Memory for Virtual Machine in MBs"
-	default = 1024
 }
 
 variable "rootdisksize" {
 	description = "Root Disk Size"
-	default = 16
 }
 
 variable "network_label" {
@@ -69,7 +66,6 @@ variable "domainjoin_password" {
 
 variable "timezone" {
 	description = "The timezone for the new machine"
-	default = "035"
 }
 
 variable "allow_selfsigned_cert" {
