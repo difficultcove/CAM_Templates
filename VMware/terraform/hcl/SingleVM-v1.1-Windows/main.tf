@@ -137,7 +137,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   resource_pool_id 	= "${data.vsphere_resource_pool.pool.id}"
   datastore_id     	= "${data.vsphere_datastore.datastore.id}"
   guest_id 					= "${data.vsphere_virtual_machine.template.guest_id}"
-
+#  scsi_controller_count = "1"
   network_interface {
       network_id 		= "${data.vsphere_network.network.id}"
   }
@@ -153,23 +153,25 @@ resource "vsphere_virtual_machine" "vm_1" {
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 
-    customize {
-			windows_options {
-				computer_name 				= "${var.name}"
-				admin_password 				= "${var.admin_password}"
-				join_domain 					= "${var.domain_name}"
-				domain_admin_user 		= "${var.domainjoin_user}"
-				domain_admin_password = "${var.domainjoin_password}"
-				time_zone							= "${var.timezone}"
+#    customize {
+#			windows_options {
+#				computer_name 				= "${var.name}"
+#				admin_password 				= "${var.admin_password}"
+#				join_domain 					= "${var.domain_name}"
+#				domain_admin_user 		= "${var.domainjoin_user}"
+#				domain_admin_password = "${var.domainjoin_password}"
+#				time_zone							= "${var.timezone}"
 #				organization_name 		= "Test"
-		}
-
-      network_interface {
-        ipv4_address = "${var.ipv4_address}"
-        ipv4_netmask = "${var.ipv4_prefix_length}"
-      }
-
-      ipv4_gateway = "${var.ipv4_gateway}"
-    }
+#				workgroup      				= "Workgroup"
+#       product_key						= ""
+#			}
+#
+#     network_interface {
+#        ipv4_address = "${var.ipv4_address}"
+#        ipv4_netmask = "${var.ipv4_prefix_length}"
+#     }
+#
+#      ipv4_gateway = "${var.ipv4_gateway}"
+#    }
   }
 }
