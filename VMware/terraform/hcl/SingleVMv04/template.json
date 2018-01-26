@@ -1,7 +1,7 @@
 {
-  "name": "Single V0.4 VM",
+  "name": "Single V04 VM",
   "description": "Create single Virtual Machine with single vnic v0.4 Terraform",
-  "type": "custom",
+  "type": "prebuilt",
   "version": "0.4",
   "manifest": {
     "template_type": "Terraform",
