@@ -158,9 +158,9 @@ resource "vsphere_virtual_machine" "vm_1" {
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 		timeout 			= 120
-#    customize {
-#			windows_options {
-#				computer_name 				= "${var.name}"
+   	customize {
+			windows_options {
+				computer_name 				= "${var.name}"
 #				admin_password 				= "${var.admin_password}"
 #				join_domain 					= "${var.domain_name}"
 #				domain_admin_user 		= "${var.domainjoin_user}"
@@ -169,7 +169,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 #				organization_name 		= "Test"
 #				workgroup      				= "Workgroup"
 #       product_key						= ""
-#			}
+			}
 #
 #     network_interface {
 #        ipv4_address = "${var.ipv4_address}"
@@ -177,6 +177,6 @@ resource "vsphere_virtual_machine" "vm_1" {
 #     }
 #
 #      ipv4_gateway = "${var.ipv4_gateway}"
-#    }
+   	}
   }
 }
