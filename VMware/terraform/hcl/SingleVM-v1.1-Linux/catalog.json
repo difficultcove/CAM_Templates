@@ -1,0 +1,26 @@
+{
+  "name": "SingleVM-v1.1-Linux",
+  "description": "Create Virtual Machine with single vnic and flexible root disk v1.1 - Linux",
+  "type": "prebuilt",
+  "version": "2.1.9",
+  "manifest": {
+    "template_type": "Terraform",
+    "template_format": "HCL",
+    "template_provider": "VMware vSphere",
+    "template": {
+      "templateOutput": "",
+      "templateVariables": "",
+      "templateData": ""
+    },
+    "template_source": {
+      "githubRepoUrl": "",
+      "githubAccessToken": "",
+      "relativePathToTemplateFolder": "VMware/terraform/hcl/SingleVM-v1.1-Linux",
+      "templateFileName": "main.tf"
+    }
+  },
+  "metadata": {
+      "displayName": "SingleVirtualMachine",
+      "longDescription": "Create Virtual Machine with single vnic and flexible root disk v1.1 - Linux"
+  }
+}
