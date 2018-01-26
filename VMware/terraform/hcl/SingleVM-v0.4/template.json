@@ -1,8 +1,8 @@
 {
-  "name": "SingleVirtualMachineRootDisk",
-  "description": "Create Virtual Machine with single vnic and flexible root disk",
+  "name": "Single V0.4 VM",
+  "description": "Create single Virtual Machine with single vnic v0.4 Terraform",
   "type": "prebuilt",
-  "version": "2.1.9",
+  "version": "0.4",
   "manifest": {
     "template_type": "Terraform",
     "template_format": "HCL",
@@ -15,12 +15,12 @@
     "template_source": {
       "githubRepoUrl": "",
       "githubAccessToken": "",
-      "relativePathToTemplateFolder": "VMware/terraform/hcl/singleVM-RootDisk",
+      "relativePathToTemplateFolder": "VMware/terraform/hcl/singleVM-v0.4",
       "templateFileName": "main.tf"
     }
   },
   "metadata": {
-      "displayName": "SingleVirtualMachine",
-      "longDescription": "Create Virtual Machine with single vnic on a network label by cloning with flexible size root disk"
+      "displayName": "SingleVirtualMachine-v0.4",
+      "longDescription": "Create single Virtual Machine with single vnic v0.4 Terraform"
   }
 }
