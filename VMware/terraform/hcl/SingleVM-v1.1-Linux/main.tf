@@ -6,12 +6,22 @@ variable "name" {
 
 variable "folder" {
   description = "Target vSphere folder for Virtual Machine"
-  default     = ""
 }
 
 variable "datacenter" {
   description = "Target vSphere datacenter for Virtual Machine creation"
-  default     = ""
+}
+
+variable "cluster" {
+  description = "Target vSphere Cluster to host the Virtual Machine"
+}
+
+variable "storage" {
+  description = "Data store or storage cluster name for target VMs disks"
+}
+
+variable "vm_template" {
+  description = "Source VM or Template label for cloning"
 }
 
 variable "vcpu" {
@@ -29,11 +39,6 @@ variable "rootdisksize" {
   default     = 16
 }
 
-variable "cluster" {
-  description = "Target vSphere Cluster to host the Virtual Machine"
-  default     = ""
-}
-
 variable "network_label" {
   description = "vSphere Port Group or Network label for Virtual Machine's vNIC"
 }
@@ -48,15 +53,6 @@ variable "ipv4_gateway" {
 
 variable "ipv4_prefix_length" {
   description = "IPv4 Prefix length for vNIC configuration"
-}
-
-variable "storage" {
-  description = "Data store or storage cluster name for target VMs disks"
-  default     = ""
-}
-
-variable "vm_template" {
-  description = "Source VM or Template label for cloning"
 }
 
 variable "ssh_user" {
@@ -77,6 +73,8 @@ variable "allow_selfsigned_cert" {
   description = "Communication with vsphere server with self signed certificate"
   default     = false
 }
+
+################ Data Segment #####################
 
 data "vsphere_datacenter" "datacenter" {
   name = "${var.datacenter}"
@@ -101,6 +99,7 @@ data "vsphere_virtual_machine" "template" {
   name          = "${var.vm_template}"
   datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
 }
+
 ############### Optinal settings in provider ##########
 provider "vsphere" {
   version              = "~> 1.1"
@@ -133,13 +132,13 @@ resource "vsphere_virtual_machine" "vm_1" {
   guest_id          = "${data.vsphere_virtual_machine.template.guest_id}"
 
   network_interface {
-      network_id = "${data.vsphere_network.network.id}"
+      network_id    = "${data.vsphere_network.network.id}"
   }
 
   disk {
     name              = "${var.name}.vmdk"
-    datastore_id      = "${data.vsphere_datastore.datastore.id}"
     size              = "${var.rootdisksize}"
+    datastore_id      = "${data.vsphere_datastore.datastore.id}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
 

@@ -1,7 +1,7 @@
 {
   "name": "SingleVM-v1.1-Linux",
   "description": "Create Virtual Machine with single vnic and flexible root disk v1.1 - Linux",
-  "type": "prebuilt",
+  "type": "custom",
   "version": "2.1.9",
   "manifest": {
     "template_type": "Terraform",
@@ -20,7 +20,7 @@
     }
   },
   "metadata": {
-      "displayName": "SingleVirtualMachine",
+      "displayName": "SingleVM-v1.1-Linux",
       "longDescription": "Create Virtual Machine with single vnic and flexible root disk v1.1 - Linux"
   }
 }

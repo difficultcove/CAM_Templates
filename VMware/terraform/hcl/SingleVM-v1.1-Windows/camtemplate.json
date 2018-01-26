@@ -1,0 +1,20 @@
+{
+  "name": "SingleVM-v1.1-Windows",
+  "description": "Create Virtual Machine with single vnic and a flexible sized root disk v1.1 - Windows",
+  "type": "custom",
+  "version": "2.5.0",
+  "manifest": {
+    "template_type": "Terraform",
+    "template_format": "HCL",
+    "template_provider": "VMware vSphere",
+    "template": {
+      "templateOutput": "",
+      "templateVariables": "",
+      "templateData": ""
+    }
+  },
+  "metadata": {
+      "displayName": "SingleVM-v1.1-Windows",
+      "longDescription": "Create Virtual Machine with single vnic and a flexible sized root disk v1.1 - Windows"
+  }
+}
