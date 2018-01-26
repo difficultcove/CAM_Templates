@@ -130,6 +130,10 @@ resource "vsphere_virtual_machine" "vm_1" {
   resource_pool_id  = "${data.vsphere_resource_pool.pool.id}"
   datastore_id      = "${data.vsphere_datastore.datastore.id}"
   guest_id          = "${data.vsphere_virtual_machine.template.guest_id}"
+  num_cores_per_socket = 1
+  cpu_hot_add_enabled  = true
+  cpu_hot_remove_enabled = true
+  memory_hot_add_enabled = true
 
   network_interface {
       network_id    = "${data.vsphere_network.network.id}"
