@@ -149,7 +149,7 @@
             "value": "vt-win2012r2-base",
             "label": "Windows 2012 Server R2"
           }
-        ],
+        ]
     },
     {
         "name": "create_vm_folder",
