@@ -6,7 +6,6 @@ variable "name" {
 
 variable "folder" {
   description = "Target vSphere folder for Virtual Machine"
-
 }
 
 variable "datacenter" {
@@ -15,12 +14,12 @@ variable "datacenter" {
 
 variable "vcpu" {
   description = "Number of Virtual CPU for the Virtual Machine"
-  default     = 1
+  default     = "1"
 }
 
 variable "memory" {
   description = "Memory for Virtual Machine in MBs"
-  default     = 1024
+  default     = "1024"
 }
 
 variable "cluster" {
@@ -45,7 +44,6 @@ variable "ipv4_prefix_length" {
 
 variable "storage" {
   description = "Data store or storage cluster name for target VMs disks"
-  default     = ""
 }
 
 variable "vm_template" {
@@ -54,7 +52,7 @@ variable "vm_template" {
 
 variable "create_vm_folder" {
   description = "A vSphere folder need to be create or it is precreated"
-  default     = 0
+  default     = "0"
 }
 
 variable "allow_selfsigned_cert" {
