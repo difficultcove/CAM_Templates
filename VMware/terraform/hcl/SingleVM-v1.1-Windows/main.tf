@@ -130,14 +130,19 @@ resource "vsphere_folder" "folder_vm_1" {
 #
 resource "vsphere_virtual_machine" "vm_1" {
 	depends_on        = ["vsphere_folder.folder_vm_1"]
-  name   						= "${var.name}"
+  name							= "${var.name}"
 	folder            = "${var.folder}"
 	num_cpus   				= "${var.vcpu}"
 	memory 						= "${var.memory}"
   resource_pool_id 	= "${data.vsphere_resource_pool.pool.id}"
   datastore_id     	= "${data.vsphere_datastore.datastore.id}"
   guest_id 					= "${data.vsphere_virtual_machine.template.guest_id}"
-#  scsi_controller_count = "1"
+	num_cores_per_socket = 1
+	cpu_hot_add_enabled  = true
+	cpu_hot_remove_enabled = true
+	memory_hot_add_enabled = true
+  scsi_controller_count = 1
+
   network_interface {
       network_id 		= "${data.vsphere_network.network.id}"
   }
