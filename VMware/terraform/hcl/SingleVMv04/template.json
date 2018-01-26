@@ -11,12 +11,6 @@
       "templateOutput": "",
       "templateVariables": "",
       "templateData": ""
-    },
-    "template_source": {
-      "githubRepoUrl": "",
-      "githubAccessToken": "",
-      "relativePathToTemplateFolder": "VMware/terraform/hcl/SingleVMv04",
-      "templateFileName": "main.tf"
     }
   },
   "metadata": {
