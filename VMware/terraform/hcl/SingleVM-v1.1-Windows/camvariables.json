@@ -66,7 +66,21 @@
       "secured": false,
       "label": "storage",
       "hidden": false,
-      "immutable": false
+      "immutable": false,
+      "options": [
+        {
+          "value": "cluster01/ESX6-volume-01",
+          "label": "cluster01/ESX6-volume-01"
+        },
+        {
+          "value": "cluster01/ESX6-volume-2",
+          "label": "cluster01/ESX6-volume-02"
+        },
+        {
+          "value": "datastore1",
+          "label": "datastore1"
+        }
+      ]
     },
     {
         "name": "folder",
@@ -219,7 +233,7 @@
       "label": "network_label",
       "hidden": false,
       "immutable": false,
-      "default": "NLAB_FRNT_0210",
+      "default": "VLAB_MGMT_0019",
       "options": [
         {
           "value" : "NLAB_FRNT_0210",
@@ -234,7 +248,6 @@
     {
       "name": "ipv4_address",
       "description": "IPv4 address for vNIC configuration",
-      "default":"",
       "type": "string",
       "required": true,
       "secured": false,
@@ -245,7 +258,6 @@
     {
       "name": "ipv4_gateway",
       "description": "IPv4 gateway for vNIC configuration",
-      "default":"",
       "type": "string",
       "required": true,
       "secured": false,
