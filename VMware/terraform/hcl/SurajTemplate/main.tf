@@ -206,7 +206,7 @@ resource "vsphere_virtual_machine" "vm_1" {
  disk {
   	## THis is to extend the root vg - sdb - Set the size to 112
   	name = "${var.name}.1.vmdk"
-    size = 120
+    size = 40
     unit_number = 1
     datastore_id = "${data.vsphere_datastore.datastore.id}"
 
