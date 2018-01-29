@@ -150,7 +150,8 @@ resource "vsphere_virtual_machine" "vm_1" {
   disk {
 #    name 							= "${var.name}.vmdk"
 #    size 							= "${var.rootdisksize}"
-		label 							= "${var.name}.vmdk" 
+		label 							= "${var.name}.vmdk"
+		attach						= true
 		size 							= "${data.vsphere_virtual_machine.template.disks.0.size}"
 		datastore_id    	= "${data.vsphere_datastore.datastore.id}"
     eagerly_scrub    	= "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
