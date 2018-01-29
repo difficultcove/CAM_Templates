@@ -10,12 +10,12 @@ variable "datacenter" {
 
 variable "vcpu" {
 	description = "Number of Virtual CPU for the Virtual Machine"
-	default = 4
+	default = 1
 }
 
 variable "memory" {
 	description = "Memory for Virtual Machine in MBs"
-	default = 128
+	default = 2
 }
 
 variable "cluster" {
@@ -23,7 +23,7 @@ variable "cluster" {
 }
 
 variable "network_label" {
-	description = "vSphere Port Group or Network label for Virtual Machine's vNIC" 
+	description = "vSphere Port Group or Network label for Virtual Machine's vNIC"
 }
 
 variable "ipv4_address" {
@@ -40,19 +40,22 @@ variable "ipv4_prefix_length" {
 
 
 variable "network_label_2" {
-	description = "vSphere Port Group or Network label for Virtual Machine's 2nd vNIC" 
+	description = "vSphere Port Group or Network label for Virtual Machine's 2nd vNIC"
 }
 
 variable "ipv4_address_2" {
 	description = "IPv4 address for 2nd vNIC configuration"
+	default 	= "172.24.19.222"
 }
 
 variable "ipv4_gateway_2" {
 	description = "IPv4 gateway for 2nd vNIC configuration"
+	default = "172.24.19.1"
 }
 
 variable "ipv4_prefix_length_2" {
 	description = "IPv4 Prefix length for 2nd vNIC configuration"
+	default = "24"
 }
 
 
@@ -67,44 +70,43 @@ variable "vm_template" {
 
 variable "ssh_user" {
 	description = "User to login to the vm"
+	default "Administrator"
 }
 
 
-variable "backup_disk_size"
-{
-
-description = "Backup   disk size used for BigFix"
+variable "backup_disk_size" {
+	description = "Backup   disk size used for BigFix"
+	default			= 1
 }
 
 
-variable "bf_disk_size"
-{
-description = "Bigfix application disk size"
+variable "bf_disk_size" {
+	description = "Bigfix application disk size"
+	default			= 1
 }
 
-variable "data_disk_size"
-{
-description = "Data   disk size for Application"
+variable "data_disk_size" {
+	description = "Data   disk size for Application"
+	default			= 1
 }
 
-variable "sql_disk_size"
-{
-description = "Backup   disk size for SQL db"
+variable "sql_disk_size" {
+	description = "Backup   disk size for SQL db"
+	default			= 1
 }
-variable "log_disk_size"
-{
-description = "Backup   disk size for Log"
-}
-
-
-variable "temp_disk_size"
-{
-description = "Backup   disk size for Temp"
+variable "log_disk_size" {
+	description = "Backup   disk size for Log"
+	default			= 1
 }
 
+variable "temp_disk_size" {
+	description = "Backup   disk size for Temp"
+	default			= 1
+}
 
 variable "ssh_user_password" {
 	description = "Password to login to the vm"
+	default			= "Passw0rd!"
 }
 
 variable "allow_selfsigned_cert" {
@@ -131,13 +133,13 @@ variable "cms_chef_server_url"
 
 
 
-        
+
 ############### Optinal settings in provider ##########
 provider "vsphere" {
     version = "1.1"
     allow_unverified_ssl = "${var.allow_selfsigned_cert}"
 }
- 
+
 data "vsphere_datacenter" "datacenter" {
   name = "${var.datacenter}"
 }
@@ -173,7 +175,7 @@ data "vsphere_network" "imz_network" {
 ################## Resources ###############################
 
 #
-# Create VM with single vnic on a network label by cloning 
+# Create VM with single vnic on a network label by cloning
 #
 resource "vsphere_virtual_machine" "vm_1" {
   name   = "${var.name}"
@@ -186,11 +188,11 @@ resource "vsphere_virtual_machine" "vm_1" {
   network_interface {
       network_id = "${data.vsphere_network.network.id}"
   }
-  
+
   network_interface {
       network_id = "${data.vsphere_network.imz_network.id}"
   }
- 
+
 
   disk {
     name = "${var.name}.vmdk"
@@ -198,19 +200,19 @@ resource "vsphere_virtual_machine" "vm_1" {
     eagerly_scrub    = "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
     thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
- 
+
  scsi_type = "${data.vsphere_virtual_machine.template.scsi_type}"
-        
- 
+
+
  disk {
   	## THis is to extend the root vg - sdb - Set the size to 112
   	name = "${var.name}.1.vmdk"
     size = 120
     unit_number = 1
     datastore_id = "${data.vsphere_datastore.datastore.id}"
-    
+
 	}
-  
+
   disk {
   ## This will be sdc or D drive
   	name = "${var.name}.2.vmdk"
@@ -219,7 +221,7 @@ resource "vsphere_virtual_machine" "vm_1" {
     datastore_id = "${data.vsphere_datastore.datastore.id}"
     disk_mode = "independent_persistent"
 	}
-    
+
  disk {
  	## This will be sdd or E Drive
   	name = "${var.name}.3.vmdk"
@@ -228,7 +230,7 @@ resource "vsphere_virtual_machine" "vm_1" {
     datastore_id = "${data.vsphere_datastore.datastore.id}"
     disk_mode = "independent_persistent"
 	}
- 
+
  disk {
  	## This will be sdd
   	name = "${var.name}.4.vmdk"
@@ -237,8 +239,8 @@ resource "vsphere_virtual_machine" "vm_1" {
     datastore_id = "${data.vsphere_datastore.datastore.id}"
     disk_mode = "independent_persistent"
 	}
- 
- 
+
+
  disk {
  	## This will be sdd
   	name = "${var.name}.5.vmdk"
@@ -247,7 +249,7 @@ resource "vsphere_virtual_machine" "vm_1" {
     datastore_id = "${data.vsphere_datastore.datastore.id}"
     disk_mode = "independent_persistent"
 	}
-        
+
  disk {
  	## This will be sdd
   	name = "${var.name}.6.vmdk"
@@ -256,7 +258,7 @@ resource "vsphere_virtual_machine" "vm_1" {
     datastore_id = "${data.vsphere_datastore.datastore.id}"
     disk_mode = "independent_persistent"
 	}
-	
+
 	 disk {
  	## This will be sdd
   	name = "${var.name}.7.vmdk"
@@ -264,22 +266,22 @@ resource "vsphere_virtual_machine" "vm_1" {
     unit_number = 7
     datastore_id = "${data.vsphere_datastore.datastore.id}"
     disk_mode = "independent_persistent"
-	}        
+	}
       # Specify the ssh connection for windows
   connection {
   	type = "ssh"
     user        = "Administrator"
-    password    = "${var.ssh_user_password}" 
+    password    = "${var.ssh_user_password}"
     host       =  "${var.ipv4_address}"
-    
-  }   
- 
-    
+
+  }
+
+
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 
     customize {
-    
+
       timeout = "120"
       windows_options
       {
@@ -288,7 +290,7 @@ resource "vsphere_virtual_machine" "vm_1" {
         admin_password = "${var.ssh_user_password}"
 
       }
-    
+
 
       network_interface {
         ipv4_address = "${var.ipv4_address}"
@@ -299,23 +301,23 @@ resource "vsphere_virtual_machine" "vm_1" {
 	  network_interface {
        ipv4_address= "${var.ipv4_address_2}"
        ipv4_netmask = "${var.ipv4_prefix_length_2}"
-        
+
       }
-     
-      
+
+
        ipv4_gateway = "${var.ipv4_gateway}"
-      
-      
-      
+
+
+
        dns_server_list     = ["169.55.254.73","169.55.254.90"]
        dns_suffix_list     = [" imzcloud.ibmammsap.local","ibmammsap.local","prdcloud.fms.ibmcloud.com"]
-      
-      
-      
-    
+
+
+
+
     }
-    
-   
+
+
   }
 }
 
