@@ -152,18 +152,21 @@ resource "vsphere_virtual_machine" "vm_1" {
 #    size 							= "${var.rootdisksize}"
 		label 							= "${var.name}.vmdk"
 		attach						= true
-		size 							= "${data.vsphere_virtual_machine.template.disks.0.size}"
+		size 							= "${var.rootdisksize}"
+#		size 							= "${data.vsphere_virtual_machine.template.disks.0.size}"
 		datastore_id    	= "${data.vsphere_datastore.datastore.id}"
-    eagerly_scrub    	= "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
-    thin_provisioned 	= "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+    eagerly_scrub    	= false
+#		eagerly_scrub    	= "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
+    thin_provisioned 	= true
+#		thin_provisioned 	= "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
 
-  clone {
-    template_uuid = "${data.vsphere_virtual_machine.template.id}"
-		timeout 			= 120
-   	customize {
-			windows_options {
-				computer_name 				= "${var.name}"
+#  clone {
+#    template_uuid = "${data.vsphere_virtual_machine.template.id}"
+#		timeout 			= 120
+#   	customize {
+#			windows_options {
+#				computer_name 				= "${var.name}"
 #				admin_password 				= "${var.admin_password}"
 #				join_domain 					= "${var.domain_name}"
 #				domain_admin_user 		= "${var.domainjoin_user}"
@@ -172,7 +175,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 #				organization_name 		= "Test"
 #				workgroup      				= "Workgroup"
 #       product_key						= ""
-			}
+#			}
 #
 #     network_interface {
 #        ipv4_address = "${var.ipv4_address}"
