@@ -1,0 +1,20 @@
+{
+  "name": "Single Windows VM",
+  "description": "Create Virtual Machine with single vnic and a flexible sized root disk",
+  "type": "prebuilt",
+  "version": "1.0.0.0",
+  "manifest": {
+    "template_type": "Terraform",
+    "template_format": "HCL",
+    "template_provider": "VMware vSphere",
+    "template": {
+      "templateOutput": "",
+      "templateVariables": "",
+      "templateData": ""
+    }
+  },
+  "metadata": {
+      "displayName": "Single Windows Virtual Machine",
+      "longDescription": "Create Windows Virtual Machine with single vnic on a network label by cloning"
+  }
+}

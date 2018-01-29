@@ -128,6 +128,8 @@ resource "vsphere_virtual_machine" "vm_1" {
     thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
 
+	scsi_type = "${data.vsphere_virtual_machine.template.scsi_type}"
+	
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 

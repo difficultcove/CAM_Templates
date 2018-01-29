@@ -1,0 +1,333 @@
+{
+  "template_input_params": [
+    {
+      "name": "name",
+      "description": "Name of the Virtual Machine",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "name",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "datacenter",
+      "description": "Target vSphere datacenter for Virtual Machine creation",
+      "default": "isstlab",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "datacenter",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "cluster",
+      "description": "Target vSphere Cluster to host the Virtual Machine",
+      "default": "underground",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "cluster",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "vm_template",
+      "description": "Source VM or Template label for cloning",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "vm_template",
+      "hidden": false,
+      "immutable": false,
+      "options": [
+        {
+          "value": "vt-win2012r2-base",
+          "label": "Windows 2012 Server R2"
+        },
+        {
+          "value": "vt-w8str2sp1-64",
+          "label": "Windows 2008 Server R2 SP1"
+        },
+        {
+          "value": "vt-win2008r2sp1-base",
+          "label": "Windows 2008 Server R2 SP1 VM type 10"
+        }
+      ],
+      "default": "vt-win2008r2sp1-base"
+    },
+    {
+      "name": "ipv4_address",
+      "description": "IPv4 address for vNIC configuration",
+      "default":"",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "ipv4_address",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "ipv4_gateway",
+      "description": "IPv4 gateway for vNIC configuration",
+      "default":"",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "ipv4_gateway",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "ipv4_prefix_length",
+      "description": "IPv4 Prefix length for vNIC configuration",
+      "default":"24",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "ipv4_prefix_length",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+        "name": "vcpu",
+        "label": "vCPU",
+        "description": "Number of Virtual CPU for the Virtual Machine",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "default": "1",
+        "options": [
+         	{
+            	"value" : "1",
+              	"label": "1 Core"
+          	},
+         	{
+            	"value" : "2",
+              	"label": "2 Cores"
+          	},
+         	{
+            	"value" : "4",
+              	"label": "4 Cores"
+          	},
+         	{
+            	"value" : "8",
+              	"label": "8 Cores"
+          	},
+         	{
+            	"value" : "12",
+              	"label": "12 Cores"
+          	},
+         	{
+            	"value" : "16",
+              	"label": "16 Cores"
+          	},
+         	{
+            	"value" : "32",
+              	"label": "32 Cores"
+          	}
+        ]
+    },
+    {
+      "name": "memory",
+      "description": "Memory for Virtual Machine in MBs",
+      "default": "1024",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "memory",
+      "hidden": false,
+      "immutable": false,
+      "options": [
+        {
+            "value" : "1024",
+              "label": "1 GB"
+          },
+        {
+            "value" : "2048",
+              "label": "2 GB"
+          },
+        {
+            "value" : "4096",
+              "label": "4 GB"
+          },
+        {
+            "value" : "6144",
+              "label": "6 GB"
+          },
+        {
+            "value" : "8192",
+              "label": "8 GB"
+          },
+        {
+            "value" : "12288",
+              "label": "12 GB"
+          },
+        {
+            "value" : "16384",
+              "label": "16 GB"
+          },
+        {
+            "value" : "32768",
+              "label": "32 GB"
+          },
+        {
+            "value" : "49152",
+              "label": "48 GB"
+          },
+        {
+            "value" : "65536",
+              "label": "64 GB"
+          },
+        {
+            "value" : "131072",
+              "label": "128 GB"
+          }
+      ]
+    },
+    {
+      "name": "rootdisksize",
+      "description": "Root disk size in GBs",
+      "default": "40",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "rootdisksize",
+      "hidden": false,
+      "immutable": false,
+      "options": [
+        {
+          "value": "16",
+          "label": "16 GB"
+        },
+        {
+          "value": "20",
+          "label": "20 GB"
+        },
+        {
+          "value": "40",
+          "label": "40 GB"
+        },
+        {
+          "value": "60",
+          "label": "60 GB"
+        },
+        {
+          "value": "100",
+          "label": "100 GB"
+        }
+      ]
+    },
+    {
+      "name": "network_label",
+      "description": "vSphere Port Group or Network label for Virtual Machine's vNIC",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "network_label",
+      "hidden": false,
+      "immutable": false,
+      "default": "NLAB_FRNT_0210",
+      "options": [
+        {
+          "value" : "NLAB_FRNT_0210",
+          "label": "External - 9.180.210.x/25"
+        },
+        {
+          "value" : "VLAB_MGMT_0019",
+          "label": "Internal - 172.24.19.x/24"
+        }
+      ]
+    },
+    {
+      "name": "storage",
+      "description": "Data store or storage cluster name for target VMs disks",
+      "default": "cluster01/ESX6-volume-01",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "storage",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "admin_password",
+      "description": "The Password for the Administrator user",
+      "type": "string",
+      "required": true,
+      "secured": true,
+      "label": "admin_password",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "domain_name",
+      "description": "The Active Directory Domain to join",
+      "default": "isstlab.staines.uk.ibm.com",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "domain_name",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "domainjoin_user",
+      "description": "A user with authority to join the Active Directory",
+      "default": "Administrator",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "domainjoin_user",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "domainjoin_password",
+      "description": "The password for the Domain Join user",
+      "type": "string",
+      "required": true,
+      "secured": true,
+      "label": "domainjoin_password",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "timezone",
+      "description": "The Time zone code for the new machine",
+      "default": "035",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "timezone",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "allow_selfsigned_cert",
+      "description": "Communication with vsphere server with self signed certificate",
+      "default": "true",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "allow_selfsigned_cert",
+      "hidden": false,
+      "immutable": false
+    }
+  ],
+  "template_output_params": [
+    {
+      "name": "ipv4_address",
+      "description": "IPV4",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "IPV4 address",
+      "hidden": false,
+      "immutable": false
+    }
+  ]
+}
