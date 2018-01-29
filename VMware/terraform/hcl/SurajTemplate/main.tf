@@ -192,7 +192,6 @@ resource "vsphere_virtual_machine" "vm_1" {
       network_id = "${data.vsphere_network.imz_network.id}"
   }
 
-
   disk {
     name = "${var.name}.vmdk"
     size = "${data.vsphere_virtual_machine.template.disks.0.size}"
@@ -201,7 +200,6 @@ resource "vsphere_virtual_machine" "vm_1" {
   }
 
  scsi_type = "${data.vsphere_virtual_machine.template.scsi_type}"
-
 
  disk {
   	## THis is to extend the root vg - sdb - Set the size to 112
@@ -239,7 +237,6 @@ resource "vsphere_virtual_machine" "vm_1" {
     disk_mode = "independent_persistent"
 	}
 
-
  disk {
  	## This will be sdd
   	name = "${var.name}.5.vmdk"
@@ -275,48 +272,33 @@ resource "vsphere_virtual_machine" "vm_1" {
 
   }
 
-
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 
     customize {
 
       timeout = "120"
-      windows_options
-      {
-
+      windows_options {
         computer_name = "${var.name}"
         admin_password = "${var.ssh_user_password}"
-
       }
-
 
       network_interface {
         ipv4_address = "${var.ipv4_address}"
         ipv4_netmask = "${var.ipv4_prefix_length}"
       }
 
-
-	  network_interface {
-       ipv4_address= "${var.ipv4_address_2}"
-       ipv4_netmask = "${var.ipv4_prefix_length_2}"
-
+	  	network_interface {
+      	ipv4_address= "${var.ipv4_address_2}"
+       	ipv4_netmask = "${var.ipv4_prefix_length_2}"
       }
 
+			ipv4_gateway = "${var.ipv4_gateway}"
 
-       ipv4_gateway = "${var.ipv4_gateway}"
-
-
-
-       dns_server_list     = ["169.55.254.73","169.55.254.90"]
-       dns_suffix_list     = [" imzcloud.ibmammsap.local","ibmammsap.local","prdcloud.fms.ibmcloud.com"]
-
-
-
+			dns_server_list     = ["169.55.254.73","169.55.254.90"]
+			dns_suffix_list     = [" imzcloud.ibmammsap.local","ibmammsap.local","prdcloud.fms.ibmcloud.com"]
 
     }
-
-
   }
 }
 

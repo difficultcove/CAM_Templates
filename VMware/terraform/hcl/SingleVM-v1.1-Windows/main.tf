@@ -162,12 +162,23 @@ resource "vsphere_virtual_machine" "vm_1" {
 
 	clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
-		timeout 			= 120
 		linked_clone = true
-#   	customize {
-#				windows_options {
-#					computer_name 				= "${var.name}"
-#					admin_password 				= "${var.admin_password}"
+		customize {
+			timeout = "120"
+			windows_options {
+				computer_name = "${var.name}"
+				admin_password = "${var.admin_password}"
+			}
+#
+     	network_interface {
+        	ipv4_address = "${var.ipv4_address}"
+        	ipv4_netmask = "${var.ipv4_prefix_length}"
+     	}
+#
+      ipv4_gateway = "${var.ipv4_gateway}"
+   	}
+	}
+}
 #					join_domain 					= "${var.domain_name}"
 #					domain_admin_user 		= "${var.domainjoin_user}"
 #					domain_admin_password = "${var.domainjoin_password}"
@@ -175,14 +186,3 @@ resource "vsphere_virtual_machine" "vm_1" {
 #					organization_name 		= "Test"
 #					workgroup      				= "Workgroup"
 #       	product_key						= ""
-#				}
-#
-#     	network_interface {
-#        	ipv4_address = "${var.ipv4_address}"
-#        	ipv4_netmask = "${var.ipv4_prefix_length}"
-#     	}
-#
-#      	ipv4_gateway = "${var.ipv4_gateway}"
-#   	}
-	}
-}

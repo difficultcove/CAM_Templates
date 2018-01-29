@@ -112,7 +112,6 @@ resource "vsphere_virtual_machine" "vm_1" {
   name   = "${var.name}"
   resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
-
   num_cpus   = "${var.vcpu}"
   memory = "${var.memory}"
   guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
@@ -129,7 +128,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   }
 
 	scsi_type = "${data.vsphere_virtual_machine.template.scsi_type}"
-	
+
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 
@@ -138,15 +137,15 @@ resource "vsphere_virtual_machine" "vm_1" {
 #        host_name = "${var.name}"
 #        domain    = "test.internal"
 #      }
-		windows_options {
+			windows_options {
 				computer_name 				= "${var.name}"
 				admin_password 				= "${var.admin_password}"
-				join_domain 					= "${var.domain_name}"
-				domain_admin_user 		= "${var.domainjoin_user}"
-				domain_admin_password = "${var.domainjoin_password}"
-				time_zone							= "035"
+#				join_domain 					= "${var.domain_name}"
+#				domain_admin_user 		= "${var.domainjoin_user}"
+#				domain_admin_password = "${var.domainjoin_password}"
+#				time_zone							= "035"
 #				organization_name 		= "Test"
-		}
+			}
 
       network_interface {
         ipv4_address = "${var.ipv4_address}"
