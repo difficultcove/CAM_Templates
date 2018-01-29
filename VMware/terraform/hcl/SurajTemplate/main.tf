@@ -274,7 +274,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
-
+		linked_clone = true
     customize {
 
       timeout = "120"
@@ -295,8 +295,8 @@ resource "vsphere_virtual_machine" "vm_1" {
 
 			ipv4_gateway = "${var.ipv4_gateway}"
 
-			dns_server_list     = ["169.55.254.73","169.55.254.90"]
-			dns_suffix_list     = [" imzcloud.ibmammsap.local","ibmammsap.local","prdcloud.fms.ibmcloud.com"]
+#			dns_server_list     = ["169.55.254.73","169.55.254.90"]
+#			dns_suffix_list     = [" imzcloud.ibmammsap.local","ibmammsap.local","prdcloud.fms.ibmcloud.com"]
 
     }
   }
