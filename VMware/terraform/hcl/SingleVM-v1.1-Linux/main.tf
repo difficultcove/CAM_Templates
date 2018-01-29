@@ -102,7 +102,7 @@ data "vsphere_virtual_machine" "template" {
 
 ############### Optinal settings in provider ##########
 provider "vsphere" {
-  version              = "~> 1.1"
+  version              = "~> 1.3"
   allow_unverified_ssl = "${var.allow_selfsigned_cert}"
 }
 
