@@ -113,14 +113,14 @@ variable "allow_selfsigned_cert" {
     default = true
 }
 
-variable "dns_suffixes" {
-  description = "Name resolution suffixes for the virtual network adapter"
+#variable "dns_suffixes" {
+#  description = "Name resolution suffixes for the virtual network adapter"
+#
+#}
 
-}
-
-variable "user_public_key" {
-description = "User Key to login to the vm"
-}
+#variable "user_public_key" {
+#	description = "User Key to login to the vm"
+#}
 
 variable "cms_chef_server_url"
 {
