@@ -181,7 +181,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
   num_cpus   = "${var.vcpu}"
-  memory = "${var.memory*1024}"
+  memory = "${var.memory}"
   guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
 
   network_interface {
