@@ -41,6 +41,7 @@ variable "ipv4_prefix_length" {
 
 variable "network_label_2" {
 	description = "vSphere Port Group or Network label for Virtual Machine's 2nd vNIC"
+	default = "VLAB_MGMT_0019"
 }
 
 variable "ipv4_address_2" {
@@ -68,17 +69,10 @@ variable "vm_template" {
 	description = "Source VM or Template label for cloning"
 }
 
-variable "ssh_user" {
-	description = "User to login to the vm"
-	default "Administrator"
-}
-
-
 variable "backup_disk_size" {
 	description = "Backup   disk size used for BigFix"
 	default			= 1
 }
-
 
 variable "bf_disk_size" {
 	description = "Bigfix application disk size"
@@ -102,6 +96,11 @@ variable "log_disk_size" {
 variable "temp_disk_size" {
 	description = "Backup   disk size for Temp"
 	default			= 1
+}
+
+variable "ssh_user" {
+	description = "User to login to the vm"
+	default = "Administrator"
 }
 
 variable "ssh_user_password" {
