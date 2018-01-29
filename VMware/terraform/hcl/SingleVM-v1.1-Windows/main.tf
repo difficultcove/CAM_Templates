@@ -183,6 +183,6 @@ resource "vsphere_virtual_machine" "vm_1" {
 #     }
 #
 #      ipv4_gateway = "${var.ipv4_gateway}"
-   	}
-  }
+#   	}
+#  }
 }
