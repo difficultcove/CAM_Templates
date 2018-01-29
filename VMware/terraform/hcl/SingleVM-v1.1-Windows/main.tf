@@ -186,3 +186,6 @@ resource "vsphere_virtual_machine" "vm_1" {
 #					organization_name 		= "Test"
 #					workgroup      				= "Workgroup"
 #       	product_key						= ""
+output "ipv4_address" {
+  value = "${var.ipv4_address}"
+}
