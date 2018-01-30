@@ -273,7 +273,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
-		linked_clone = true
+#		linked_clone = true
     customize {
 
       timeout = "120"
