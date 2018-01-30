@@ -110,7 +110,7 @@ data "vsphere_virtual_machine" "template" {
 
 ############### Optional settings in provider ##########
 provider "vsphere" {
-    version 							= "1.1"
+    version 							= "~> 1.1"
     allow_unverified_ssl 	= "${var.allow_selfsigned_cert}"
 }
 
@@ -149,10 +149,9 @@ resource "vsphere_virtual_machine" "vm_1" {
   }
 
   disk {
-    name 							= "${var.name}.vmdk"    # deprecated
+    name 							= "${var.name}.vmdk"   				 	# deprecated
     size 							= "${var.rootdisksize}"
-#		label 							= "${var.name}.vmdk"
-#		attach						= true
+#		label 							= "${var.name}.vmdk"  				# replaces name
 #		size 							= "${data.vsphere_virtual_machine.template.disks.0.size}"
 		datastore_id    	= "${data.vsphere_datastore.datastore.id}"
 #    eagerly_scrub    	= false
