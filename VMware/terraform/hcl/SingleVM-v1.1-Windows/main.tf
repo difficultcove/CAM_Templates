@@ -110,7 +110,7 @@ data "vsphere_virtual_machine" "template" {
 
 ############### Optional settings in provider ##########
 provider "vsphere" {
-    version 							= "~> 1.1"
+    version 							= "~> 1.3"
     allow_unverified_ssl 	= "${var.allow_selfsigned_cert}"
 }
 
@@ -149,9 +149,9 @@ resource "vsphere_virtual_machine" "vm_1" {
   }
 
   disk {
-    name 							= "${var.name}.vmdk"   				 	# deprecated
-    size 							= "${var.rootdisksize}"
-#		label 							= "${var.name}.vmdk"  				# replaces name
+		label 							= "${var.name}.vmdk"  				# replaces name
+#    name 							= "${var.name}.vmdk"   				 	# deprecated
+    size 								= "${var.rootdisksize}"
 #		size 							= "${data.vsphere_virtual_machine.template.disks.0.size}"
 		datastore_id    	= "${data.vsphere_datastore.datastore.id}"
 #    eagerly_scrub    	= false
@@ -166,8 +166,11 @@ resource "vsphere_virtual_machine" "vm_1" {
 		customize {
 			timeout = "120"
 			windows_options {
-				computer_name = "${var.name}"
-				admin_password = "${var.admin_password}"
+				computer_name 				= "${var.name}"
+				admin_password 				= "${var.admin_password}"
+				join_domain 					= "${var.domain_name}"
+				domain_admin_user 		= "${var.domainjoin_user}"
+				domain_admin_password = "${var.domainjoin_password}"
 			}
 #
      	network_interface {
@@ -179,9 +182,6 @@ resource "vsphere_virtual_machine" "vm_1" {
    	}
 	}
 }
-#					join_domain 					= "${var.domain_name}"
-#					domain_admin_user 		= "${var.domainjoin_user}"
-#					domain_admin_password = "${var.domainjoin_password}"
 #					time_zone							= "${var.timezone}"
 #					organization_name 		= "Test"
 #					workgroup      				= "Workgroup"

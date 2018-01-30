@@ -207,14 +207,6 @@
       "immutable": false,
       "options": [
         {
-          "value": "16",
-          "label": "16 GB"
-        },
-        {
-          "value": "20",
-          "label": "20 GB"
-        },
-        {
           "value": "40",
           "label": "40 GB"
         },
