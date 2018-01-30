@@ -258,14 +258,25 @@
       "immutable": false
     },
     {
-      "name": "admin_password",
-      "description": "The Password for the Administrator user",
-      "type": "string",
-      "required": true,
-      "secured": true,
-      "label": "admin_password",
-      "hidden": false,
-      "immutable": false
+        "name": "ssh_user",
+        "label": "SSH User",
+        "description": "The user for ssh connection, which is default in template",
+        "default": "root",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "ssh_user_password",
+        "label": "SSH User Password",
+        "description": "The user password for ssh connection, which is default in template",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": true,
+        "type": "string"
     },
     {
       "name": "domain_name",
