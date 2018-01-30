@@ -43,6 +43,10 @@
       "immutable": false,
       "options": [
         {
+          "value": "vt-win2012r2-v2",
+          "label": "Windows 2012 Server R2 v2"
+        },
+        {
           "value": "vt-win2012r2-base",
           "label": "Windows 2012 Server R2"
         },
@@ -55,7 +59,7 @@
           "label": "Windows 2008 Server R2 SP1 VM type 10"
         }
       ],
-      "default": "vt-win2008r2sp1-base"
+      "default": "vt-win2012r2-v2"
     },
     {
       "name": "ipv4_address",

@@ -105,7 +105,6 @@ variable "ssh_user" {
 
 variable "ssh_user_password" {
 	description = "Password to login to the vm"
-	default			= "Passw0rd!"
 }
 
 variable "allow_selfsigned_cert" {
