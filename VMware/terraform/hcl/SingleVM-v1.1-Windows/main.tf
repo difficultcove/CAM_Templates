@@ -142,6 +142,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 	cpu_hot_remove_enabled = true
 	memory_hot_add_enabled = true
   scsi_controller_count = 1
+	scsi_type = "${data.vsphere_virtual_machine.template.scsi_type}"
 
   network_interface {
       network_id 		= "${data.vsphere_network.network.id}"
@@ -153,7 +154,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 #		label 							= "${var.name}.vmdk"
 #		attach						= true
 #		size 							= "${data.vsphere_virtual_machine.template.disks.0.size}"
-#		datastore_id    	= "${data.vsphere_datastore.datastore.id}"
+		datastore_id    	= "${data.vsphere_datastore.datastore.id}"
 #    eagerly_scrub    	= false
 #		eagerly_scrub    	= "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
     thin_provisioned 	= true
