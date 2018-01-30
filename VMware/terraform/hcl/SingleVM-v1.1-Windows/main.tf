@@ -52,6 +52,18 @@ variable "ipv4_prefix_length" {
 	description = "IPv4 Prefix length for vNIC configuration"
 }
 
+variable "dns_suffixes" {
+  description = "Name resolution suffixes for the virtual network adapter"
+  type        = "list"
+  default     = []
+}
+
+variable "dns_servers" {
+  description = "DNS servers for the virtual network adapter"
+  type        = "list"
+  default     = []
+}
+
 variable "admin_password" {
 	description = "The Administrator user's Password"
 }
@@ -179,6 +191,8 @@ resource "vsphere_virtual_machine" "vm_1" {
      	}
 #
       ipv4_gateway = "${var.ipv4_gateway}"
+			dns_server_list     = "${var.dns_servers}"
+			dns_suffix_list     = "${var.dns_suffixes}"
    	}
 	}
 }
