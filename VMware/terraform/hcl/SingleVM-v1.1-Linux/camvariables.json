@@ -65,7 +65,21 @@
         "immutable": false,
         "required": true,
         "secured": false,
-        "type": "string"
+        "type": "string",
+        "options": [
+          {
+            "value": "cluster01/ESX6-volume-01",
+            "label": "cluster01/ESX6-volume-01"
+          },
+          {
+            "value": "cluster01/ESX6-volume-02",
+            "label": "cluster01/ESX6-volume-02"
+          },
+          {
+            "value": "datastore1",
+            "label": "datastore1"
+          }
+        ]
     },
     {
         "name": "folder",
@@ -206,6 +220,31 @@
           {
             "value": "100",
             "label": "100 GB"
+          }
+        ]
+    },
+    {
+        "name": "domain_name",
+        "label": "DNS Domain Name",
+        "description": "DNS Domain Name for VM",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "default": "isstlab.staines.uk.ibm.com",
+        "options": [
+          {
+            "value": "isstlab.staines.uk.ibm.com",
+            "label": "isstlab.staines.uk.ibm.com"
+          },
+          {
+            "value": "localdomain",
+            "label": "localdomain"
+          },
+          {
+            "value": "hursley.ibm.com",
+            "label": "hursley.ibm.com"
           }
         ]
     },

@@ -39,6 +39,11 @@ variable "rootdisksize" {
   default     = 16
 }
 
+variable "domain_name" {
+  description = "The DNS domain name for the VM"
+  default     = "localdomain"
+}
+
 variable "network_label" {
   description = "vSphere Port Group or Network label for Virtual Machine's vNIC"
 }
@@ -150,9 +155,10 @@ resource "vsphere_virtual_machine" "vm_1" {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 
     customize {
+      timeout = "60"
       linux_options {
         host_name = "${var.name}"
-        domain    = "isstlab.org"
+        domain    = "${var.domain_name}"
       }
 
       network_interface {
