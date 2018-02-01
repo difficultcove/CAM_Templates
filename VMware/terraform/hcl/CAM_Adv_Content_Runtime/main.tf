@@ -165,6 +165,7 @@ resource "vsphere_virtual_machine" "vm_1" {
     size              = "${var.rootdisksize}"
     datastore_id      = "${data.vsphere_datastore.datastore.id}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+
   }
 
   disk {
@@ -174,6 +175,7 @@ resource "vsphere_virtual_machine" "vm_1" {
     size              = "${var.repositorydisksize}"
     datastore_id      = "${data.vsphere_datastore.datastore.id}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+    unit_number       = 1
   }
 
 #  disk {
@@ -184,6 +186,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 #    size              = "${var.dockerdisksize}"
 #    datastore_id      = "${data.vsphere_datastore.datastore.id}"
 #    thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+#     unit_number       = 1
 #  }
 
   clone {
