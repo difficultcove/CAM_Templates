@@ -176,15 +176,15 @@ resource "vsphere_virtual_machine" "vm_1" {
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
 
-  disk {
+#  disk {
 # Optional Docker disk
 #    name              = "${var.name}.vmdk"
-    count             = "${var.dockerdiskcount}"
-    label             = "${var.name}-2.vmdk"
-    size              = "${var.dockerdisksize}"
-    datastore_id      = "${data.vsphere_datastore.datastore.id}"
-    thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
-  }
+#    count             = "${var.dockerdiskcount}"
+#    label             = "${var.name}-2.vmdk"
+#    size              = "${var.dockerdisksize}"
+#    datastore_id      = "${data.vsphere_datastore.datastore.id}"
+#    thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+#  }
 
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
