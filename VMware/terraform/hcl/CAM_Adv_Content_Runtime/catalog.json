@@ -1,6 +1,6 @@
 {
-  "name": "SingleVM-v1.1-Linux",
-  "description": "Create Virtual Machine with single vnic and flexible root disk v1.1 - Linux",
+  "name": "CAM_Adv_Content_Runtime",
+  "description": "Create Advanced Content Runtime server",
   "type": "custom",
   "version": "2.1.9",
   "manifest": {
@@ -11,16 +11,10 @@
       "templateOutput": "",
       "templateVariables": "",
       "templateData": ""
-    },
-    "template_source": {
-      "githubRepoUrl": "",
-      "githubAccessToken": "",
-      "relativePathToTemplateFolder": "VMware/terraform/hcl/SingleVM-v1.1-Linux",
-      "templateFileName": "main.tf"
     }
   },
   "metadata": {
-      "displayName": "SingleVM-v1.1-Linux",
-      "longDescription": "Create Virtual Machine with single vnic and flexible root disk v1.1 - Linux"
+      "displayName": "CAM_Adv_Content_Runtime",
+      "longDescription": "Create Advanced Content Runtime server"
   }
 }
