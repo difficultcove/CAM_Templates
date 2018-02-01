@@ -1,0 +1,322 @@
+[
+    {
+        "name": "name",
+        "label": "Hostname",
+        "description": "Name of the Virtual Machine",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "vm_template",
+        "label": "VM Template",
+        "description": "Source VM or Template label for cloning",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "options": [
+          {
+            "value": "vt-ubuntu-svr-1604",
+            "label": "Ubuntu Server 16.04"
+          },
+          {
+            "value": "vt-rhel65-svr",
+            "label": "Red Hat Enterprise Linux Server 6.5"
+          },
+          {
+            "value": "vt-rhel73-svr",
+            "label": "Red Hat Enterprise Linux Server 7.3"
+          }
+        ],
+        "default": "vt-ubuntu-svr-1604"
+    },
+    {
+        "name": "datacenter",
+        "label": "Datacenter",
+        "description": "Target vSphere datacenter for Virtual Machine creation",
+        "default": "isstlab",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "cluster",
+        "label": "Cluster",
+        "description": "Target vSphere Cluster to host the Virtual Machine",
+        "default": "underground",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "storage",
+        "label": "Storage",
+        "description": "Data store or storage cluster name for target VMs disks",
+        "default": "cluster01/ESX6-volume-01",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "options": [
+          {
+            "value": "cluster01/ESX6-volume-01",
+            "label": "cluster01/ESX6-volume-01"
+          },
+          {
+            "value": "cluster01/ESX6-volume-02",
+            "label": "cluster01/ESX6-volume-02"
+          },
+          {
+            "value": "datastore1",
+            "label": "datastore1"
+          }
+        ]
+    },
+    {
+        "name": "folder",
+        "label": "Folder",
+        "description": "Target vSphere folder for Virtual Machine",
+        "default": "CAM",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "vcpu",
+        "label": "VCPU",
+        "description": "Number of Virtual CPU for the Virtual Machine",
+        "default": "1",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "options": [
+         	{
+            	"value" : "4",
+              	"label": "4 Cores"
+          	},
+         	{
+            	"value" : "8",
+              	"label": "8 Cores"
+          	},
+         	{
+            	"value" : "12",
+              	"label": "12 Cores"
+          	},
+         	{
+            	"value" : "16",
+              	"label": "16 Cores"
+          	},
+         	{
+            	"value" : "32",
+              	"label": "32 Cores"
+          	}
+        ]
+    },
+    {
+        "name": "memory",
+        "description": "Memory for Virtual Machine in MBs",
+        "default": "1024",
+        "type": "string",
+        "required": true,
+        "secured": false,
+        "label": "memory",
+        "hidden": false,
+        "immutable": false,
+        "options": [
+          {
+              "value" : "8192",
+                "label": "8 GB"
+            },
+          {
+              "value" : "12288",
+                "label": "12 GB"
+            },
+          {
+              "value" : "16384",
+                "label": "16 GB"
+            },
+          {
+              "value" : "32768",
+                "label": "32 GB"
+            },
+          {
+              "value" : "49152",
+                "label": "48 GB"
+            },
+          {
+              "value" : "65536",
+                "label": "64 GB"
+            },
+          {
+              "value" : "131072",
+                "label": "128 GB"
+            }
+        ]
+    },
+    {
+        "name": "rootdisksize",
+        "description": "Root disk size in GBs",
+        "default": "40",
+        "type": "string",
+        "required": true,
+        "secured": false,
+        "label": "rootdisksize",
+        "hidden": false,
+        "immutable": false,
+        "options": [
+          {
+            "value": "20",
+            "label": "20 GB"
+          },
+          {
+            "value": "40",
+            "label": "40 GB"
+          },
+          {
+            "value": "60",
+            "label": "60 GB"
+          },
+          {
+            "value": "100",
+            "label": "100 GB"
+          }
+        ]
+    },
+    {
+        "name": "domain_name",
+        "label": "DNS Domain Name",
+        "description": "DNS Domain Name for VM",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "default": "isstlab.staines.uk.ibm.com",
+        "options": [
+          {
+            "value": "isstlab.staines.uk.ibm.com",
+            "label": "isstlab.staines.uk.ibm.com"
+          },
+          {
+            "value": "localdomain",
+            "label": "localdomain"
+          },
+          {
+            "value": "hursley.ibm.com",
+            "label": "hursley.ibm.com"
+          }
+        ]
+    },
+    {
+        "name": "network_label",
+        "label": "Network label",
+        "description": "vSphere Port Group or Network label for Virtual Machine's vNIC",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "default": "NLAB_FRNT_0210",
+        "options": [
+          {
+            "value" : "NLAB_FRNT_0210",
+            "label": "External - 9.180.210.0/25"
+          },
+          {
+            "value" : "VLAB_MGMT_0019",
+            "label": "Internal - 172.24.19.0/24"
+          },
+          {
+            "value" : "VLAB_CLOD_0180",
+            "label": "Internal - 192.168.180.0/24"
+          }
+        ]
+    },
+    {
+        "name": "ipv4_address",
+        "label": "IPv4 Address",
+        "description": "IPv4 address for vNIC configuration",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "ipv4_gateway",
+        "label": "IPv4 Gateway",
+        "description": "IPv4 gateway for vNIC configuration",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "ipv4_prefix_length",
+        "label": "IPv4 prefix length",
+        "description": "IPv4 Prefix length for vNIC configuration",
+        "default": "25",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "create_vm_folder",
+        "label": "Create VM folder",
+        "description": "Set to 1 if a vSphere folder needs to be created and to 0 otherwise (use an existing folder)",
+        "default": "0",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "ssh_user",
+        "label": "SSH User",
+        "description": "The user for ssh connection, which is default in template",
+        "default": "root",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "ssh_user_password",
+        "label": "SSH User Password",
+        "description": "The user password for ssh connection, which is default in template",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": true,
+        "type": "string"
+    },
+    {
+        "name": "allow_selfsigned_cert",
+        "label": "Allow selfsigned certificate",
+        "description": "Communication with vsphere server with self signed certificate",
+        "default": "true",
+        "hidden": true,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    }
+]
