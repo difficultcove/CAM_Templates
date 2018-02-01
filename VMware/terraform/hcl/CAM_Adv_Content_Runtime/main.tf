@@ -239,8 +239,12 @@ echo "Formatting Repository" >> $LOGFILE
 echo -e "n\np\n1\n\n\nw\n" | fdisk /dev/sdb || echo "ignore warning" >> $LOGFILE
 partprobe | tee -a $LOGFILE 2>&1
 pvcreate /dev/sdb1
-vgcreate repopv /dev/sdb1 | tee -a $LOGFILE 2>&1
-lvcreate -l+100%FREE -n repolv repopv  | tee -a $LOGFILE 2>&1
+vgcreate repovg /dev/sdb1 | tee -a $LOGFILE 2>&1
+lvcreate -l+100%FREE -n repolv repovg  | tee -a $LOGFILE 2>&1
+mkfs -t xfs /dev/repovg/repopv  | tee -a $LOGFILE 2>&1
+mkdir /repo | tee -a $LOGFILE 2>&1
+echo "/dev/repovg/repolv    /repo   xfs"  >> /etc/fstab | tee -a $LOGFILE 2>&1
+mount -a | tee -a $LOGFILE 2>&1
 
 echo "---finish installing VM---" | tee -a $LOGFILE 2>&1
 EOF
