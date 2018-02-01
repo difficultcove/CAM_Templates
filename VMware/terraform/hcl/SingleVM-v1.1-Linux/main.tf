@@ -145,7 +145,8 @@ resource "vsphere_virtual_machine" "vm_1" {
   }
 
   disk {
-    name              = "${var.name}.vmdk"
+#    name              = "${var.name}.vmdk"
+    label              = "${var.name}.vmdk"
     size              = "${var.rootdisksize}"
     datastore_id      = "${data.vsphere_datastore.datastore.id}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
@@ -164,11 +165,11 @@ resource "vsphere_virtual_machine" "vm_1" {
       network_interface {
         ipv4_address = "${var.ipv4_address}"
 #        ipv4_netmask = "${var.ipv4_prefix_length}"
-        ipv4_netmask = "${var.network_label == "NLAB_MGMT_0210" ? "25" : "24"}"
+        ipv4_netmask = "${var.network_label == "NLAB_FRNT_0210" ? "25" : "24"}"
       }
 
 #      ipv4_gateway = "${var.ipv4_gateway}"
-      ipv4_gateway = "${var.network_label == "NLAB_MGMT_0210" ? "9.180.210.1" : "172.24.19.1"}"
+      ipv4_gateway = "${var.network_label == "NLAB_FRNT_0210" ? "9.180.210.1" : "172.24.19.1"}"
     }
   }
   # Specify the ssh connection
