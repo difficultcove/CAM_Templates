@@ -96,7 +96,7 @@
         "name": "vcpu",
         "label": "VCPU",
         "description": "Number of Virtual CPU for the Virtual Machine",
-        "default": "1",
+        "default": "4",
         "hidden": false,
         "immutable": false,
         "required": true,
@@ -128,7 +128,7 @@
     {
         "name": "memory",
         "description": "Memory for Virtual Machine in MBs",
-        "default": "1024",
+        "default": "8192",
         "type": "string",
         "required": true,
         "secured": false,
@@ -169,7 +169,7 @@
     {
         "name": "rootdisksize",
         "description": "Root disk size in GBs",
-        "default": "40",
+        "default": "20",
         "type": "string",
         "required": true,
         "secured": false,
