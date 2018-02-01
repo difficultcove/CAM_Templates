@@ -171,4 +171,42 @@ resource "vsphere_virtual_machine" "vm_1" {
       ipv4_gateway = "${var.network_label == "NLAB_MGMT_0210" ? "9.180.210.1" : "172.24.19.1"}"
     }
   }
+  # Specify the ssh connection
+  connection {
+    type        = "ssh"
+    user        = "${var.ssh_user}"
+    password    = "${var.ssh_user_password}"
+#      private_key = "${base64decode(var.camc_private_ssh_key)}"
+  }
+  provisioner "file" {
+    content = <<EOF
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+LOGFILE="/var/log/installation.log"
+
+echo "Starting Install" > $LOGFILE
+
+#extend RHEL root disks
+echo "Extending RHEL root disk" >> $LOGFILE
+echo -e "n\np\n3\n\n\nw\n" | fdisk /dev/sda || echo "ignore warning" >> $LOGFILE
+partprobe | tee -a $LOGFILE 2>&1
+vgextend rhel /dev/sda3 | tee -a $LOGFILE 2>&1
+lvresize -r -l+100%FREE /dev/rhel/root | tee -a $LOGFILE 2>&1
+
+
+echo "---finish installing VM---" | tee -a $LOGFILE 2>&1
+EOF
+    destination = "/tmp/installation.sh"
+  }
+
+  # Execute the script remotely
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/installation.sh; bash /tmp/installation.sh"
+    ]
+  }
 }
