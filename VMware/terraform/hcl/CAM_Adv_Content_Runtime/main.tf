@@ -238,9 +238,9 @@ lvresize -r -l+100%FREE /dev/rhel/root | tee -a $LOGFILE 2>&1
 echo "Formatting Repository" >> $LOGFILE
 echo -e "n\np\n1\n\n\nw\n" | fdisk /dev/sdb || echo "ignore warning" >> $LOGFILE
 partprobe | tee -a $LOGFILE 2>&1
-pvcreate /dev/sdb
-vgcreate repo /dev/sdb | tee -a $LOGFILE 2>&1
-#lvcreate -r -l+100%FREE -n /dev/repo/ /dev/sdb | tee -a $LOGFILE 2>&1
+pvcreate /dev/sdb1
+vgcreate repopv /dev/sdb1 | tee -a $LOGFILE 2>&1
+lvcreate -l+100%FREE -n repolv repopv  | tee -a $LOGFILE 2>&1
 
 echo "---finish installing VM---" | tee -a $LOGFILE 2>&1
 EOF
