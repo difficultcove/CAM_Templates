@@ -246,6 +246,42 @@ mkdir /repo | tee -a $LOGFILE 2>&1
 echo "/dev/repovg/repolv    /repo   xfs"  >> /etc/fstab | tee -a $LOGFILE 2>&1
 mount -a | tee -a $LOGFILE 2>&1
 
+# Setup repositorys
+rhel7http=/etc/yum.repos.d/rhel7http.repo
+cat <<EOT | tee -a $rhel7http >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
+[rhel7repo]
+name=RHEL73 Repository
+baseurl=http://9.180.210.119/RedHat/RHEL74/
+gpgcheck=0
+enabled=1
+
+rhel7supp=/etc/yum.repos.d/rhel7supp.repo
+cat <<EOT | tee -a $rhel7supp >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
+[rhel7supp]
+name=RHEL7 Supplementary
+baseurl=http://9.180.210.119/RedHat/RHEL74/supplementary/os
+gpgcheck=0
+enabled=1
+
+rhel7extra=/etc/yum.repos.d/rhel7extra.repo
+cat <<EOT | tee -a $rhel7extra >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
+[rhel7extra]
+name=RHEL7 Extras
+baseurl=http://9.180.210.119/RedHat/RHEL74/extras
+gpgcheck=0
+enabled=1
+yum clean all | tee -a $LOGFILE 2>&1
+
+docker=/etc/yum.repos.d/docker.repo
+cat <<EOT | tee -a $docker >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
+[docker]
+name=Docker
+baseurl=http://9.180.210.119/Docker
+gpgcheck=0
+enabled=1
+
+yum clean all | tee -a $LOGFILE 2>&1
+
 echo "---finish installing VM---" | tee -a $LOGFILE 2>&1
 EOF
     destination = "/tmp/installation.sh"
