@@ -289,7 +289,7 @@ yum clean all | tee -a $LOGFILE 2>&1
 yum install docker-ce-17.09.1.ce | tee -a $LOGFILE 2>&1
 
 #Install docker-compose
-curl -L https://9.180.210.119/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+curl -L https://9.180.210.119/CAM_ACR/docker-compose -o /usr/local/bin/docker-compose
 
 echo "---finish installing VM---" | tee -a $LOGFILE 2>&1
 EOF
