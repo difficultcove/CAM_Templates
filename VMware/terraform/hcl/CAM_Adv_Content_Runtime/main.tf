@@ -257,7 +257,7 @@ enabled=1
 EOT
 
 rhel7supp=/etc/yum.repos.d/rhel7supp.repo
-cat <<EOT | tee -a $rhel7supp >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
+cat <<EOT | tee -a $rhel7supp >> $LOGFILE 2>&1 || { echo "---Failed to create linux supp repo---" | tee -a $LOGFILE; exit 1; }
 [rhel7supp]
 name=RHEL7 Supplementary
 baseurl=http://9.180.210.119/RedHat/RHEL74/supplementary/os
@@ -266,7 +266,7 @@ enabled=1
 EOT
 
 rhel7extra=/etc/yum.repos.d/rhel7extra.repo
-cat <<EOT | tee -a $rhel7extra >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
+cat <<EOT | tee -a $rhel7extra >> $LOGFILE 2>&1 || { echo "---Failed to create linux extra repo---" | tee -a $LOGFILE; exit 1; }
 [rhel7extra]
 name=RHEL7 Extras
 baseurl=http://9.180.210.119/RedHat/RHEL74/extras
@@ -275,7 +275,7 @@ enabled=1
 EOT
 
 docker=/etc/yum.repos.d/docker.repo
-cat <<EOT | tee -a $docker >> $LOGFILE 2>&1 || { echo "---Failed to create linux repo---" | tee -a $LOGFILE; exit 1; }
+cat <<EOT | tee -a $docker >> $LOGFILE 2>&1 || { echo "---Failed to create docker repo---" | tee -a $LOGFILE; exit 1; }
 [docker]
 name=Docker
 baseurl=http://9.180.210.119/Docker
@@ -284,6 +284,12 @@ enabled=1
 EOT
 
 yum clean all | tee -a $LOGFILE 2>&1
+
+#Install Docker CE
+yum install docker-ce-17.09.1.ce | tee -a $LOGFILE 2>&1
+
+#Install docker-compose
+curl -L https://9.180.210.119/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
 echo "---finish installing VM---" | tee -a $LOGFILE 2>&1
 EOF
