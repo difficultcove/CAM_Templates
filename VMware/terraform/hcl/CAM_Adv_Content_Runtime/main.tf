@@ -242,8 +242,8 @@ pvcreate /dev/sdb1
 vgcreate repovg /dev/sdb1 | tee -a $LOGFILE 2>&1
 lvcreate -l+100%FREE -n repolv repovg  | tee -a $LOGFILE 2>&1
 mkfs -t xfs /dev/repovg/repolv  | tee -a $LOGFILE 2>&1
-mkdir /repo | tee -a $LOGFILE 2>&1
-echo "/dev/repovg/repolv    /repo   xfs"  >> /etc/fstab | tee -a $LOGFILE 2>&1
+mkdir -p /opt/ibm/docker/software-repo | tee -a $LOGFILE 2>&1
+echo "/dev/repovg/repolv    /opt/ibm/docker/software-repo   xfs"  >> /etc/fstab | tee -a $LOGFILE 2>&1
 mount -a | tee -a $LOGFILE 2>&1
 
 # Setup repositorys

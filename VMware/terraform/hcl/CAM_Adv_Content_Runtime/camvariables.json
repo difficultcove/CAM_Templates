@@ -169,7 +169,7 @@
     {
         "name": "rootdisksize",
         "description": "Root disk size in GBs",
-        "default": "20",
+        "default": "25",
         "type": "string",
         "required": true,
         "secured": false,
@@ -180,6 +180,10 @@
           {
             "value": "20",
             "label": "20 GB"
+          },
+          {
+            "value": "25",
+            "label": "25 GB"
           },
           {
             "value": "40",
