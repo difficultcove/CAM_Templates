@@ -286,10 +286,13 @@ EOT
 yum clean all | tee -a $LOGFILE 2>&1
 
 #Install Docker CE
-yum install docker-ce-17.09.1.ce | tee -a $LOGFILE 2>&1
+yum install -y docker-ce-17.09.1.ce | tee -a $LOGFILE 2>&1
 
 #Install docker-compose
-curl -L https://9.180.210.119/CAM_ACR/docker-compose -o /usr/local/bin/docker-compose
+curl -L http://9.180.210.119/CAM_ACR/docker-compose -o /usr/local/bin/docker-compose | tee -a $LOGFILE 2>&1
+chmod +x /usr/local/bin/docker-compose
+docker-compose version | tee -a $LOGFILE 2>&1
+
 
 echo "---finish installing VM---" | tee -a $LOGFILE 2>&1
 EOF
