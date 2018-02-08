@@ -237,15 +237,15 @@
         "options": [
           {
             "value" : "NLAB_FRNT_0210",
-            "label": "External - 9.180.210.0/25"
+            "label": "External"
           },
           {
             "value" : "VLAB_MGMT_0019",
-            "label": "Internal - 172.24.19.0/24"
+            "label": "Internal"
           },
           {
             "value" : "VLAB_CLOD_0180",
-            "label": "Internal - 192.168.180.0/24"
+            "label": "Internal"
           }
         ]
     },

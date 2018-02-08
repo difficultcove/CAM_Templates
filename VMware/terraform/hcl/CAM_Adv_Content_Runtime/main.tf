@@ -201,14 +201,13 @@ resource "vsphere_virtual_machine" "vm_1" {
 
       network_interface {
         ipv4_address = "${var.ipv4_address}"
-#        ipv4_netmask = "${var.ipv4_prefix_length}"
-        ipv4_netmask = "${var.network_label == "NLAB_FRNT_0210" ? "25" : "24"}"
+        ipv4_netmask = "${var.ipv4_prefix_length}"
       }
 
-#      ipv4_gateway = "${var.ipv4_gateway}"
-      ipv4_gateway = "${var.network_label == "NLAB_FRNT_0210" ? "9.180.210.1" : "172.24.19.1"}"
+      ipv4_gateway = "${var.ipv4_gateway}"
     }
   }
+  
   # Specify the ssh connection
   connection {
     type        = "ssh"
@@ -216,6 +215,7 @@ resource "vsphere_virtual_machine" "vm_1" {
     password    = "${var.ssh_user_password}"
 #      private_key = "${base64decode(var.camc_private_ssh_key)}"
   }
+
   provisioner "file" {
     content = <<EOF
 #!/bin/bash
