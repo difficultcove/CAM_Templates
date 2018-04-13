@@ -127,7 +127,7 @@ resource "vsphere_folder" "folder_vm_1" {
 resource "vsphere_virtual_machine" "vm_1" {
   count             = "${var.number}"
   depends_on        = ["vsphere_folder.folder_vm_1"]
-  name              = "${var.name}-${count.index}+1"
+  name              = "${var.name}-${count.index + 1}"
   folder            = "${var.folder}"
   num_cpus          = "${var.vcpu}"
   memory            = "${var.memory}"
@@ -140,7 +140,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   }
 
   disk {
-    name              = "${var.name}-${count.index}+1.vmdk"
+    name              = "${var.name}-${count.index + 1}.vmdk"
     datastore_id      = "${data.vsphere_datastore.datastore.id}"
     size              = "${var.rootdisksize}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
@@ -152,7 +152,7 @@ resource "vsphere_virtual_machine" "vm_1" {
     customize {
       timeout = "60"
       linux_options {
-        host_name = "${var.name}"
+        host_name = "${var.name}+${count.index + 1}"
         domain    = "${var.dns_domain}"
       }
 
