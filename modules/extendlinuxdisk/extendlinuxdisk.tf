@@ -78,7 +78,7 @@ EOF
   }
 }
 resource "null_resource" "extendlinuxdisk_done" {
-  depends_on = ["extendlinuxdisk]
+  depends_on = ["extendlinuxdisk"]
 
   provisioner "local-exec" {
     command = "echo Root disk extended "
