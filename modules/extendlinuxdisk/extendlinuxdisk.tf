@@ -77,6 +77,7 @@ EOF
     ]
   }
 }
+
 resource "null_resource" "extendlinuxdisk_done" {
   depends_on = ["null_resource.extendlinuxdisk"]
 
