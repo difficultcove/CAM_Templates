@@ -4,8 +4,8 @@ resource "null_resource" "install_VM_dependsOn" {
   }
 }
 
-resource "null_resource" "single_vm_install" {
-  depends_on = ["vsphere_virtual_machine.vm_1"]
+resource "null_resource" "extendwindowsdisk" {
+  depends_on = ["null_resource.install_VM_dependsOn"]
   connection {
     type     = "winrm"
     user     = "Administrator"
@@ -45,7 +45,7 @@ provisioner "file" {
   }
 }
 resource "null_resource" "extendwindowsdisk_done" {
-  depends_on = ["null_resource.extendlwindowsdisk"]
+  depends_on = ["null_resource.extendwindowsdisk"]
 
   provisioner "local-exec" {
     command = "echo Root disk extended "

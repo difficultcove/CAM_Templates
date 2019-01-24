@@ -13,4 +13,8 @@ variable "admin_password" {
 	description = "The Administrator user's Password"
 }
 
+variable "dependsOn" {
+  description = "depends On variable for VM creation"
+  default     = true
+}
 ################ Data Segment #####################

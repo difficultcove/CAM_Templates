@@ -4,7 +4,6 @@ variable "name" {
   description = "Name prefix of ICP system. master, proxy-n, worker-n and manager will be added"
 }
 
-
 variable "folder" {
   description = "Target vSphere folder for ICP Virtual Machines"
 }
@@ -40,11 +39,13 @@ variable "rootdisksize" {
   default     = 16
 }
 
+variable "admin_password" {
+	description = "The Administrator user's Password"
+}
 
 variable "network_label" {
   description = "vSphere Port Group or Network label for Virtual Machine's vNIC"
 }
-
 
 variable "ipv4_subnet" {
   description = "IPv4 subnet for vNIC configuration"
@@ -59,20 +60,25 @@ variable "create_vm_folder" {
   default     = true
 }
 
-variable "domain_name" {
-	description = "The Active Directory Domain Name"
-}
+#variable "domain_name" {
+#	description = "The Active Directory Domain Name"
+#}
 
-variable "domainjoin_user" {
-	description = "A user with permissions to join the Active Directory"
-}
+#variable "domainjoin_user" {
+#	description = "A user with permissions to join the Active Directory"
+#}
 
-variable "domainjoin_password" {
-	description = "The password for the Domain join user"
-}
+#variable "domainjoin_password" {
+#	description = "The password for the Domain join user"
+#}
 
 variable "product_key" {
 	description = "The Windows Product Key"
+}
+
+variable "dependsOn" {
+  description = "depends On variable for VM creation"
+  default     = true
 }
 
 ################ Data Segment #####################
