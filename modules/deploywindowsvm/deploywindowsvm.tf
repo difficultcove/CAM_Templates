@@ -50,7 +50,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
-    timeout = "60"
+    timeout = "90"
     customize {
       ipv4_gateway = "${cidrhost("${var.ipv4_subnet}", "1")}"
       windows_options {
