@@ -8,10 +8,11 @@ resource "null_resource" "install_VM_dependsOn" {
 resource "null_resource" "extendlinuxdisk" {
   	depends_on = ["null_resource.install_VM_dependsOn"]
     connection {
-      type     = "ssh"
-      user     = "${var.ssh_user}"
-      private_key         = "${base64decode(var.ssh_user_private_key)}"
-      host                = "${cidrhost("${var.ipv4_subnet}", "${var.ipv4_subnet_index}")}"
+      type                = "ssh"
+      user                = "${var.ssh_user}"
+      ssh_password        = "${ var.ssh_password != "" ? var.ssh_password : ""}"
+      private_key         = "${var.ssh_user_private_key != "" ? base64decode(var.ssh_user_private_key) : "" }"
+      host                = "${var.ipv4_address}"
       bastion_host        = "${var.bastion_host}"
       bastion_user        = "${var.bastion_user}"
       bastion_private_key = "${ length(var.bastion_private_key) > 0 ? base64decode(var.bastion_private_key) : var.bastion_private_key}"

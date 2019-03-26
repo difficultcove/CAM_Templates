@@ -26,7 +26,6 @@ module "deploylinuxvm" {
   source = "github.com/difficultcove/CAM_Templates/modules/deploylinuxvm"
 
   # VSphere
-  allow_selfsigned_cert     = "${var.allow_selfsigned_cert}"
   create_vm_folder          = "${var.create_vm_folder}"
   folder                    = "${var.folder}"
 

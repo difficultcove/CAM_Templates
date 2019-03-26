@@ -5,6 +5,11 @@ variable "ssh_user" {
   default     = "root"
 }
 
+variable "ssh_password" {
+  description = "The password for ssh connection when private key is not used"
+  default     = "root"
+}
+
 variable "ssh_user_private_key" {
   description = "The user private key for ssh connection, which is default in template"
 }
@@ -37,12 +42,10 @@ variable "bastion_password" {
 }
 
 #Target VM IP address
-variable "ipv4_subnet" {
+variable "ipv4_address" {
   type = "string"
 }
-variable "ipv4_subnet_index" {
-  type = "string"
-}
+
 
 variable "dependsOn" {
   default = "true"
