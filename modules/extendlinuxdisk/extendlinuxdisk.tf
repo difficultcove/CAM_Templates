@@ -10,15 +10,7 @@ resource "null_resource" "extendlinuxdisk" {
     connection {
       type                = "ssh"
       user                = "${var.ssh_user}"
-<<<<<<< HEAD
-<<<<<<< Upstream, based on 391963af9d87dd1d98ddb7424accdb10d42eb9cb
-      ssh_password        = "${ var.ssh_password != "" ? var.ssh_password : ""}"
-=======
       password        = "${ var.ssh_password != "" ? var.ssh_password : ""}"
->>>>>>> 0645866 bug
-=======
-      ssh_password        = "${ var.ssh_password != "" ? var.ssh_password : ""}"
->>>>>>> 391963af9d87dd1d98ddb7424accdb10d42eb9cb
       private_key         = "${var.ssh_user_private_key != "" ? base64decode(var.ssh_user_private_key) : "" }"
       host                = "${var.ipv4_address}"
       bastion_host        = "${var.bastion_host}"
