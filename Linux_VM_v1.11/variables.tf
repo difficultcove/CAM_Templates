@@ -53,11 +53,6 @@ variable "ipv4_subnet" {
   description = "IPv4 subnet for vNIC configuration"
 }
 
-variable "ipv4_address" {
-  description = "IPv4 address of deployed VM"
-  default = ""
-}
-
 variable "ipv4_subnet_index" {
   description = "IPv4 subnet index for vNIC configuration"
 }

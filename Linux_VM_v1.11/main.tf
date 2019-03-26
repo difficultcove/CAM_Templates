@@ -22,8 +22,8 @@ provider "vsphere" {
 # Create VM Server
 module "deploylinuxvm" {
 #  source = "git::http://9.180.210.11/root/deploylinuxvm.git"
-source = "git::http://9.180.210.11/root/CAM2102.git//modules/deploylinuxvm"
-#  source = "github.com/difficultcove/CAM_Templates/modules/deploylinuxvm"
+# source = "git::http://9.180.210.11/root/CAM2102.git//modules/deploylinuxvm"
+  source = "github.com/difficultcove/CAM_Templates/modules/deploylinuxvm"
 
   # VSphere
   allow_selfsigned_cert     = "${var.allow_selfsigned_cert}"
@@ -39,7 +39,6 @@ source = "git::http://9.180.210.11/root/CAM2102.git//modules/deploylinuxvm"
 
   ####### input to Resource Segment
   name         = "${var.name}"
-  folder       = "${var.folder}"
   vcpu         = "${var.vcpu}"
   memory       = "${var.memory}"
   rootdisksize = "${var.rootdisksize}"

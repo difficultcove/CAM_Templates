@@ -61,16 +61,6 @@ variable "create_vm_folder" {
   default     = true
 }
 
-variable "allow_selfsigned_cert" {
-  description = "Communication with vsphere server with self signed certificate"
-  default     = true
-}
-
-variable "dependsOn" {
-  description = "depends On variable for VM creation"
-  default     = true
-}
-
 ################ Data Segment #####################
 
 data "vsphere_datacenter" "datacenter" {
