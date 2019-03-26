@@ -50,8 +50,8 @@ module "deploylinuxvm" {
 
 module "extendlinuxdisk" {
 #  source = "git::http://9.180.210.11/root/extendlinuxdisk"
-  source = "git::http://9.180.210.11/root/CAM2102.git//modules/config-linux-rootdisk"
-#  source = "github.com/difficultcove/CAM_Templates/modules/extendlinuxdisk"
+#  source = "git::http://9.180.210.11/root/CAM2102.git//modules/config-linux-rootdisk"
+  source = "github.com/difficultcove/CAM_Templates/modules/extendlinuxdisk"
 
   ssh_user            = "${var.ssh_user}"
   ssh_password        = "${var.ssh_password}"
