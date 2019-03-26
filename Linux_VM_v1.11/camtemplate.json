@@ -1,0 +1,44 @@
+{
+  "name": "Linux_VM_1_11",
+  "description": "Linux VM (1.11)",
+  "type": "custom",
+  "version": "1.10",
+  "manifest": {
+    "template_type": "Terraform",
+    "template_format": "HCL",
+    "template_provider": "VMware vSphere",
+    "template": {
+      "templateOutput": "",
+      "templateVariables": "",
+      "templateData": ""
+    },
+    "template_source": {
+      "githubRepoUrl": "",
+      "githubAccessToken": "",
+      "relativePathToTemplateFolder": "",
+      "templateFileName": "main.tf"
+    }
+  },
+  "metadata": {
+      "displayName": "Linux VM DS Clusters (1.11)",
+      "longDescription": "Create Linux Virtual Machine with single vNIC in datastore cluster and connect with SSH (optionally via bastion host) - Template uses Ext Modules",
+      "bullets": [
+        {
+          "title": "Clouds",
+          "description": "VMware"
+        },
+        {
+          "title": "Template version",
+          "description": "V1.0"
+        },
+        {
+          "title": "Operating Systems supported (tested)",
+          "description": "<ul><li>Red Hat Enterprise Linux 6.5</li><li>Red Hat Enterprise Linux 7.3</li><li>Red Hat Enterprise Linux 7.4</li><li>Ubuntu 16.04</li><li>Centos 7</li></ul>"
+        },
+        {
+          "title": "Topology",
+          "description": "VMware: One Linux Virtual Machine with root disk expanded"
+        }
+      ]
+    }
+}
