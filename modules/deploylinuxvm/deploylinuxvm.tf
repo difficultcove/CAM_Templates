@@ -53,6 +53,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 #    name              = "${var.name}.vmdk"
     label              = "${var.name}-2.vmdk"
     size              = "${var.rootdisksize}"
+    unit_number = 2
 #    datastore_cluster_id      = "${data.vsphere_datastore_cluster.datastore_cluster.id}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
