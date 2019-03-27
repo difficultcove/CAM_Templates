@@ -57,6 +57,14 @@ resource "vsphere_virtual_machine" "vm_1" {
 #    datastore_cluster_id      = "${data.vsphere_datastore_cluster.datastore_cluster.id}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
+  disk {
+#    name              = "${var.name}.vmdk"
+    label              = "${var.name}-3.vmdk"
+    size              = "${var.rootdisksize}"
+    unit_number = 3
+#    datastore_cluster_id      = "${data.vsphere_datastore_cluster.datastore_cluster.id}"
+    thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+  }
 
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
