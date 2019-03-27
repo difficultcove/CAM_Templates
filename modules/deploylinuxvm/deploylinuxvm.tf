@@ -25,7 +25,7 @@ resource "vsphere_virtual_disk" "disk3" {
 
 # Create VM Server
 resource "vsphere_virtual_machine" "vm_1" {
-  depends_on        = ["vsphere_folder.folder_vm_1"]
+  depends_on        = ["vsphere_folder.folder_vm_1","vsphere_virtual_disk.disk3"]
   name              = "${var.name}"
   folder            = "${var.folder}"
   num_cpus          = "${var.vcpu}"
