@@ -150,10 +150,10 @@
       "default": "${vSphere-System.folder}",
       "validation": "",
       "group_name": "vSphere-System",
-      "required": "true",
-      "secured": "false",
-      "hidden": "false",
-      "immutable": "false",
+      "required": true,
+      "secured": false,
+      "hidden": true,
+      "immutable": false,
       "immutable_after_create": false
     },
     {
@@ -164,10 +164,10 @@
       "default": "${vSphere-System.datacenter}",
       "validation": "",
       "group_name": "vSphere-System",
-      "required": "true",
-      "secured": "false",
-      "hidden": "false",
-      "immutable": "false",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
       "immutable_after_create": false
     },
     {
@@ -178,10 +178,10 @@
       "default": "${vSphere-System.cluster}",
       "validation": "",
       "group_name": "vSphere-System",
-      "required": "true",
-      "secured": "false",
-      "hidden": "false",
-      "immutable": "false",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
       "immutable_after_create": false
     },
     {
@@ -192,10 +192,10 @@
       "default": "${vSphere-System.storage}",
       "validation": "",
       "group_name": "vSphere-System",
-      "required": "true",
-      "secured": "false",
-      "hidden": "false",
-      "immutable": "false",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
       "immutable_after_create": false
     },
     {
@@ -290,10 +290,10 @@
       "default": "${network.network_label}",
       "validation": "",
       "group_name": "network",
-      "required": "true",
-      "secured": "false",
-      "hidden": "false",
-      "immutable": "false",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
       "immutable_after_create": false
     },
     {
@@ -304,10 +304,10 @@
       "default": "${network.ipv4_subnet}",
       "validation": "",
       "group_name": "network",
-      "required": "true",
-      "secured": "false",
-      "hidden": "false",
-      "immutable": "false",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
       "immutable_after_create": false
     },
     {
