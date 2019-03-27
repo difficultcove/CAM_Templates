@@ -43,26 +43,8 @@ resource "vsphere_virtual_machine" "vm_1" {
   }
 
   disk {
-#    name              = "${var.name}.vmdk"
     label              = "${var.name}.vmdk"
     size              = "${var.rootdisksize}"
-#    datastore_cluster_id      = "${data.vsphere_datastore_cluster.datastore_cluster.id}"
-    thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
-  }
-  disk {
-#    name              = "${var.name}.vmdk"
-    label              = "${var.name}-2.vmdk"
-    size              = "${var.rootdisksize}"
-    unit_number = 2
-#    datastore_cluster_id      = "${data.vsphere_datastore_cluster.datastore_cluster.id}"
-    thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
-  }
-  disk {
-#    name              = "${var.name}.vmdk"
-    label              = "${var.name}-3.vmdk"
-    size              = "${var.rootdisksize}"
-    unit_number = 3
-#    datastore_cluster_id      = "${data.vsphere_datastore_cluster.datastore_cluster.id}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
 
@@ -70,9 +52,7 @@ resource "vsphere_virtual_machine" "vm_1" {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
     timeout = "60"
     customize {
-#      ipv4_gateway = "${var.ipv4_gateway}"
       ipv4_gateway = "${cidrhost("${var.ipv4_subnet}", "1")}"
-#      ipv4_gateway = "${var.network_label == "NLAB_FRNT_0210" ? "9.180.210.1" : "172.24.19.1"}"
       linux_options {
         host_name = "${var.name}"
         domain    = "${var.domain_name}"
@@ -80,8 +60,6 @@ resource "vsphere_virtual_machine" "vm_1" {
 
       network_interface {
         ipv4_address = "${cidrhost("${var.ipv4_subnet}", "${var.ipv4_subnet_index}")}"
-#        ipv4_netmask = "${var.ipv4_prefix_length}"
-
         ipv4_netmask = "${element("${split("/","${var.ipv4_subnet}")}",1)}"
       }
 
