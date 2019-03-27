@@ -47,6 +47,12 @@ resource "vsphere_virtual_machine" "vm_1" {
     size              = "${var.rootdisksize}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
+  disk {
+    label              = "${var.name}-2.vmdk"
+    size              = "${var.rootdisksize}"
+    unit_number = 2
+    thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+  }
 
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
