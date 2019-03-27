@@ -14,6 +14,13 @@ resource "vsphere_folder" "folder_vm_1" {
 
 #
 # Create VM with single vnic on a network label by cloning
+resource "vsphere_virtual_disk" "disk3" {
+  size         = 15
+  vmdk_path    = "${var.name}-3.vmdk"
+  datacenter   = "${var.datacenter}"
+  datastore    = "ESX6-volume-01"
+  type         = "thin"
+}
 
 # Create VM Server
 resource "vsphere_virtual_machine" "vm_1" {
@@ -23,7 +30,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   num_cpus          = "${var.vcpu}"
   memory            = "${var.memory}"
   resource_pool_id  = "${data.vsphere_resource_pool.pool.id}"
-  datastore_cluster_id      = "${data.vsphere_datastore_cluster.datastore_cluster.id}"
+  datastore_cluster_id  = "${data.vsphere_datastore_cluster.datastore_cluster.id}"
   guest_id          = "${data.vsphere_virtual_machine.template.guest_id}"
   num_cores_per_socket = 1
   cpu_hot_add_enabled  = true
@@ -51,6 +58,14 @@ resource "vsphere_virtual_machine" "vm_1" {
     label              = "${var.name}-2.vmdk"
     size              = "${var.rootdisksize}"
     unit_number = 2
+    thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+  }
+  disk {
+    label              = "${var.name}-3.vmdk"
+    size              = "${var.rootdisksize}"
+    attach            = true
+    path              = "ESX6-volume-01/${var.name}-3.vmdk"
+    unit_number = 3
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
 
