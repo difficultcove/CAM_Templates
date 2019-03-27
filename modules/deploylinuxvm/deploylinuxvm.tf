@@ -15,6 +15,7 @@ resource "vsphere_folder" "folder_vm_1" {
 #
 # Create VM with single vnic on a network label by cloning
 resource "vsphere_virtual_disk" "disk3" {
+  count        = 1
   size         = 15
   vmdk_path    = "${var.name}-3.vmdk"
   datacenter   = "${var.datacenter}"
