@@ -63,6 +63,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   disk {
     label              = "${var.name}-3.vmdk"
     size              = "${var.rootdisksize}"
+    datastore_id      = "${data.vsphere_datastore.datastore.id}"
     attach            = true
     path              = "ESX6-volume-01/${var.name}-3.vmdk"
     unit_number = 3
