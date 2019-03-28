@@ -3,17 +3,17 @@
     {
     		"name": "datacenter",
     		"label": "Datacenter",
-    		"description": "New VMware Datacenter name",
+    		"description": "VMware Datacenter name",
     		"hidden": false,
     		"immutable": false,
     		"required": true,
     		"secured": false,
     		"type": "string",
-        "default": "clod-fondly",
+        "default": "CLOUD",
         "options": [
           {
-            "value": "clod-fondly",
-            "label": "ESX6 Trial - clod-fondly"
+            "value": "CLOUD",
+            "label": "MARNE"
           }
         ]
     },
