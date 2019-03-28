@@ -53,15 +53,4 @@ variable "dependsOn" {
   description = "Boolean for dependency"
 }
 
-variable "null_resource_connection_user" {
-  type = "string"
-  default = "root"
-}
 
-variable "null_resource_connection_password" {
-  type = "string"
-}
-
-variable "null_resource_connection_host" {
-  type = "string"
-}
