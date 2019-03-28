@@ -86,3 +86,57 @@ resource "null_resource" "extendlinuxdisk_done" {
     command = "echo Root disk extended on Linux host"
   }
 }
+
+resource "null_resource" "null_resource" {
+  provisioner "file" {
+    destination = "/tmp"
+    content     = <<EOT
+sadaskhdfslaha
+asd
+das
+das
+das
+das
+das
+das
+EOT
+}
+  provisioner "remote-exec" {
+     inline = [
+        "dsvdsfv"
+      ]
+  }
+  connection {
+    type = "ssh"
+    user = "${var.null_resource_connection_user}"
+    password = "${var.null_resource_connection_password}"
+    host = "${var.null_resource_connection_host}"
+  }
+}
+
+resource "null_resource" "null_resource2" {
+  provisioner "file" {
+    destination = "/tmp"
+    content     = <<EOT
+sadaskhdfslaha
+asd
+das
+das
+das
+das
+das
+das
+EOT
+}
+  provisioner "remote-exec" {
+     inline = [
+        "dsvdsfv"
+      ]
+  }
+  connection {
+    type = "ssh"
+    user = "${var.null_resource_connection_user}"
+    password = "${var.null_resource_connection_password}"
+    host = "${var.null_resource_connection_host}"
+  }
+}
