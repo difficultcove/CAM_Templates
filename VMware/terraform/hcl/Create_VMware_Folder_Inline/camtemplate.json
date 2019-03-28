@@ -1,0 +1,40 @@
+{
+  "name": "Create VMware Folder",
+  "description": "Create new VMware Folder",
+  "type": "custom",
+  "version": "0.1",
+  "manifest": {
+    "template_type": "Terraform",
+    "template_format": "HCL",
+    "template_provider": "VMware vSphere",
+    "template": {
+      "templateOutput": "",
+      "templateVariables": "",
+      "templateData": ""
+    },
+    "template_source": {
+      "githubRepoUrl": "",
+      "githubAccessToken": "",
+      "relativePathToTemplateFolder": "",
+      "templateFileName": "main.tf"
+    }
+  },
+  "metadata": {
+      "displayName": "Create VMware Folder",
+      "longDescription": "Create new VMware Folder",
+      "bullets": [
+        {
+          "title": "Clouds",
+          "description": "VMware"
+        },
+        {
+          "title": "Template version",
+          "description": "V1.0"
+        },
+        {
+          "title": "Topology",
+          "description": "VMware: One new VMware Folder"
+        }
+      ]
+    }
+}

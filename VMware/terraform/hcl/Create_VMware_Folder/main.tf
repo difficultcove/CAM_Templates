@@ -8,7 +8,7 @@ provider "vsphere" {
 
 # Create VM Server
 module "create-vmware-folder" {
-  source = "git::http://9.180.210.11/root/CAM2102.git//modules/create-vmware-folder"
+  source = "github.com/difficultcove/CAM_Templates/modules/create-vmware-folder"
 
   ####### Input
   datacenter        = "${var.datacenter}"
