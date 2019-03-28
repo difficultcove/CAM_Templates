@@ -1,0 +1,43 @@
+{
+  "template_input_params": [
+    {
+    		"name": "datacenter",
+    		"label": "Datacenter",
+    		"description": "New VMware Datacenter name",
+    		"hidden": false,
+    		"immutable": false,
+    		"required": true,
+    		"secured": false,
+    		"type": "string",
+        "default": "clod-fondly",
+        "options": [
+          {
+            "value": "clod-fondly",
+            "label": "ESX6 Trial - clod-fondly"
+          }
+        ]
+    },
+    {
+      "name": "folder",
+      "label": "vSphere Folder",
+      "description": "Enter vSphere folder",
+      "hidden": false,
+      "immutable": false,
+      "required": true,
+      "secured": false,
+      "type": "string"
+    },
+    {
+        "name": "allow_selfsigned_cert",
+        "label": "Allow selfsigned certificate",
+        "description": "Communication with vsphere server with self signed certificate",
+        "default": "true",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    }
+  ],
+  "template_output_params": []
+}
