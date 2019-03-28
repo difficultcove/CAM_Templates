@@ -17,6 +17,11 @@ variable "folder" {
   description = "Target vSphere folder for ICP Virtual Machines"
 }
 
+variable "allow_selfsigned_cert" {
+  description = "Communication with vsphere server with self signed certificate"
+  default     = true
+}
+
 data "vsphere_datacenter" "dc" {
   name = "${var.datacenter}"
 }
