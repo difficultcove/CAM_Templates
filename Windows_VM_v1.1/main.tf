@@ -222,7 +222,7 @@ resource "vsphere_virtual_machine" "vm_1" {
       }
       ipv4_gateway = "${cidrhost("${var.ipv4_subnet}", "1")}"
       network_interface {
-        ipv4_address = "${var.ipv4_subnet}"
+        ipv4_netmask = "${element("${split("/","${var.ipv4_subnet}")}",1)}"
         ipv4_address = "${var.ipv4_address}"
       }
     }
