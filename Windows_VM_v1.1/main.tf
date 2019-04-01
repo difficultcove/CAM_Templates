@@ -1,5 +1,32 @@
-##################### Variables ###############################
 
+########################
+# Bastion host variables
+########################
+variable "bastion_host" {
+  type = "string"
+}
+
+variable "bastion_user" {
+  type = "string"
+}
+
+variable "bastion_private_key" {
+  type = "string"
+}
+
+variable "bastion_port" {
+  type = "string"
+}
+
+variable "bastion_host_key" {
+  type = "string"
+}
+
+variable "bastion_password" {
+  type = "string"
+}
+
+##################### Variables ###############################
 variable "name" {
   description = "Name prefix of ICP system. master, proxy-n, worker-n and manager will be added"
 }
@@ -50,8 +77,8 @@ variable "ipv4_subnet" {
   description = "IPv4 subnet for vNIC configuration"
 }
 
-variable "ipv4_subnet_index" {
-  description = "IPv4 subnet index for vNIC configuration"
+variable "ipv4_address" {
+  description = "IPv4 Address"
 }
 
 variable "dns_domain" {
@@ -113,6 +140,9 @@ variable "time_zone" {
 	description = "The Time Zone for this machine"
   default     = 85
 }
+
+output "dependsOn" { value = "${null_resource.vm-create_done.id}" description="Output Parameter when Module Complete"}
+
 ################ Data Segment #####################
 
 data "vsphere_datacenter" "datacenter" {
@@ -145,75 +175,70 @@ provider "vsphere" {
   allow_unverified_ssl = "${var.allow_selfsigned_cert}"
 }
 
-################## Modules ###############################
+################## Resources ###############################
 
-module "deploywindowsvm" {
-#  source = "github.ibm.com/tony-french/IBM_CAM_Templates/modules/deploylinuxvm"
-  source = "git::http://9.180.210.11/root/CAM2102.git//modules/deploywindowsvm"
+# Deploy Windows VM in Workgroup
 
-  # VSphere
-  create_vm_folder          = "${var.create_vm_folder}"
-  folder                    = "${var.folder}"
+#
+# Create VM with single vnic on a network label by cloning
+#
+# Create VM Server
+resource "vsphere_virtual_machine" "vm_1" {
+  name                 = "${var.name}"
+#  folder               = "${var.folder}"
+  num_cpus             = "${var.vcpu}"
+  memory               = "${var.memory}"
+  resource_pool_id     = "${data.vsphere_resource_pool.pool.id}"
+  datastore_cluster_id = "${data.vsphere_datastore_cluster.datastore_cluster.id}"
+  guest_id             = "${data.vsphere_virtual_machine.template.guest_id}"
+  scsi_type            = "${data.vsphere_virtual_machine.template.scsi_type}"
+  scsi_controller_count = 1
+  num_cores_per_socket = 1
+  cpu_hot_add_enabled  = true
+  cpu_hot_remove_enabled = true
+  memory_hot_add_enabled = true
 
-  ####### input to Data Segment
-  datacenter            = "${var.datacenter}"
-  cluster               = "${var.cluster}"
-  storage               = "${var.storage}"
-  network_label         = "${var.network_label}"
-  vm_template           = "${var.vm_template}"
+  network_interface {
+      network_id    = "${data.vsphere_network.network.id}"
+  }
 
-  ####### input to Resource Segment
-  name              = "${var.name}"
-  folder            = "${var.folder}"
-  vcpu              = "${var.vcpu}"
-  memory            = "${var.memory}"
-  rootdisksize      = "${var.rootdisksize}"
-  ipv4_subnet       = "${var.ipv4_subnet}"
-  ipv4_subnet_index = "${var.ipv4_subnet_index}"
-  dns_domain        = "${var.dns_domain}"
-  dns_server_list   = "${var.dns_server_list}"
-  product_key       = "${var.product_key}"
-  admin_user        = "${var.admin_user}"
-  admin_password    = "${var.admin_password}"
-  workgroup         = "${var.workgroup}"
-  organization_name = "${var.organization_name}"
-  time_zone         = "${var.time_zone}"
-  domain_name       = "${var.domain_name}"
-  domainjoin_user   = "${var.domainjoin_user}"
-  domainjoin_password = "${var.domainjoin_password}"
+  # This section should prevent terraform from rebuilding a VM only on the same datastore that it was created on
+#  lifecycle {
+#    ignore_changes = [
+#      "datastore_id",
+#      "disk",
+#    ]
+#  }
 
-}
+  disk {
+#    name              = "${var.name}.vmdk"
+    label             = "${var.name}.vmdk"
+    size              = "${var.rootdisksize}"
+    thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+  }
 
- module "config-win-security" {
-  source = "git::http://9.180.210.11/root/CAM2102.git//modules/config-win-security"
-
-  admin_user          = "Administrator"
-  admin_password      = "${var.admin_password}"
-  bastion_host        = "${var.bastion_host}"
-  bastion_user        = "${var.bastion_user}"
-  bastion_private_key = "${var.bastion_private_key}"
-  bastion_port        = "${var.bastion_port}"
-  bastion_host_key    = "${var.bastion_host_key}"
-  bastion_password    = "${var.bastion_password}"
-  ipv4_subnet         = "${var.ipv4_subnet}"
-  ipv4_subnet_index   = "${var.ipv4_subnet_index}"
-  dependsOn           = "${module.deploywindowsvm.dependsOn}"
-
-}
-
-module "extendwindowsdisk" {
-  source = "git::http://9.180.210.11/root/CAM2102.git//modules/extendwindowsdisk"
-
-  admin_user          = "Administrator"
-  admin_password      = "${var.admin_password}"
-  bastion_host        = "${var.bastion_host}"
-  bastion_user        = "${var.bastion_user}"
-  bastion_private_key = "${var.bastion_private_key}"
-  bastion_port        = "${var.bastion_port}"
-  bastion_host_key    = "${var.bastion_host_key}"
-  bastion_password    = "${var.bastion_password}"
-  ipv4_subnet         = "${var.ipv4_subnet}"
-  ipv4_subnet_index   = "${var.ipv4_subnet_index}"
-  dependsOn           = "${module.deploywindowsvm.dependsOn}"
-
+  clone {
+    template_uuid = "${data.vsphere_virtual_machine.template.id}"
+    timeout = "110"
+    customize {
+      timeout = "20"
+      windows_options {
+				computer_name 				= "${var.name}"
+        full_name             = "${var.admin_user}"
+				admin_password 				= "${var.admin_password}"
+				time_zone							= "${var.time_zone}"
+		  	organization_name 		= "${var.organization_name}"
+        workgroup             = "${var.workgroup}"
+        product_key           = "${var.product_key}"
+        #				join_domain 					= "${var.domain_name}"
+        #				domain_admin_user 		= "${var.domainjoin_user}"
+        #				domain_admin_password = "${var.domainjoin_password}"
+      }
+      ipv4_gateway = "${cidrhost("${var.ipv4_subnet}", "1")}"
+      network_interface {
+        ipv4_address = "${var.ipv4_subnet}"
+        ipv4_address = "${var.ipv4_address}"
+      }
+    }
+  }
 }

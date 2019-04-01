@@ -3,30 +3,6 @@
     {
       "name": "bastionhost",
       "label": "Bastion Data"
-    },
-    {
-      "name": "vSphere-System",
-      "label": "vCenter Data"
-    },
-    {
-      "name": "windows-vmware-template",
-      "label": "VMware template"
-    },
-    {
-      "name": "network",
-      "label": "Network Data"
-    },
-    {
-      "name": "vm-size",
-      "label": "VM Size"
-    },
-    {
-      "name": "win-credentials",
-      "label": "Credentials"
-    },
-    {
-      "name": "windows-domain",
-      "label": "Windows Domain"
     }
   ],
   "output_datatype": "content_template_output",
@@ -34,10 +10,6 @@
     {
       "name": "bastion",
       "label": "Bastion host variables"
-    },
-    {
-      "name": "cloud",
-      "label": "Cloud Input Variables"
     },
     {
       "name": "virtualmachine",
@@ -60,44 +32,40 @@
         "name": "vm_template",
         "label": "VM Template",
         "description": "Source VM or Template label for cloning",
-        "group_name": "windows-vmware-template",
+        "group_name": "virtualmachine",
         "hidden": true,
         "immutable": false,
         "required": true,
         "secured": false,
-        "type": "string",
-        "default": "${windows-vmware-template.vm_template}"
+        "type": "string"
     },
     {
         "name": "datacenter",
         "label": "Datacenter",
         "description": "Target vSphere datacenter for Virtual Machine creation",
-        "group_name": "vSphere-System",
+        "group_name": "virtualmachine",
         "hidden": true,
         "immutable": false,
         "required": true,
         "secured": false,
-        "type": "string",
-        "default": "${vSphere-System.datacenter}"
+        "type": "string"
     },
     {
         "name": "cluster",
         "label": "Cluster",
         "description": "Target vSphere Cluster to host the Virtual Machine",
-        "group_name": "vSphere-System",
+        "group_name": "virtualmachine",
         "hidden": true,
         "immutable": false,
         "required": true,
         "secured": false,
-        "type": "string",
-        "default": "${vSphere-System.cluster}"
+        "type": "string"
     },
     {
         "name": "storage",
         "label": "Storage",
         "description": "Datastore cluster name for target VMs disks",
-        "group_name": "vSphere-System",
-        "default": "${vSphere-System.storage}",
+        "group_name": "virtualmachine",
         "hidden": true,
         "immutable": false,
         "required": true,
@@ -120,8 +88,7 @@
         "name": "vcpu",
         "label": "VCPU",
         "description": "Number of Virtual CPU for the Virtual Machine",
-        "group_name": "vm-size",
-        "default": "${vm-size.vcpu}",
+        "group_name": "virtualmachine",
         "hidden": false,
         "immutable": false,
         "required": false,
@@ -149,8 +116,7 @@
     {
         "name": "memory",
         "description": "Memory for Virtual Machine in MBs",
-        "group_name": "vm-size",
-        "default": "${vm-size.memory}",
+        "group_name": "virtualmachine",
         "type": "string",
         "required": false,
         "secured": false,
@@ -191,8 +157,7 @@
     {
         "name": "rootdisksize",
         "description": "Root disk size in GBs",
-        "group_name": "vm-size",
-        "default": "${vm-size.rootdisksize}",
+        "group_name": "virtualmachine",
         "type": "string",
         "required": false,
         "secured": false,
@@ -218,30 +183,28 @@
         "name": "network_label",
         "label": "Network label",
         "description": "vSphere Port Group or Network label for Virtual Machine's vNIC",
-        "group_name": "network",
+        "group_name": "virtualmachine",
         "hidden": true,
         "immutable": false,
         "required": true,
         "secured": false,
-        "type": "string",
-        "default": "${network.network_label}"
+        "type": "string"
     },
     {
         "name": "ipv4_subnet",
         "label": "IPv4 Subnet",
         "description": "IPv4 subnet for vNIC configuration",
-        "group_name": "network",
+        "group_name": "virtualmachine",
         "hidden": true,
         "immutable": false,
         "required": true,
         "secured": false,
-        "type": "string",
-        "default": "${network.ipv4_subnet}"
+        "type": "string"
     },
     {
-        "name": "ipv4_subnet_index",
-        "label": "IPv4 subnet index",
-        "description": "The last element of an IPv4 Subnet address e.g. 10-253 for a /24 subnet",
+        "name": "ipv4_address",
+        "label": "IPv4 Address",
+        "description": "The IPv4 address e.g 10.10.10.23",
         "group_name": "virtualmachine",
         "hidden": false,
         "immutable": false,
@@ -274,50 +237,46 @@
     {
       "name": "admin_user",
       "description": "The name of the Admin user",
-      "group_name": "win-credentials",
+      "group_name": "virtualmachine",
       "type": "string",
       "required": true,
       "secured": false,
       "label": "admin_user",
       "hidden": true,
-      "immutable": false,
-      "default": "${win-credentials.user}"
+      "immutable": false
     },
     {
       "name": "admin_password",
       "description": "The Password for the Administrator user",
-      "group_name": "win-credentials",
+      "group_name": "virtualmachine",
       "type": "password",
       "required": true,
       "secured": true,
       "label": "admin_password",
       "hidden": true,
-      "immutable": false,
-      "default": "${win-credentials.password}"
+      "immutable": false
     },
     {
       "name": "product_key",
       "description": "The Windows Product Key",
-      "group_name": "windows-vmware-template",
+      "group_name": "virtualmachine",
       "type": "string",
       "required": false,
       "secured": false,
       "label": "product_key",
       "hidden": true,
-      "immutable": false,
-      "default": "${windows-vmware-template.product_key}"
+      "immutable": false
     },
     {
       "name": "workgroup",
       "description": "The Windows Workgroup",
-      "group_name": "windows-domain",
+      "group_name": "virtualmachine",
       "type": "string",
       "required": false,
       "secured": false,
       "label": "workgroup",
       "hidden": false,
-      "immutable": false,
-      "default": "${windows-domain.workgroup}"
+      "immutable": false
     },
     {
       "name": "organization_name",
@@ -327,8 +286,7 @@
       "secured": false,
       "label": "organization_name",
       "hidden": false,
-      "immutable": false,
-      "default": "IBM UK Ltd"
+      "immutable": false
     },
     {
       "name": "time_zone",
@@ -344,8 +302,7 @@
     {
       "name": "domain_name",
       "description": "The Active Directory Domain to join",
-      "group_name": "windows-domain",
-      "default": "${windows-domain.domain_name}",
+      "group_name": "virtualmachine",
       "type": "string",
       "required": false,
       "secured": false,
@@ -356,8 +313,7 @@
     {
       "name": "domainjoin_user",
       "description": "A user with authority to join the Active Directory",
-      "group_name": "windows-domain",
-      "default": "${windows-domain.domainjoin_user}",
+      "group_name": "virtualmachine",
       "type": "string",
       "required": false,
       "secured": false,
@@ -368,8 +324,7 @@
     {
       "name": "domainjoin_password",
       "description": "The password for the Domain Join user",
-      "group_name": "windows-domain",
-      "default": "${windows-domain.domainjoin_password}",
+      "group_name": "virtualmachine",
       "type": "password",
       "required": false,
       "secured": true,
@@ -393,7 +348,7 @@
         "name": "allow_selfsigned_cert",
         "label": "Allow selfsigned certificate",
         "description": "Communication with vsphere server with self signed certificate",
-        "group_name": "cloud",
+        "group_name": "virtualmachine",
         "default": "true",
         "hidden": false,
         "immutable": false,
