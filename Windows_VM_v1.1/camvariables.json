@@ -1,0 +1,472 @@
+{
+  "input_datatypes": [
+    {
+      "name": "bastionhost",
+      "label": "Bastion Data"
+    },
+    {
+      "name": "vSphere-System",
+      "label": "vCenter Data"
+    },
+    {
+      "name": "windows-vmware-template",
+      "label": "VMware template"
+    },
+    {
+      "name": "network",
+      "label": "Network Data"
+    },
+    {
+      "name": "vm-size",
+      "label": "VM Size"
+    },
+    {
+      "name": "win-credentials",
+      "label": "Credentials"
+    },
+    {
+      "name": "windows-domain",
+      "label": "Windows Domain"
+    }
+  ],
+  "output_datatype": "content_template_output",
+  "input_groups": [
+    {
+      "name": "bastion",
+      "label": "Bastion host variables"
+    },
+    {
+      "name": "cloud",
+      "label": "Cloud Input Variables"
+    },
+    {
+      "name": "virtualmachine",
+      "label": "Virtual Machine Input Variables"
+    }
+  ],
+  "template_input_params": [
+    {
+        "name": "name",
+        "label": "Hostname",
+        "description": "Name of the Virtual Machine",
+        "group_name": "virtualmachine",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "vm_template",
+        "label": "VM Template",
+        "description": "Source VM or Template label for cloning",
+        "group_name": "windows-vmware-template",
+        "hidden": true,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "default": "${windows-vmware-template.vm_template}"
+    },
+    {
+        "name": "datacenter",
+        "label": "Datacenter",
+        "description": "Target vSphere datacenter for Virtual Machine creation",
+        "group_name": "vSphere-System",
+        "hidden": true,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "default": "${vSphere-System.datacenter}"
+    },
+    {
+        "name": "cluster",
+        "label": "Cluster",
+        "description": "Target vSphere Cluster to host the Virtual Machine",
+        "group_name": "vSphere-System",
+        "hidden": true,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "default": "${vSphere-System.cluster}"
+    },
+    {
+        "name": "storage",
+        "label": "Storage",
+        "description": "Datastore cluster name for target VMs disks",
+        "group_name": "vSphere-System",
+        "default": "${vSphere-System.storage}",
+        "hidden": true,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "folder",
+        "label": "Folder",
+        "description": "Target vSphere folder for Virtual Machine",
+        "group_name": "virtualmachine",
+        "default": "CAM",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "vcpu",
+        "label": "VCPU",
+        "description": "Number of Virtual CPU for the Virtual Machine",
+        "group_name": "vm-size",
+        "default": "${vm-size.vcpu}",
+        "hidden": false,
+        "immutable": false,
+        "required": false,
+        "secured": false,
+        "type": "string",
+        "options": [
+         	{
+            	"value" : "1",
+              	"label": "1 Core"
+          	},
+         	{
+            	"value" : "2",
+              	"label": "2 Cores"
+          	},
+         	{
+            	"value" : "4",
+              	"label": "4 Cores"
+          	},
+         	{
+            	"value" : "8",
+              	"label": "8 Cores"
+          	}
+        ]
+    },
+    {
+        "name": "memory",
+        "description": "Memory for Virtual Machine in MBs",
+        "group_name": "vm-size",
+        "default": "${vm-size.memory}",
+        "type": "string",
+        "required": false,
+        "secured": false,
+        "label": "memory",
+        "hidden": false,
+        "immutable": false,
+        "options": [
+          {
+              "value" : "1024",
+                "label": "1 GB"
+            },
+          {
+              "value" : "2048",
+                "label": "2 GB"
+            },
+          {
+              "value" : "4096",
+                "label": "4 GB"
+            },
+          {
+              "value" : "6144",
+                "label": "6 GB"
+            },
+          {
+              "value" : "8192",
+                "label": "8 GB"
+            },
+          {
+              "value" : "12288",
+                "label": "12 GB"
+            },
+          {
+              "value" : "16384",
+                "label": "16 GB"
+            }
+        ]
+    },
+    {
+        "name": "rootdisksize",
+        "description": "Root disk size in GBs",
+        "group_name": "vm-size",
+        "default": "${vm-size.rootdisksize}",
+        "type": "string",
+        "required": false,
+        "secured": false,
+        "label": "rootdisksize",
+        "hidden": false,
+        "immutable": false,
+        "options": [
+          {
+            "value": "20",
+            "label": "20 GB"
+          },
+          {
+            "value": "40",
+            "label": "40 GB"
+          },
+          {
+            "value": "60",
+            "label": "60 GB"
+          }
+        ]
+    },
+    {
+        "name": "network_label",
+        "label": "Network label",
+        "description": "vSphere Port Group or Network label for Virtual Machine's vNIC",
+        "group_name": "network",
+        "hidden": true,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "default": "${network.network_label}"
+    },
+    {
+        "name": "ipv4_subnet",
+        "label": "IPv4 Subnet",
+        "description": "IPv4 subnet for vNIC configuration",
+        "group_name": "network",
+        "hidden": true,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "default": "${network.ipv4_subnet}"
+    },
+    {
+        "name": "ipv4_subnet_index",
+        "label": "IPv4 subnet index",
+        "description": "The last element of an IPv4 Subnet address e.g. 10-253 for a /24 subnet",
+        "group_name": "virtualmachine",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "dns_domain",
+        "label": "DNS Domain Name",
+        "description": "The DNS Domain for the new VM",
+        "group_name": "virtualmachine",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "dns_server_list",
+        "label": "DNS Server List",
+        "description": "The DNS Server List for the new VM",
+        "group_name": "virtualmachine",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "list"
+    },
+    {
+      "name": "admin_user",
+      "description": "The name of the Admin user",
+      "group_name": "win-credentials",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "admin_user",
+      "hidden": true,
+      "immutable": false,
+      "default": "${win-credentials.user}"
+    },
+    {
+      "name": "admin_password",
+      "description": "The Password for the Administrator user",
+      "group_name": "win-credentials",
+      "type": "password",
+      "required": true,
+      "secured": true,
+      "label": "admin_password",
+      "hidden": true,
+      "immutable": false,
+      "default": "${win-credentials.password}"
+    },
+    {
+      "name": "product_key",
+      "description": "The Windows Product Key",
+      "group_name": "windows-vmware-template",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "product_key",
+      "hidden": true,
+      "immutable": false,
+      "default": "${windows-vmware-template.product_key}"
+    },
+    {
+      "name": "workgroup",
+      "description": "The Windows Workgroup",
+      "group_name": "windows-domain",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "workgroup",
+      "hidden": false,
+      "immutable": false,
+      "default": "${windows-domain.workgroup}"
+    },
+    {
+      "name": "organization_name",
+      "description": "The Organisation Name of the owner of this machine",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "organization_name",
+      "hidden": false,
+      "immutable": false,
+      "default": "IBM UK Ltd"
+    },
+    {
+      "name": "time_zone",
+      "description": "The Time Zone of this machine",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "time_zone",
+      "hidden": false,
+      "immutable": false,
+      "default": "85"
+    },
+    {
+      "name": "domain_name",
+      "description": "The Active Directory Domain to join",
+      "group_name": "windows-domain",
+      "default": "${windows-domain.domain_name}",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "domain_name",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "domainjoin_user",
+      "description": "A user with authority to join the Active Directory",
+      "group_name": "windows-domain",
+      "default": "${windows-domain.domainjoin_user}",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "domainjoin_user",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "domainjoin_password",
+      "description": "The password for the Domain Join user",
+      "group_name": "windows-domain",
+      "default": "${windows-domain.domainjoin_password}",
+      "type": "password",
+      "required": false,
+      "secured": true,
+      "label": "domainjoin_password",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+        "name": "create_vm_folder",
+        "label": "Create VM folder",
+        "description": "Set to 1 if a vSphere folder needs to be created and to 0 otherwise (use an existing folder)",
+        "group_name": "virtualmachine",
+        "default": "0",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "allow_selfsigned_cert",
+        "label": "Allow selfsigned certificate",
+        "description": "Communication with vsphere server with self signed certificate",
+        "group_name": "cloud",
+        "default": "true",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+      "name": "bastion_host",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion host for ssh proxy",
+      "default": "${bastionhost.bastion_host}",
+      "label": "Bastion host",
+      "secured": false,
+      "required": false
+    },
+    {
+      "name": "bastion_port",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion port for ssh proxy",
+      "default": "${bastionhost.bastion_port}",
+      "label": "Bastion port",
+      "secured": false,
+      "required": false
+    },
+    {
+      "name": "bastion_user",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion user for ssh proxy",
+      "default": "${bastionhost.bastion_user}",
+      "label": "Bastion user",
+      "secured": false,
+      "required": false
+    },
+    {
+      "name": "bastion_private_key",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion private key for ssh proxy",
+      "default": "${bastionhost.bastion_private_key}",
+      "label": "Bastion private key",
+      "secured": true,
+      "required": false
+    },
+    {
+      "name": "bastion_password",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion user password for ssh proxy",
+      "default": "${bastionhost.bastion_password}",
+      "label": "Bastion user password",
+      "secured": true,
+      "required": false
+    },
+    {
+      "name": "bastion_host_key",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion host public key for ssh proxy",
+      "default": "${bastionhost.bastion_host_key}",
+      "label": "Bastion host key",
+      "secured": false,
+      "required": false
+    }
+  ],
+  "template_output_params": []
+}
