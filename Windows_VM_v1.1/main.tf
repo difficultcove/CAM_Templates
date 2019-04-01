@@ -128,7 +128,7 @@ variable "time_zone" {
   default     = 85
 }
 
-output "dependsOn" { value = "${vsphere_virtual-machine.vm_1.id}" description="Output Parameter when Resource Complete"}
+output "dependsOn" { value = "${vsphere_virtual_machine.vm_1.id}" description="Output Parameter when Resource Complete"}
 
 ################ Data Segment #####################
 
