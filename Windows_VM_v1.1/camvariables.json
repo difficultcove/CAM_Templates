@@ -230,7 +230,7 @@
       "required": false,
       "secured": false,
       "label": "admin_user",
-      "hidden": true,
+      "hidden": false,
       "immutable": false
     },
     {
