@@ -31,11 +31,6 @@ variable "name" {
   description = "Name prefix of ICP system. master, proxy-n, worker-n and manager will be added"
 }
 
-
-variable "folder" {
-  description = "Target vSphere folder for ICP Virtual Machines"
-}
-
 variable "datacenter" {
   description = "Target vSphere datacenter for Virtual Machine creation"
 }
@@ -67,11 +62,9 @@ variable "rootdisksize" {
   default     = 16
 }
 
-
 variable "network_label" {
   description = "vSphere Port Group or Network label for Virtual Machine's vNIC"
 }
-
 
 variable "ipv4_subnet" {
   description = "IPv4 subnet for vNIC configuration"
@@ -88,11 +81,6 @@ variable "dns_domain" {
 variable "dns_server_list" {
   description = "DNS server list"
   type        = "list"
-}
-
-variable "create_vm_folder" {
-  description = "A vSphere folder need to be create or it is precreated"
-  default     = true
 }
 
 variable "allow_selfsigned_cert" {
@@ -124,7 +112,6 @@ variable "domainjoin_password" {
 variable "product_key" {
 	description = "The Windows Product Key"
 }
-
 
 variable "workgroup" {
 	description = "The Workgroup for this machine"
@@ -185,7 +172,6 @@ provider "vsphere" {
 # Create VM Server
 resource "vsphere_virtual_machine" "vm_1" {
   name                 = "${var.name}"
-#  folder               = "${var.folder}"
   num_cpus             = "${var.vcpu}"
   memory               = "${var.memory}"
   resource_pool_id     = "${data.vsphere_resource_pool.pool.id}"
