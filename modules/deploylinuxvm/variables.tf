@@ -67,7 +67,7 @@ data "vsphere_datacenter" "datacenter" {
   name = "${var.datacenter}"
 }
 
-data "vsphere_datastore" "datastore" {
+data "vsphere_datastore_cluster" "datastore_cluster" {
   name          = "${var.storage}"
   datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
 }

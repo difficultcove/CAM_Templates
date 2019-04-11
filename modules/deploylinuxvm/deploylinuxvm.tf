@@ -31,7 +31,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   num_cpus          = "${var.vcpu}"
   memory            = "${var.memory}"
   resource_pool_id  = "${data.vsphere_resource_pool.pool.id}"
-  datastore_id  = "${data.vsphere_datastore.datastore.id}"
+  datastore_cluster_id  = "${data.vsphere_datastore_cluster.datastore_cluster.id}"
   guest_id          = "${data.vsphere_virtual_machine.template.guest_id}"
   num_cores_per_socket = 1
   cpu_hot_add_enabled  = true
@@ -54,19 +54,6 @@ resource "vsphere_virtual_machine" "vm_1" {
     label              = "${var.name}.vmdk"
     size              = "${var.rootdisksize}"
     thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
-  }
-  disk {
-    label              = "${var.name}-2.vmdk"
-    size              = "${var.rootdisksize}"
-    unit_number = 2
-    thin_provisioned  = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
-  }
-  disk {
-    label              = "${var.name}-3.vmdk"
-    datastore_id      = "${data.vsphere_datastore.datastore.id}"
-    attach            = true
-    path              = "${var.name}-3.vmdk"
-    unit_number = 3
   }
 
   clone {
