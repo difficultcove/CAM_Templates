@@ -139,7 +139,7 @@
         "required": false,
         "secured": false,
         "label": "memory",
-        "hidden": false,
+        "hidden": true,
         "immutable": false,
         "options": [
           {
@@ -181,7 +181,7 @@
         "required": false,
         "secured": false,
         "label": "rootdisksize",
-        "hidden": false,
+        "hidden": true,
         "immutable": false,
         "options": [
           {
@@ -263,7 +263,7 @@
       "required": true,
       "secured": false,
       "label": "admin_user",
-      "hidden": true,
+      "hidden": false,
       "immutable": false,
       "default": "Administrator"
     },
@@ -275,7 +275,7 @@
       "required": true,
       "secured": true,
       "label": "admin_password",
-      "hidden": true,
+      "hidden": false,
       "immutable": false
     },
     {
