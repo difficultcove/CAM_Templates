@@ -58,8 +58,10 @@ resource "vsphere_virtual_machine" "vm_1" {
       }
       ipv4_gateway = "${cidrhost("${var.ipv4_subnet}", "1")}"
       network_interface {
-        ipv4_address = "${cidrhost("${var.ipv4_subnet}", "${var.ipv4_subnet_index}")}"
-        ipv4_netmask = "${element("${split("/","${var.ipv4_subnet}")}",1)}"
+        ipv4_address    = "${cidrhost("${var.ipv4_subnet}", "${var.ipv4_subnet_index}")}"
+        ipv4_netmask    = "${element("${split("/","${var.ipv4_subnet}")}",1)}"
+        dns_domain      = "${var.dns_domain}"
+        dns_server_list = "${var.dns_server_list}"
       }
 
     }

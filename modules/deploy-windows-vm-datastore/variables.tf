@@ -57,11 +57,6 @@ variable "ipv4_subnet_index" {
   description = "IPv4 subnet index for vNIC configuration"
 }
 
-variable "create_vm_folder" {
-  description = "A vSphere folder need to be create or it is precreated"
-  default     = true
-}
-
 variable "domain_name" {
 	description = "The Active Directory Domain Name"
 }
@@ -96,6 +91,15 @@ variable "time_zone" {
 variable "dependsOn" {
   description = "depends On variable for VM creation"
   default     = true
+}
+
+variable "dns_domain" {
+  description = "DNS Domain name"
+}
+
+variable "dns_server_list" {
+  description = "DNS server list"
+  type        = "list"
 }
 
 ################ Data Segment #####################
