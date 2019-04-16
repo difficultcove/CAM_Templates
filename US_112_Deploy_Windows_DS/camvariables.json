@@ -21,10 +21,6 @@
       "label": "VM Size"
     },
     {
-      "name": "windows-credentials",
-      "label": "Credentials"
-    },
-    {
       "name": "windows-domain",
       "label": "Windows Domain"
     }
@@ -269,7 +265,7 @@
       "label": "admin_user",
       "hidden": true,
       "immutable": false,
-      "default": "${windows-credentials.user}"
+      "default": "Administrator"
     },
     {
       "name": "admin_password",
@@ -280,8 +276,7 @@
       "secured": true,
       "label": "admin_password",
       "hidden": true,
-      "immutable": false,
-      "default": "${windows-credentials.password}"
+      "immutable": false
     },
     {
       "name": "product_key",
