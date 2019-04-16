@@ -1,8 +1,5 @@
 ################## Resources ###############################
 
-
-
-#
 # Create VM with single vnic on a network label by cloning
 #
 # Create VM Server

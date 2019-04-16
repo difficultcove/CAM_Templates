@@ -4,11 +4,6 @@ variable "name" {
   description = "Name prefix of ICP system. master, proxy-n, worker-n and manager will be added"
 }
 
-
-variable "folder" {
-  description = "Target vSphere folder for ICP Virtual Machines"
-}
-
 variable "datacenter" {
   description = "Target vSphere datacenter for Virtual Machine creation"
 }
@@ -61,11 +56,6 @@ variable "dns_domain" {
 variable "dns_server_list" {
   description = "DNS server list"
   type        = "list"
-}
-
-variable "create_vm_folder" {
-  description = "A vSphere folder need to be create or it is precreated"
-  default     = true
 }
 
 variable "allow_selfsigned_cert" {
@@ -151,11 +141,6 @@ module "deploywindowsvm" {
   source = "github.com/difficultcove/CAM_Templates/modules/deploy-windows-vm-datastore"
 #  source = "git::http://9.180.210.11/root/CAM2102.git//modules/deploy-windows-vm-datastore"
 
-
-  # VSphere
-  create_vm_folder          = "${var.create_vm_folder}"
-  folder                    = "${var.folder}"
-
   ####### input to Data Segment
   datacenter            = "${var.datacenter}"
   cluster               = "${var.cluster}"
@@ -165,7 +150,6 @@ module "deploywindowsvm" {
 
   ####### input to Resource Segment
   name              = "${var.name}"
-  folder            = "${var.folder}"
   vcpu              = "${var.vcpu}"
   memory            = "${var.memory}"
   rootdisksize      = "${var.rootdisksize}"

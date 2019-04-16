@@ -105,18 +105,6 @@
         "type": "string"
     },
     {
-        "name": "folder",
-        "label": "Folder",
-        "description": "Target vSphere folder for Virtual Machine",
-        "group_name": "virtualmachine",
-        "default": "CAM",
-        "hidden": false,
-        "immutable": false,
-        "required": true,
-        "secured": false,
-        "type": "string"
-    },
-    {
         "name": "vcpu",
         "label": "VCPU",
         "description": "Number of Virtual CPU for the Virtual Machine",
@@ -376,18 +364,6 @@
       "label": "domainjoin_password",
       "hidden": false,
       "immutable": false
-    },
-    {
-        "name": "create_vm_folder",
-        "label": "Create VM folder",
-        "description": "Set to 1 if a vSphere folder needs to be created and to 0 otherwise (use an existing folder)",
-        "group_name": "virtualmachine",
-        "default": "0",
-        "hidden": false,
-        "immutable": false,
-        "required": true,
-        "secured": false,
-        "type": "string"
     },
     {
         "name": "allow_selfsigned_cert",
