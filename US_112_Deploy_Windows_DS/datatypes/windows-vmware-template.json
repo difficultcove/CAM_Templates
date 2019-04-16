@@ -1,6 +1,6 @@
 {
     "name": "windows-vmware-template",
-    "label": "vSphere linux Template",
+    "label": "vSphere Windows Template",
     "description": "Describes VMware template for Windows",
     "attributes": [
 		{

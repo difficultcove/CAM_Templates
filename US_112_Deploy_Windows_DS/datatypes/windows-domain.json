@@ -1,6 +1,6 @@
 {
     "name": "windows-domain",
-    "label": "vSphere Domain or Workgroup",
+    "label": "Windows Domain or Workgroup",
     "description": "Describes Windows Domain or Workgroup",
     "attributes": [
       {
