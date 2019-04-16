@@ -1,0 +1,47 @@
+{
+    "name": "vSphere-System",
+    "label": "vSphere System",
+    "description": "Describes an vSphere System",
+    "attributes": [
+		{
+      "name": "datacenter",
+      "type": "string",
+      "description": "Enter the vSphere Datacenter",
+      "label": "vSphere Data Center",
+      "required": true,
+      "secured": false,
+      "immutable": false,
+      "hidden": true
+    },
+    {
+      "name": "cluster",
+      "type": "string",
+      "description": "Select vSphere Cluster",
+      "label": "vSphere Cluster",
+      "required": true,
+      "secured": false,
+      "immutable": false,
+      "hidden": true
+    },
+    {
+      "name": "storage",
+      "type": "string",
+      "description": "vSphere Datastore Cluster",
+      "label": "vSphere Datastore Cluster",
+      "required": true,
+      "secured": false,
+      "immutable": false,
+      "hidden": true
+    },
+    {
+      "name": "folder",
+      "type": "string",
+      "description": "Enter vSphere folder",
+      "label": "vSphere Folder",
+      "required": true,
+      "secured": false,
+      "immutable": false,
+      "hidden": true
+    }
+	]
+}

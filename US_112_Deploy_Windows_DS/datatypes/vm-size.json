@@ -1,0 +1,37 @@
+{
+    "name": "vm-size",
+    "label": "vSphere VM Size",
+    "description": "Describes a preset size of a VMware VM",
+    "attributes": [
+		{
+        "name": "vcpu",
+        "label": "VCPU",
+        "description": "Number of Virtual CPU for the Virtual Machine",
+        "hidden": true,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    {
+        "name": "memory",
+        "description": "Memory for Virtual Machine in MBs",
+        "type": "string",
+        "required": true,
+        "secured": false,
+        "label": "memory",
+        "hidden": true,
+        "immutable": false
+    },
+    {
+        "name": "rootdisksize",
+        "description": "Root disk size in GBs",
+        "type": "string",
+        "required": true,
+        "secured": false,
+        "label": "rootdisksize",
+        "hidden": true,
+        "immutable": false
+    }
+	]
+}

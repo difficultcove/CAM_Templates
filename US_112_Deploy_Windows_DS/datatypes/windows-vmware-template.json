@@ -1,0 +1,28 @@
+{
+    "name": "windows-vmware-template",
+    "label": "vSphere linux Template",
+    "description": "Describes VMware template for Windows",
+    "attributes": [
+		{
+    		"name": "vm_template",
+    		"label": "VM Template",
+    		"description": "Source VM or Template label for cloning",
+    		"hidden": true,
+    		"immutable": false,
+    		"required": true,
+    		"secured": false,
+    		"type": "string"
+    },
+    {
+      "name": "product_key",
+      "description": "The Windows Product Key",
+      "group_name": "windows-vmware-template",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "product_key",
+      "hidden": true,
+      "immutable": false
+    }
+	]
+}

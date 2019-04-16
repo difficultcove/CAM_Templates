@@ -1,0 +1,52 @@
+{
+    "name": "windows-domain",
+    "label": "vSphere Domain or Workgroup",
+    "description": "Describes Windows Domain or Workgroup",
+    "attributes": [
+      {
+        "name": "workgroup",
+        "description": "The Windows Workgroup",
+        "group_name": "windows-domain",
+        "type": "string",
+        "required": false,
+        "secured": false,
+        "label": "workgroup",
+        "hidden": false,
+        "immutable": false
+      },
+
+      {
+        "name": "domain_name",
+        "description": "The Active Directory Domain to join",
+        "group_name": "windows-domain",
+        "type": "string",
+        "required": false,
+        "secured": false,
+        "label": "domain_name",
+        "hidden": false,
+        "immutable": false
+      },
+      {
+        "name": "domainjoin_user",
+        "description": "A user with authority to join the Active Directory",
+        "group_name": "windows-domain",
+        "type": "string",
+        "required": false,
+        "secured": false,
+        "label": "domainjoin_user",
+        "hidden": false,
+        "immutable": false
+      },
+      {
+        "name": "domainjoin_password",
+        "description": "The password for the Domain Join user",
+        "group_name": "windows-domain",
+        "type": "password",
+        "required": false,
+        "secured": true,
+        "label": "domainjoin_password",
+        "hidden": false,
+        "immutable": false
+      }
+	]
+}

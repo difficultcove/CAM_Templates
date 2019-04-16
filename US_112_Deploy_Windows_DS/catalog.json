@@ -1,0 +1,43 @@
+{
+  "name": "Windows-VM-1_5",
+  "description": "Create Windows Virtual Machine with single vnic and flexible root disk",
+  "version": "2.1.9",
+  "manifest": {
+    "template_type": "Terraform",
+    "template_format": "HCL",
+    "template_provider": "VMware vSphere",
+    "template": {
+      "templateOutput": "",
+      "templateVariables": "",
+      "templateData": ""
+    },
+    "template_source": {
+      "githubRepoUrl": "",
+      "githubAccessToken": "",
+      "relativePathToTemplateFolder": "",
+      "templateFileName": "main.tf"
+    }
+  },
+  "metadata": {
+      "displayName": "Windows-VM-1-5",
+      "longDescription": "Create Windows Virtual Machine with single vnic and flexible root disk",
+      "bullets": [
+        {
+          "title": "Clouds",
+          "description": "VMware"
+        },
+        {
+          "title": "Template version",
+          "description": "V1.0"
+        },
+        {
+          "title": "Operating systems supported",
+          "description": "Windows - any version"
+        },
+        {
+          "title": "Topology",
+          "description": "VMware: One Windows Virtual Machine - any size root disk greater than VM template - file system resized to fit"
+        }
+      ]
+    }
+}
