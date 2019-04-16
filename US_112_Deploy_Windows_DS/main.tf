@@ -103,31 +103,7 @@ variable "time_zone" {
 	description = "The Time Zone for this machine"
   default     = 85
 }
-################ Data Segment #####################
 
-data "vsphere_datacenter" "datacenter" {
-  name = "${var.datacenter}"
-}
-
-data "vsphere_datastore_cluster" "datastore_cluster" {
-  name          = "${var.storage}"
-  datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
-}
-
-data "vsphere_resource_pool" "pool" {
-  name          = "${var.cluster}/Resources"
-  datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
-}
-
-data "vsphere_network" "network" {
-  name          = "${var.network_label}"
-  datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
-}
-
-data "vsphere_virtual_machine" "template" {
-  name          = "${var.vm_template}"
-  datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
-}
 
 ############### Optinal settings in provider ##########
 provider "vsphere" {
