@@ -258,7 +258,7 @@
     {
       "name": "admin_user",
       "description": "The name of the Admin user",
-      "group_name": "windows-credentials",
+      "group_name": "virtual-machine",
       "type": "string",
       "required": true,
       "secured": false,
@@ -270,7 +270,7 @@
     {
       "name": "admin_password",
       "description": "The Password for the Administrator user",
-      "group_name": "windows-credentials",
+      "group_name": "virtual-machine",
       "type": "password",
       "required": true,
       "secured": true,
