@@ -49,9 +49,9 @@ resource "vsphere_virtual_machine" "vm_1" {
 		  	organization_name 		= "${var.organization_name}"
         workgroup             = "${var.workgroup}"
         product_key           = "${var.product_key}"
-				join_domain 					= "${var.domain_name}"
-        domain_admin_user 		= "${var.domainjoin_user}"
-        domain_admin_password = "${var.domainjoin_password}"
+#				join_domain 					= "${var.domain_name}"
+#        domain_admin_user 		= "${var.domainjoin_user}"
+#        domain_admin_password = "${var.domainjoin_password}"
       }
       ipv4_gateway = "${cidrhost("${var.ipv4_subnet}", "1")}"
       network_interface {
