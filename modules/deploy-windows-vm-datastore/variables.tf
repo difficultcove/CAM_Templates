@@ -62,17 +62,17 @@ variable "create_vm_folder" {
   default     = true
 }
 
-#variable "domain_name" {
-#	description = "The Active Directory Domain Name"
-#}
+variable "domain_name" {
+	description = "The Active Directory Domain Name"
+}
 
-#variable "domainjoin_user" {
-#	description = "A user with permissions to join the Active Directory"
-#}
+variable "domainjoin_user" {
+	description = "A user with permissions to join the Active Directory"
+}
 
-#variable "domainjoin_password" {
-#	description = "The password for the Domain join user"
-#}
+variable "domainjoin_password" {
+	description = "The password for the Domain join user"
+}
 
 variable "product_key" {
 	description = "The Windows Product Key"
