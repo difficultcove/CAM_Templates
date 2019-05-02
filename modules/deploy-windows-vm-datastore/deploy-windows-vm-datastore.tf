@@ -20,7 +20,9 @@ resource "vsphere_virtual_machine" "vm_1" {
   network_interface {
       network_id    = "${data.vsphere_network.network.id}"
   }
-
+  network_interface {
+      network_id    = "${data.vsphere_network.network.id}"
+  }
   # This section should prevent terraform from rebuilding a VM only on the same datastore that it was created on
 #  lifecycle {
 #    ignore_changes = [
